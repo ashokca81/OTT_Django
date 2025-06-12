@@ -1,0 +1,55 @@
+<!-- Referral Tree Modal -->
+<div id="referralTreeModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
+    <div class="relative top-20 mx-auto p-5 border w-11/12 max-w-4xl shadow-lg rounded-md bg-white">
+        <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg font-semibold text-gray-900" id="modalTitle">
+                Referral Network
+            </h3>
+            <button type="button" class="text-gray-400 hover:text-gray-500" onclick="closeReferralModal()">
+                <span class="sr-only">Close</span>
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Tree Container -->
+        <div class="overflow-x-auto">
+            <div id="referralTreeContainer" class="min-h-[500px] p-4">
+                <!-- Tree will be rendered here -->
+            </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="mt-4 flex items-center space-x-4 text-sm">
+            <div class="flex items-center">
+                <span class="w-3 h-3 rounded-full bg-green-500 mr-2"></span>
+                <span>Active Users</span>
+            </div>
+            <div class="flex items-center">
+                <span class="w-3 h-3 rounded-full bg-gray-400 mr-2"></span>
+                <span>Inactive Users</span>
+            </div>
+            <div class="flex items-center">
+                <span class="w-3 h-3 rounded-full bg-blue-500 mr-2"></span>
+                <span>Selected User</span>
+            </div>
+        </div>
+
+        <!-- Stats Summary -->
+        <div class="mt-4 grid grid-cols-3 gap-4 p-4 bg-gray-50 rounded-lg">
+            <div class="text-center">
+                <div class="text-sm font-medium text-gray-500">Total Referrals</div>
+                <div class="text-xl font-semibold text-gray-900" id="totalReferrals">0</div>
+            </div>
+            <div class="text-center">
+                <div class="text-sm font-medium text-gray-500">Active Referrals</div>
+                <div class="text-xl font-semibold text-green-600" id="activeReferrals">0</div>
+            </div>
+            <div class="text-center">
+                <div class="text-sm font-medium text-gray-500">Network Depth</div>
+                <div class="text-xl font-semibold text-blue-600" id="networkDepth">0</div>
+            </div>
+        </div>
+    </div>
+</div> 

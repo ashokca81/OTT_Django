@@ -1,0 +1,146 @@
+{% load static %}
+
+<!-- Transaction Details Container -->
+<div class="bg-white rounded-lg p-6 space-y-8">
+    <!-- Transaction and User Info Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Transaction Information -->
+        <div class="bg-gray-50 rounded-lg p-6 border border-gray-100">
+            <h3 class="text-sm font-medium text-gray-900 flex items-center mb-4">
+                <i class="fas fa-info-circle text-blue-500 mr-2"></i>
+                Transaction Information
+            </h3>
+            <div class="space-y-4">
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-gray-500">Transaction ID</span>
+                    <span class="text-sm font-medium text-gray-900">{{ transaction.id }}</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-gray-500">Amount</span>
+                    <span class="text-lg font-semibold text-gray-900">₹{{ transaction.amount }}</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-gray-500">Status</span>
+                    <span class="px-3 py-1 text-xs font-semibold rounded-full 
+                        {% if transaction.status == 'COMPLETED' %}
+                            bg-green-100 text-green-800
+                        {% elif transaction.status == 'PENDING' %}
+                            bg-yellow-100 text-yellow-800
+                        {% elif transaction.status == 'FAILED' %}
+                            bg-red-100 text-red-800
+                        {% else %}
+                            bg-gray-100 text-gray-800
+                        {% endif %}">
+                        {{ transaction.status }}
+                    </span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-gray-500">Created At</span>
+                    <span class="text-sm text-gray-900">{{ transaction.created_at|date:"d M Y, h:i A" }}</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-gray-500">Last Updated</span>
+                    <span class="text-sm text-gray-900">{{ transaction.updated_at|date:"d M Y, h:i A" }}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Information -->
+        <div class="bg-gray-50 rounded-lg p-6 border border-gray-100">
+            <h3 class="text-sm font-medium text-gray-900 flex items-center mb-4">
+                <i class="fas fa-user text-blue-500 mr-2"></i>
+                User Information
+            </h3>
+            <div class="space-y-4">
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-gray-500">Name</span>
+                    <span class="text-sm font-medium text-gray-900">{{ transaction.wallet.user.get_full_name }}</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-gray-500">Phone</span>
+                    <span class="text-sm text-gray-900">{{ transaction.wallet.user.userprofile.phone }}</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-gray-500">Email</span>
+                    <span class="text-sm text-gray-900">{{ transaction.wallet.user.email }}</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-gray-500">Current Wallet Balance</span>
+                    <span class="text-sm font-semibold text-gray-900">₹{{ transaction.wallet.balance }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bank Account Details -->
+    <div class="bg-gray-50 rounded-lg p-6 border border-gray-100">
+        <h3 class="text-sm font-medium text-gray-900 flex items-center mb-4">
+            <i class="fas fa-university text-blue-500 mr-2"></i>
+            Bank Account Details
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="space-y-4">
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-gray-500">Bank Name</span>
+                    <span class="text-sm text-gray-900">{{ transaction.bank_account.bank_name }}</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-gray-500">Account Number</span>
+                    <span class="text-sm text-gray-900">{{ transaction.bank_account.account_number }}</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-gray-500">IFSC Code</span>
+                    <span class="text-sm text-gray-900">{{ transaction.bank_account.ifsc_code }}</span>
+                </div>
+            </div>
+            <div class="space-y-4">
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-gray-500">Account Holder</span>
+                    <span class="text-sm font-medium text-gray-900">{{ transaction.bank_account.account_holder_name }}</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-gray-500">Account Type</span>
+                    <span class="text-sm text-gray-900">{{ transaction.bank_account.account_type }}</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-gray-500">Verification Status</span>
+                    <span class="px-3 py-1 text-xs font-semibold rounded-full 
+                        {% if transaction.bank_account.is_verified %}
+                            bg-green-100 text-green-800
+                        {% else %}
+                            bg-yellow-100 text-yellow-800
+                        {% endif %}">
+                        {% if transaction.bank_account.is_verified %}Verified{% else %}Pending Verification{% endif %}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if transaction.status in 'COMPLETED,FAILED'|split:',' %}
+    <div class="mt-6">
+        <h4 class="text-lg font-semibold mb-4">Processing Details</h4>
+        <div class="space-y-3">
+            <div>
+                <p class="text-sm text-gray-600">Processed By</p>
+                <p class="font-medium">{{ transaction.processed_by.get_full_name|default:"Not processed yet" }}</p>
+            </div>
+            <div>
+                <p class="text-sm text-gray-600">Processed At</p>
+                <p class="font-medium">{{ transaction.processed_at|date:"d M Y, h:i A"|default:"Not processed yet" }}</p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if transaction.description %}
+    <!-- Additional Notes -->
+    <div class="bg-blue-50 rounded-lg p-6 border border-blue-100">
+        <h3 class="text-sm font-medium text-gray-900 flex items-center mb-4">
+            <i class="fas fa-sticky-note text-blue-500 mr-2"></i>
+            Additional Notes
+        </h3>
+        <p class="text-sm text-blue-800">{{ transaction.description }}</p>
+    </div>
+    {% endif %}
+</div> 

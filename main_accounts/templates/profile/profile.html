@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'includes/sidebar.html' %}
+
+<!-- Main content -->
+<main class="main-content flex-1 p-6 overflow-auto">
+    {% include 'includes/header.html' with page_title="Profile" %}
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <!-- Left Sidebar -->
+        <div class="lg:col-span-4">
+            <!-- Profile Card -->
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <div class="flex flex-col items-center">
+                    <div class="w-32 h-32 rounded-full bg-[#4338ca] flex items-center justify-center text-white mb-4">
+                        <span class="text-4xl font-semibold">{{ user_profile.user.get_full_name|default:user_profile.user.username|slice:":2"|upper }}</span>
+                    </div>
+                    <h2 class="text-xl font-semibold text-gray-900 text-center">{{ user_profile.user.get_full_name|default:user_profile.user.username }}</h2>
+                    <p class="text-gray-500 text-center">{{ user_profile.user.email }}</p>
+                    <div class="mt-2 px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
+                        {{ user_profile.role.get_name_display }}
+                    </div>
+                </div>
+
+                <!-- User Statistics -->
+                <div class="mt-6 pt-6 border-t border-gray-200">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="text-center">
+                            <div class="text-2xl font-semibold text-gray-900">{{ login_history|length }}</div>
+                            <div class="text-sm text-gray-500">Recent Logins</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-semibold text-gray-900">{{ user_profile.created_at|date:"d" }}</div>
+                            <div class="text-sm text-gray-500">Days Active</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Info -->
+                <div class="mt-6 pt-6 border-t border-gray-200">
+                    <h3 class="text-sm font-medium text-gray-900 mb-3">Account Information</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">Member Since</span>
+                            <span class="text-sm font-medium text-gray-900">{{ user_profile.created_at|date:"M d, Y" }}</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">Last Activity</span>
+                            <span class="text-sm font-medium text-gray-900">{{ user_profile.last_activity|date:"M d, Y H:i" }}</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">Status</span>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium {% if user_profile.is_online %}bg-green-100 text-green-800{% else %}bg-gray-100 text-gray-800{% endif %}">
+                                {% if user_profile.is_online %}Online{% else %}Offline{% endif %}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="lg:col-span-8">
+            <!-- Profile Information -->
+            <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                <h2 class="text-xl font-semibold text-gray-900 mb-6">Profile Information</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                            <input type="text" value="{{ user_profile.user.get_full_name }}" class="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-700 bg-gray-50" readonly>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                            <input type="email" value="{{ user_profile.user.email }}" class="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-700 bg-gray-50" readonly>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                            <input type="text" value="{{ user_profile.user.username }}" class="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-700 bg-gray-50" readonly>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                            <input type="tel" value="{{ user_profile.phone|default:'Not set' }}" class="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-700 bg-gray-50" readonly>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Login History -->
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <h2 class="text-xl font-semibold text-gray-900 mb-6">Login History</h2>
+                <div class="space-y-4">
+                    {% for login in login_history %}
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 flex-shrink-0">
+                            <i class="fas fa-sign-in-alt"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-sm font-medium text-gray-900">Login</h3>
+                                <span class="text-xs text-gray-500">{{ login.timestamp|date:"M d, Y H:i" }}</span>
+                            </div>
+                            <p class="text-sm text-gray-500 mt-1">Successfully logged in from {{ login.ip_address }}</p>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="text-center text-gray-500 py-4">
+                        <i class="fas fa-history text-4xl mb-2"></i>
+                        <p>No login history available</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    // Notifications dropdown
+    const notificationsBtn = document.getElementById('notificationsBtn');
+    const notificationsDropdown = document.getElementById('notificationsDropdown');
+    
+    notificationsBtn.addEventListener('click', () => {
+        notificationsDropdown.classList.toggle('hidden');
+    });
+
+    // User menu dropdown
+    const userMenuBtn = document.getElementById('userMenuBtn');
+    const userMenuDropdown = document.getElementById('userMenuDropdown');
+    
+    userMenuBtn.addEventListener('click', () => {
+        userMenuDropdown.classList.toggle('hidden');
+    });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!notificationsBtn.contains(e.target) && !notificationsDropdown.contains(e.target)) {
+            notificationsDropdown.classList.add('hidden');
+        }
+        if (!userMenuBtn.contains(e.target) && !userMenuDropdown.contains(e.target)) {
+            userMenuDropdown.classList.add('hidden');
+        }
+    });
+</script>
+{% endblock %} 

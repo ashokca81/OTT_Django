@@ -1,0 +1,411 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Mandals - Regional Content{% endblock %}
+
+{% block extra_css %}
+<style>
+    .sortable-ghost {
+        background-color: #f3f4f6 !important;
+        opacity: 0.5;
+    }
+    
+    .sortable-drag {
+        background-color: #ffffff;
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    
+    .drag-handle {
+        cursor: grab;
+    }
+    
+    .drag-handle:active {
+        cursor: grabbing;
+    }
+
+    .status-cell {
+        cursor: pointer;
+    }
+
+    .table-container {
+        margin: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .table-header {
+        padding: 15px 20px;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .search-form {
+        margin: 15px 20px;
+    }
+
+    .search-input {
+        width: 300px;
+        padding: 8px 12px;
+        border: 1px solid #d1d5db;
+        border-radius: 4px;
+        margin-right: 10px;
+    }
+
+    .search-button {
+        padding: 8px 16px;
+        background: #f3f4f6;
+        border: 1px solid #d1d5db;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .search-button:hover {
+        background: #e5e7eb;
+    }
+
+    .mandal-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .mandal-table th {
+        background: #f9fafb;
+        padding: 12px 20px;
+        text-align: left;
+        font-weight: 500;
+        color: #374151;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .mandal-table td {
+        padding: 12px 20px;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .mandal-table tr:hover {
+        background: #f9fafb;
+    }
+
+    .action-button {
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+        margin-right: 8px;
+    }
+
+    .add-button {
+        background: #4f46e5;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .add-button:hover {
+        background: #4338ca;
+    }
+
+    .edit-button {
+        color: #4f46e5;
+    }
+
+    .delete-button {
+        color: #dc2626;
+    }
+
+    .pagination {
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .pagination a {
+        padding: 8px 12px;
+        border: 1px solid #d1d5db;
+        border-radius: 4px;
+        color: #374151;
+        text-decoration: none;
+    }
+
+    .pagination a:hover {
+        background: #f3f4f6;
+    }
+
+    .pagination .current-page {
+        background: #4f46e5;
+        color: white;
+        border-color: #4f46e5;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+    <!-- Sidebar -->
+    {% include 'includes/sidebar.html' %}
+
+    <!-- Main Content -->
+    <main class="main-content flex-1 bg-gray-100">
+        {% csrf_token %}
+        {% include 'includes/header.html' with page_title="Mandals" %}
+        
+        <div class="table-container">
+            <div class="table-header">
+                <div class="flex justify-between items-center">
+                    <h1 class="text-xl font-medium">Mandals</h1>
+                    {% if not is_editor %}
+                    <a href="{% url 'add_mandal' %}" class="add-button">
+                        <i class="fas fa-plus mr-2"></i>Add Mandal
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Search Form -->
+            <div class="search-form">
+                <form method="get" class="flex">
+                    <input type="text" name="search" value="{{ search_query }}" 
+                           placeholder="Search mandals..." class="search-input">
+                    <button type="submit" class="search-button">
+                        <i class="fas fa-search mr-2"></i>Search
+                    </button>
+                </form>
+            </div>
+
+            <!-- Mandals Table -->
+            <table class="mandal-table">
+                <thead>
+                    <tr>
+                        {% if not is_editor %}
+                        <th width="40"></th>
+                        {% endif %}
+                        <th>Name</th>
+                        <th>Constituency</th>
+                        <th>District</th>
+                        <th>State</th>
+                        <th>Order</th>
+                        <th>Status</th>
+                        <th>Villages</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="mandalsTableBody">
+                    {% for mandal in mandals %}
+                    <tr data-id="{{ mandal.id }}" data-constituency="{{ mandal.constituency.id }}" 
+                        class="{% if not is_editor %}cursor-move{% endif %}">
+                        {% if not is_editor %}
+                        <td class="drag-handle">
+                            <i class="fas fa-grip-vertical text-gray-400"></i>
+                        </td>
+                        {% endif %}
+                        <td>
+                            <div class="flex items-center">
+                                {% if mandal.image %}
+                                <img src="{{ mandal.image.url }}" alt="{{ mandal.name }}" 
+                                     class="w-8 h-8 rounded-full mr-3">
+                                {% else %}
+                                <div class="w-8 h-8 rounded-full bg-gray-200 mr-3 flex items-center justify-center">
+                                    <i class="fas fa-map-marker-alt text-gray-400"></i>
+                                </div>
+                                {% endif %}
+                                <span>{{ mandal.name }}</span>
+                            </div>
+                        </td>
+                        <td>{{ mandal.constituency.name }}</td>
+                        <td>{{ mandal.constituency.district.name }}</td>
+                        <td>{{ mandal.constituency.district.state.name }}</td>
+                        <td>{{ mandal.order }}</td>
+                        <td class="status-cell" data-id="{{ mandal.id }}">
+                            <span class="px-2 py-1 rounded-full text-sm {% if mandal.is_active %}bg-green-100 text-green-800{% else %}bg-red-100 text-red-800{% endif %}">
+                                {{ mandal.is_active|yesno:"Active,Inactive" }}
+                            </span>
+                        </td>
+                        <td>{{ mandal.villages.count }}</td>
+                        <td>
+                            <div class="flex items-center">
+                                {% if not is_editor %}
+                                <a href="{% url 'edit_mandal' mandal.id %}" class="action-button edit-button">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <button onclick="deleteMandal('{{ mandal.id }}')" class="action-button delete-button">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                                {% endif %}
+                            </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="9" class="text-center py-4 text-gray-500">
+                            No mandals found
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <!-- Pagination -->
+            {% if mandals.has_other_pages %}
+            <div class="pagination">
+                {% if mandals.has_previous %}
+                <a href="?page={{ mandals.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}">
+                    <i class="fas fa-chevron-left"></i>
+                </a>
+                {% endif %}
+
+                {% for i in mandals.paginator.page_range %}
+                <a href="?page={{ i }}{% if search_query %}&search={{ search_query }}{% endif %}" 
+                   class="{% if mandals.number == i %}current-page{% endif %}">
+                    {{ i }}
+                </a>
+                {% endfor %}
+
+                {% if mandals.has_next %}
+                <a href="?page={{ mandals.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}">
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </main>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+<script>
+// Helper function to show error message
+function showError(message) {
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'fixed top-4 right-4 bg-red-500 text-white px-4 py-2 rounded';
+    errorDiv.textContent = message;
+    document.body.appendChild(errorDiv);
+    setTimeout(() => errorDiv.remove(), 3000);
+}
+
+// Helper function to show success message
+function showSuccess(message) {
+    const successDiv = document.createElement('div');
+    successDiv.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded';
+    successDiv.textContent = message;
+    document.body.appendChild(successDiv);
+    setTimeout(() => successDiv.remove(), 3000);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+    // Initialize drag and drop if admin/manager
+    if (document.querySelector('.drag-handle')) {
+        const tbody = document.getElementById('mandalsTableBody');
+        if (!tbody) {
+            console.error('Mandals table body not found');
+            return;
+        }
+        
+        new Sortable(tbody, {
+            handle: '.drag-handle',
+            animation: 150,
+            onEnd: function(evt) {
+                const rows = Array.from(tbody.getElementsByClassName('cursor-move'));
+                const orderData = rows.map((row, index) => ({
+                    id: parseInt(row.dataset.id, 10),
+                    order: index + 1
+                }));
+                
+                fetch('/reorder-mandals/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrfToken
+                    },
+                    body: JSON.stringify(orderData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        rows.forEach((row, index) => {
+                            const orderCell = row.querySelector('td:nth-child(6)');
+                            if (orderCell) {
+                                orderCell.textContent = index + 1;
+                            }
+                        });
+                        showSuccess('Mandal order updated successfully');
+                    } else {
+                        throw new Error(data.message || 'Unknown error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showError('An error occurred while updating the order. Please refresh the page.');
+                });
+            }
+        });
+    }
+
+    // Add click handlers for status cells
+    document.querySelectorAll('.status-cell').forEach(cell => {
+        cell.addEventListener('click', function() {
+            const mandalId = this.dataset.id;
+            const statusSpan = this.querySelector('span');
+            const currentStatus = statusSpan.textContent.trim();
+
+            fetch(`/toggle-mandal-status/${mandalId}/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': csrfToken
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.status === 'success') {
+                    statusSpan.textContent = data.is_active ? 'Active' : 'Inactive';
+                    statusSpan.className = `px-2 py-1 rounded-full text-sm ${data.is_active ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`;
+                    showSuccess(data.message);
+                } else {
+                    throw new Error(data.message || 'Failed to toggle status');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showError(error.message || 'An error occurred while toggling the status');
+                statusSpan.textContent = currentStatus;
+                statusSpan.className = `px-2 py-1 rounded-full text-sm ${currentStatus === 'Active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`;
+            });
+        });
+    });
+});
+
+// Delete function
+function deleteMandal(mandalId) {
+    if (confirm('Are you sure you want to delete this mandal? This action cannot be undone.')) {
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        fetch(`/mandals/delete/${mandalId}/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': csrfToken
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                location.reload();
+            } else {
+                throw new Error(data.message || 'Failed to delete mandal');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showError(error.message || 'An error occurred while deleting the mandal');
+        });
+    }
+}
+</script>
+{% endblock %} 

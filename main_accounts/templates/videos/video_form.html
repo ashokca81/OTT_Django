@@ -1,0 +1,620 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block title %}{% if video %}Edit{% else %}Add{% endif %} Video - OTT Admin{% endblock %}
+
+{% block content %}
+    <!-- Sidebar -->
+    {% with name=request.user.get_full_name|default:request.user.username %}
+        {% include 'includes/sidebar.html' %}
+    {% endwith %}
+
+    <!-- Main Content -->
+    <main class="main-content flex-1 p-6 overflow-auto">
+        {% include 'includes/header.html' with page_title=video|yesno:"Edit Video,Add Video" %}
+        
+        <!-- Loading Overlay -->
+        <div id="loadingOverlay" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden items-center justify-center z-50">
+            <div class="bg-white p-6 rounded-lg shadow-xl text-center">
+                <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-indigo-600 mx-auto"></div>
+                <p class="mt-4 text-gray-700" id="uploadProgress">Uploading files...</p>
+                <!-- Progress Bar -->
+                <div class="mt-4 w-full bg-gray-200 rounded-full h-2.5">
+                    <div id="progressBar" class="bg-indigo-600 h-2.5 rounded-full" style="width: 0%"></div>
+                </div>
+                <p class="mt-2 text-sm text-gray-600" id="progressText">0%</p>
+                <p class="mt-1 text-xs text-gray-500" id="uploadSpeed">Calculating...</p>
+            </div>
+        </div>
+
+        <!-- Error Alert -->
+        <div id="errorAlert" class="hidden mb-4">
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                <span class="block sm:inline" id="errorMessage"></span>
+            </div>
+        </div>
+
+        <!-- Form Container -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+            <div class="bg-white rounded-lg shadow-sm">
+                <!-- Form Header -->
+                <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+                    <h1 class="text-xl font-semibold text-gray-900">
+                        {% if video %}Edit{% else %}Add New{% endif %} Video
+                    </h1>
+                    <a href="{% url 'video_list' %}" class="inline-flex items-center text-indigo-600 hover:text-indigo-800">
+                        <i class="fas fa-arrow-left mr-2"></i>
+                        Back to Videos
+                    </a>
+                </div>
+
+                <!-- Form Content -->
+                <form method="POST" enctype="multipart/form-data" id="videoForm" class="p-6">
+                    {% csrf_token %}
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Left Column -->
+                        <div class="space-y-6">
+                            <!-- Title -->
+                            <div>
+                                <label for="title" class="block text-sm font-medium text-gray-700 mb-1">Title *</label>
+                                <input type="text" name="title" id="title" value="{{ video.title|default:'' }}" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+                                    placeholder="Enter video title">
+                            </div>
+
+                            <!-- Description -->
+                            <div>
+                                <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Description *</label>
+                                <textarea name="description" id="description" required rows="4"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+                                    placeholder="Enter video description">{{ video.description|default:'' }}</textarea>
+                            </div>
+
+                            <!-- Cast -->
+                            <div>
+                                <label for="cast" class="block text-sm font-medium text-gray-700 mb-1">Cast</label>
+                                <textarea name="cast" id="cast" rows="2"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+                                    placeholder="Enter cast names separated by commas (e.g., MSR, Rana)">{{ video.cast|default:'' }}</textarea>
+                                <p class="mt-1 text-sm text-gray-500">Add multiple cast names separated by commas</p>
+                            </div>
+
+                            <!-- Category -->
+                            <div>
+                                <label for="category" class="block text-sm font-medium text-gray-700 mb-1">Category *</label>
+                                <select name="category" id="category" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500">
+                                    <option value="">Select a category</option>
+                                    {% for category in categories %}
+                                        <option value="{{ category.id }}" {% if video.category_id == category.id %}selected{% endif %}>
+                                            {{ category.name }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <!-- Video Type -->
+                            <div>
+                                <label for="video_type" class="block text-sm font-medium text-gray-700 mb-1">Video Type *</label>
+                                <select name="video_type" id="video_type" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500">
+                                    <option value="">Select video type</option>
+                                    {% for type_value, type_label in video_types %}
+                                        <option value="{{ type_value }}" {% if video.video_type == type_value %}selected{% endif %}>
+                                            {{ type_label }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <!-- Release Date -->
+                            <div>
+                                <label for="release_date" class="block text-sm font-medium text-gray-700 mb-1">Release Date *</label>
+                                <input type="date" name="release_date" id="release_date" value="{{ video.release_date|date:'Y-m-d'|default:'' }}" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500">
+                            </div>
+
+                            <!-- Duration -->
+                            <div>
+                                <label for="duration" class="block text-sm font-medium text-gray-700 mb-1">Duration (minutes) *</label>
+                                <input type="number" name="duration" id="duration" min="1" required
+                                    value="{{ video.duration|default:'' }}"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+                                    placeholder="Enter video duration in minutes"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                            </div>
+
+                            <!-- Rental Pricing Section -->
+                            <div id="rentalPricingSection" class="border border-gray-200 rounded-lg p-4" {% if video.video_type != 'rental' %}style="display: none;"{% endif %}>
+                                <div class="flex justify-between items-center mb-4">
+                                    <label class="text-sm font-medium text-gray-700">Rental Pricing *</label>
+                                    <button type="button" id="addPriceBtn"
+                                        class="inline-flex items-center px-3 py-1.5 bg-indigo-50 text-indigo-600 text-sm font-medium rounded-lg hover:bg-indigo-100">
+                                        <i class="fas fa-plus mr-2"></i>
+                                        Add Price
+                                    </button>
+                                </div>
+                                <div id="pricingContainer" class="space-y-3">
+                                    <div class="pricing-row flex items-center space-x-4 bg-gray-50 p-3 rounded-lg">
+                                        <div class="flex-1">
+                                            <label class="block text-xs text-gray-500 mb-1">Duration (in days) *</label>
+                                            <input type="number" name="rental_duration[]" min="1"
+                                                class="rental-input w-full px-3 py-1.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+                                                placeholder="Enter days">
+                                        </div>
+                                        <div class="flex-1">
+                                            <label class="block text-xs text-gray-500 mb-1">Price *</label>
+                                            <input type="number" name="rental_price[]" step="0.01" min="0"
+                                                class="rental-input w-full px-3 py-1.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+                                                placeholder="Enter price">
+                                        </div>
+                                        <div class="flex items-end pb-1">
+                                            <button type="button" class="remove-price-btn p-2 text-red-500 hover:text-red-700 focus:outline-none">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="space-y-6">
+                            <!-- Thumbnail Upload -->
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Thumbnail (16:9) *</label>
+                                <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-indigo-500 transition-colors" id="thumbnailDropzone">
+                                    <div class="space-y-1 text-center">
+                                        <div class="flex flex-col items-center">
+                                            <div id="thumbnailPreview" class="w-32 h-18 mb-4 rounded-lg overflow-hidden {% if not video.thumbnail %}hidden{% endif %}">
+                                                {% if video.thumbnail_url %}
+                                                    <img src="{{ video.thumbnail_url }}" alt="Thumbnail Preview" class="w-full h-full object-cover">
+                                                {% endif %}
+                                            </div>
+                                            <svg class="mx-auto h-12 w-12 text-gray-400 {% if video.thumbnail %}hidden{% endif %}" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                                                <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" 
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                            <div class="flex text-sm text-gray-600">
+                                                <label for="thumbnail" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500">
+                                                    <span>Upload a file</span>
+                                                    <input type="file" name="thumbnail" id="thumbnail" accept="image/*" {% if not video %}required{% endif %}
+                                                        class="sr-only">
+                                                </label>
+                                                <p class="pl-1">or drag and drop</p>
+                                            </div>
+                                            <p class="text-xs text-gray-500 mt-1">PNG, JPG up to 10MB (16:9 ratio recommended)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Portrait Thumbnail Upload (9:16) -->
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Portrait Thumbnail (9:16)</label>
+                                <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-indigo-500 transition-colors" id="portraitThumbnailDropzone">
+                                    <div class="space-y-1 text-center">
+                                        <div class="flex flex-col items-center">
+                                            <div id="portraitThumbnailPreview" class="w-24 h-42 mb-4 rounded-lg overflow-hidden {% if not video.portrait_thumbnail %}hidden{% endif %}">
+                                                {% if video.portrait_thumbnail_url %}
+                                                    <img src="{{ video.portrait_thumbnail_url }}" alt="Portrait Thumbnail Preview" class="w-full h-full object-cover">
+                                                {% endif %}
+                                            </div>
+                                            <svg class="mx-auto h-12 w-12 text-gray-400 {% if video.portrait_thumbnail %}hidden{% endif %}" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                                                <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" 
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                            <div class="flex text-sm text-gray-600">
+                                                <label for="portrait_thumbnail" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500">
+                                                    <span>Upload a file</span>
+                                                    <input type="file" name="portrait_thumbnail" id="portrait_thumbnail" accept="image/*"
+                                                        class="sr-only">
+                                                </label>
+                                                <p class="pl-1">or drag and drop</p>
+                                            </div>
+                                            <p class="text-xs text-gray-500 mt-1">PNG, JPG up to 10MB (9:16 ratio recommended)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Promo Video Upload -->
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Promo Video</label>
+                                <div class="space-y-4">
+                                    <div class="relative">
+                                        <div id="promoVideoDropzone" class="border-2 border-gray-300 border-dashed rounded-lg p-4 text-center cursor-pointer hover:border-indigo-500 transition-colors">
+                                            <i class="fas fa-film text-3xl text-gray-400 mb-2"></i>
+                                            <p class="text-sm text-gray-600">Click to upload promo video</p>
+                                            <p class="text-xs text-gray-500 mt-1">MP4, WebM up to 500MB</p>
+                                        </div>
+                                        <input type="file" 
+                                            name="promo_video" 
+                                            id="promo_video" 
+                                            accept="video/*" 
+                                            class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                            aria-label="Upload promo video">
+                                    </div>
+                                    <div id="promoVideoPreview" class="hidden w-full h-48 rounded-lg overflow-hidden bg-gray-100">
+                                        {% if video.promo_video_url %}
+                                            <video controls class="w-full h-full object-contain">
+                                                <source src="{{ video.promo_video_url }}" type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Video Upload -->
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Video File *</label>
+                                <div class="space-y-4">
+                                    <div class="border-2 border-gray-300 border-dashed rounded-lg p-4 text-center cursor-pointer hover:border-indigo-500 transition-colors" onclick="document.getElementById('video_file').click()">
+                                        <i class="fas fa-video text-3xl text-gray-400 mb-2"></i>
+                                        <p class="text-sm text-gray-600">Click to upload video</p>
+                                        <p class="text-xs text-gray-500 mt-1">MP4, WebM up to 2GB</p>
+                                        <input type="file" name="video_file" id="video_file" accept="video/*" {% if not video %}required{% endif %}
+                                            class="hidden" onchange="handleVideoChange(event)">
+                                    </div>
+                                    <div id="videoPreview" class="{% if not video.video_file %}hidden{% endif %} w-full h-48 rounded-lg overflow-hidden bg-gray-100">
+                                        {% if video.video_url %}
+                                            <video controls class="w-full h-full object-contain">
+                                                <source src="{{ video.video_url }}" type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="mt-6 flex justify-end border-t border-gray-200 pt-6">
+                        <button type="submit" class="inline-flex items-center px-6 py-3 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            <i class="fas fa-save mr-2"></i>
+                            {% if video %}Update{% else %}Save{% endif %} Video
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // All JavaScript functions defined first
+    function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    function handleThumbnailChange(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const previewDiv = document.getElementById('thumbnailPreview');
+                const svg = document.querySelector('#thumbnailDropzone svg');
+                
+                // Clear existing content
+                previewDiv.innerHTML = '';
+                
+                // Create and setup new image
+                const previewImg = document.createElement('img');
+                previewImg.src = e.target.result;
+                previewImg.classList.add('w-full', 'h-full', 'object-cover');
+                previewDiv.appendChild(previewImg);
+                
+                // Show preview, hide SVG
+                previewDiv.classList.remove('hidden');
+                if (svg) svg.classList.add('hidden');
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
+    function handlePortraitThumbnailChange(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const previewDiv = document.getElementById('portraitThumbnailPreview');
+                const svg = document.querySelector('#portraitThumbnailDropzone svg');
+                
+                // Clear existing content
+                previewDiv.innerHTML = '';
+                
+                // Create and setup new image
+                const previewImg = document.createElement('img');
+                previewImg.src = e.target.result;
+                previewImg.classList.add('w-full', 'h-full', 'object-cover');
+                previewDiv.appendChild(previewImg);
+                
+                // Show preview, hide SVG
+                previewDiv.classList.remove('hidden');
+                if (svg) svg.classList.add('hidden');
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
+    function handleVideoChange(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const videoPreview = document.getElementById('videoPreview');
+            const video = videoPreview.querySelector('video') || document.createElement('video');
+            video.classList.add('w-full', 'h-full', 'object-contain');
+            video.controls = true;
+            
+            const source = document.createElement('source');
+            source.src = URL.createObjectURL(file);
+            source.type = file.type;
+            
+            video.innerHTML = '';
+            video.appendChild(source);
+            
+            if (!videoPreview.contains(video)) {
+                videoPreview.innerHTML = '';
+                videoPreview.appendChild(video);
+            }
+            
+            videoPreview.classList.remove('hidden');
+            video.load();
+        }
+    }
+
+    function handleVideoTypeChange() {
+        const videoType = document.getElementById('video_type');
+        const rentalSection = document.getElementById('rentalPricingSection');
+        
+        if (!videoType || !rentalSection) {
+            console.error('Required elements not found');
+            return;
+        }
+        
+        if (videoType.value === 'rental') {
+            rentalSection.style.display = 'block';
+            // Ensure at least one pricing row exists
+            const pricingContainer = document.getElementById('pricingContainer');
+            if (pricingContainer && pricingContainer.children.length === 0) {
+                addPricingRow();
+            }
+            // Make rental inputs required
+            document.querySelectorAll('.rental-input').forEach(input => {
+                input.required = true;
+            });
+        } else {
+            rentalSection.style.display = 'none';
+            // Clear and make rental inputs not required
+            document.querySelectorAll('.rental-input').forEach(input => {
+                input.required = false;
+                input.value = '';
+            });
+        }
+    }
+
+    function addPricingRow() {
+        const pricingContainer = document.getElementById('pricingContainer');
+        if (!pricingContainer) return;
+
+        const newRow = document.createElement('div');
+        newRow.className = 'pricing-row flex items-center space-x-4 bg-gray-50 p-3 rounded-lg';
+        newRow.innerHTML = `
+            <div class="flex-1">
+                <label class="block text-xs text-gray-500 mb-1">Duration (in days) *</label>
+                <input type="number" name="rental_duration[]" min="1"
+                    class="rental-input w-full px-3 py-1.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+                    placeholder="Enter days">
+            </div>
+            <div class="flex-1">
+                <label class="block text-xs text-gray-500 mb-1">Price *</label>
+                <input type="number" name="rental_price[]" step="0.01" min="0"
+                    class="rental-input w-full px-3 py-1.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+                    placeholder="Enter price">
+            </div>
+            <div class="flex items-end pb-1">
+                <button type="button" class="remove-price-btn p-2 text-red-500 hover:text-red-700 focus:outline-none">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        `;
+        pricingContainer.appendChild(newRow);
+
+        // Add event listener to new remove button
+        const removeBtn = newRow.querySelector('.remove-price-btn');
+        if (removeBtn) {
+            removeBtn.addEventListener('click', function() {
+                if (pricingContainer.children.length > 1) {
+                    newRow.remove();
+                }
+            });
+        }
+    }
+
+    function handlePromoVideoChange(event) {
+        const file = event.target.files[0];
+        if (file) {
+            // Check file size (500MB limit)
+            const maxSize = 500 * 1024 * 1024; // 500MB in bytes
+            if (file.size > maxSize) {
+                alert('File size exceeds 500MB limit. Please choose a smaller file.');
+                event.target.value = ''; // Clear the file input
+                return;
+            }
+
+            // Check file type
+            if (!file.type.startsWith('video/')) {
+                alert('Please select a valid video file.');
+                event.target.value = ''; // Clear the file input
+                return;
+            }
+
+            const videoPreview = document.getElementById('promoVideoPreview');
+            const video = videoPreview.querySelector('video') || document.createElement('video');
+            video.classList.add('w-full', 'h-full', 'object-contain');
+            video.controls = true;
+            
+            const source = document.createElement('source');
+            source.src = URL.createObjectURL(file);
+            source.type = file.type;
+            
+            video.innerHTML = '';
+            video.appendChild(source);
+            
+            if (!videoPreview.contains(video)) {
+                videoPreview.innerHTML = '';
+                videoPreview.appendChild(video);
+            }
+            
+            videoPreview.classList.remove('hidden');
+            video.load();
+
+            // Update dropzone appearance
+            const dropzone = document.getElementById('promoVideoDropzone');
+            dropzone.classList.add('border-indigo-500', 'bg-indigo-50');
+            dropzone.querySelector('p.text-sm').textContent = file.name;
+        }
+    }
+
+    // Initialize everything when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize video type handling
+        const videoTypeSelect = document.getElementById('video_type');
+        if (videoTypeSelect) {
+            videoTypeSelect.addEventListener('change', handleVideoTypeChange);
+            handleVideoTypeChange();
+        }
+
+        // Initialize thumbnail handling
+        const thumbnailInput = document.getElementById('thumbnail');
+        const thumbnailDropzone = document.getElementById('thumbnailDropzone');
+        const portraitThumbnailInput = document.getElementById('portrait_thumbnail');
+        const portraitThumbnailDropzone = document.getElementById('portraitThumbnailDropzone');
+        
+        // Regular thumbnail handling
+        if (thumbnailInput && thumbnailDropzone) {
+            // Remove inline onchange handler
+            thumbnailInput.removeAttribute('onchange');
+            thumbnailInput.addEventListener('change', handleThumbnailChange);
+
+            // Initialize drag and drop for regular thumbnail
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                thumbnailDropzone.addEventListener(eventName, preventDefaults, false);
+            });
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                thumbnailDropzone.addEventListener(eventName, () => {
+                    thumbnailDropzone.classList.add('border-indigo-500');
+                });
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                thumbnailDropzone.addEventListener(eventName, () => {
+                    thumbnailDropzone.classList.remove('border-indigo-500');
+                });
+            });
+
+            thumbnailDropzone.addEventListener('drop', (e) => {
+                const dt = e.dataTransfer;
+                const file = dt.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    thumbnailInput.files = dt.files;
+                    handleThumbnailChange({ target: { files: [file] } });
+                }
+            });
+        }
+
+        // Portrait thumbnail handling
+        if (portraitThumbnailInput && portraitThumbnailDropzone) {
+            // Remove inline onchange handler
+            portraitThumbnailInput.removeAttribute('onchange');
+            portraitThumbnailInput.addEventListener('change', handlePortraitThumbnailChange);
+
+            // Initialize drag and drop for portrait thumbnail
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                portraitThumbnailDropzone.addEventListener(eventName, preventDefaults, false);
+            });
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                portraitThumbnailDropzone.addEventListener(eventName, () => {
+                    portraitThumbnailDropzone.classList.add('border-indigo-500');
+                });
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                portraitThumbnailDropzone.addEventListener(eventName, () => {
+                    portraitThumbnailDropzone.classList.remove('border-indigo-500');
+                });
+            });
+
+            portraitThumbnailDropzone.addEventListener('drop', (e) => {
+                const dt = e.dataTransfer;
+                const file = dt.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    portraitThumbnailInput.files = dt.files;
+                    handlePortraitThumbnailChange({ target: { files: [file] } });
+                }
+            });
+        }
+
+        // Initialize rental pricing functionality
+        const addPriceBtn = document.getElementById('addPriceBtn');
+        if (addPriceBtn) {
+            addPriceBtn.addEventListener('click', addPricingRow);
+            
+            // Initialize remove buttons for existing rows
+            document.querySelectorAll('.remove-price-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const pricingContainer = document.getElementById('pricingContainer');
+                    if (pricingContainer && pricingContainer.children.length > 1) {
+                        this.closest('.pricing-row').remove();
+                    }
+                });
+            });
+        }
+
+        // Initialize promo video handling
+        const promoVideoInput = document.getElementById('promo_video');
+        const promoVideoDropzone = document.getElementById('promoVideoDropzone');
+        
+        if (promoVideoInput && promoVideoDropzone) {
+            // Add change event listener
+            promoVideoInput.addEventListener('change', handlePromoVideoChange);
+            
+            // Initialize drag and drop for promo video
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                promoVideoDropzone.addEventListener(eventName, preventDefaults, false);
+                promoVideoInput.addEventListener(eventName, preventDefaults, false);
+            });
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                promoVideoDropzone.addEventListener(eventName, () => {
+                    promoVideoDropzone.classList.add('border-indigo-500', 'bg-indigo-50');
+                });
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                promoVideoDropzone.addEventListener(eventName, () => {
+                    if (!promoVideoInput.files.length) {
+                        promoVideoDropzone.classList.remove('border-indigo-500', 'bg-indigo-50');
+                    }
+                });
+            });
+
+            promoVideoDropzone.addEventListener('drop', (e) => {
+                const dt = e.dataTransfer;
+                const file = dt.files[0];
+                if (file && file.type.startsWith('video/')) {
+                    promoVideoInput.files = dt.files;
+                    handlePromoVideoChange({ target: { files: [file] } });
+                }
+            });
+        }
+    });
+</script>
+{% endblock %} 

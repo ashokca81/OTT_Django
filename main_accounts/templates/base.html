@@ -1,0 +1,49 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}OTT Admin{% endblock %}</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    
+     <link href="{% static 'assets/main_accounts/css/style.css' %}" rel="stylesheet">
+    <script src="{% static 'assets/main_accounts/js/dahboard.js' %}"></script>
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  
+    <div class="layout-container">
+     <!-- Sidebar -->
+    
+    {% block content %}{% endblock %}
+  
+    {% block extra_js %}{% endblock %}
+    </div>
+</body>
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+        const userDropdown = document.getElementById('userDropdown');
+        const userDropdownMenu = document.getElementById('userDropdownMenu');
+    
+        // Toggle dropdown on click
+        userDropdown.addEventListener('click', function(e) {
+            e.stopPropagation();
+            userDropdownMenu.classList.toggle('hidden');
+        });
+    
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!userDropdown.contains(e.target)) {
+                userDropdownMenu.classList.add('hidden');
+            }
+        });
+    });
+</script>
+</html>

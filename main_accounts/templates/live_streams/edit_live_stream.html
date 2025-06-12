@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- Sidebar -->
+    {% include 'includes/sidebar.html' %}
+
+    <!-- Main Content -->
+    <main class="main-content flex-1 p-6 overflow-auto">
+        {% include 'includes/header.html' with page_title="Edit Live Stream" %}
+        <div class="px-6 py-8">
+            <!-- Back Button -->
+            <div class="mb-6">
+                <a href="{% url 'live_stream_list' %}" class="inline-flex items-center text-gray-600 hover:text-gray-900">
+                    <i class="fas fa-arrow-left mr-2"></i>
+                    Back to Live Streams
+                </a>
+            </div>
+
+            <!-- Edit Live Stream Form -->
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <form method="POST" enctype="multipart/form-data" class="space-y-6">
+                    {% csrf_token %}
+                    
+                    <!-- Title -->
+                    <div>
+                        <label for="title" class="block text-sm font-medium text-gray-700 mb-1">Title</label>
+                        <input type="text" name="title" id="title" required
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                            placeholder="Enter live stream title"
+                            value="{{ live_stream.title }}">
+                    </div>
+
+                    <!-- Live URL -->
+                    <div>
+                        <label for="live_url" class="block text-sm font-medium text-gray-700 mb-1">Live URL</label>
+                        <div class="flex space-x-4">
+                            <input type="url" name="live_url" id="live_url" required
+                                class="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                                placeholder="Enter live stream URL"
+                                value="{{ live_stream.live_url }}"
+                                onchange="previewLiveUrl(this.value)">
+                            <button type="button" onclick="previewLiveUrl(document.getElementById('live_url').value)"
+                                class="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
+                                <i class="fas fa-eye mr-2"></i>Preview
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- URL Preview -->
+                    <div id="urlPreview" class="hidden">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">URL Preview</label>
+                        <div class="border border-gray-300 rounded-md p-4">
+                            <div id="previewContent" class="w-full max-w-4xl mx-auto">
+                                <div class="aspect-video bg-gray-100 flex items-center justify-center">
+                                    <p class="text-gray-500">Preview will appear here</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category Selection -->
+                    <div>
+                        <label for="category" class="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                        <select name="category" id="category" required
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                            <option value="">Select a category</option>
+                            {% for category in categories %}
+                                <option value="{{ category.id }}" {% if category.id == live_stream.category.id %}selected{% endif %}>
+                                    {{ category.name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <!-- Thumbnail Upload -->
+                    <div>
+                        <label for="thumbnail" class="block text-sm font-medium text-gray-700 mb-1">Thumbnail</label>
+                        <div class="mt-1 flex items-center space-x-4">
+                            <div class="flex-1">
+                                <input type="file" name="thumbnail" id="thumbnail" accept="image/*"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                                    onchange="previewThumbnail(this)">
+                            </div>
+                            <div id="thumbnailPreview" class="w-32 h-20 border border-gray-300 rounded-md overflow-hidden">
+                                {% if live_stream.thumbnail %}
+                                    <img id="previewImage" src="{{ live_stream.thumbnail.url }}" alt="Current thumbnail" class="w-full h-full object-cover">
+                                {% else %}
+                                    <img id="previewImage" src="" alt="Thumbnail preview" class="w-full h-full object-cover hidden">
+                                {% endif %}
+                            </div>
+                        </div>
+                        <p class="mt-1 text-sm text-gray-500">Recommended size: 1280x720 pixels</p>
+                    </div>
+
+                    <!-- Important Checkbox -->
+                    <div class="flex items-center">
+                        <input type="checkbox" name="is_important" id="is_important"
+                            class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                            {% if live_stream.is_important %}checked{% endif %}>
+                        <label for="is_important" class="ml-2 block text-sm text-gray-700">
+                            Mark as Important
+                        </label>
+                    </div>
+
+                    <!-- Active Checkbox -->
+                    <div class="flex items-center">
+                        <input type="checkbox" name="is_active" id="is_active"
+                            class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                            {% if live_stream.is_active %}checked{% endif %}>
+                        <label for="is_active" class="ml-2 block text-sm text-gray-700">
+                            Active
+                        </label>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="flex justify-end">
+                        <button type="submit"
+                            class="px-6 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                            <i class="fas fa-save mr-2"></i>Update Live Stream
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+<script>
+function previewLiveUrl(url) {
+    const previewDiv = document.getElementById('urlPreview');
+    const previewContent = document.getElementById('previewContent');
+    
+    if (url) {
+        previewDiv.classList.remove('hidden');
+        
+        // Check if it's a YouTube URL
+        const youtubeRegex = /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+        const match = url.match(youtubeRegex);
+        
+        if (match) {
+            const videoId = match[1];
+            previewContent.innerHTML = `
+                <div class="aspect-video w-full max-w-4xl mx-auto">
+                    <iframe 
+                        src="https://www.youtube.com/embed/${videoId}" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen
+                        class="w-full h-full rounded-lg shadow-lg">
+                    </iframe>
+                </div>
+            `;
+        } else {
+            // For non-YouTube URLs, show a placeholder
+            previewContent.innerHTML = `
+                <div class="text-center">
+                    <i class="fas fa-link text-3xl text-gray-400 mb-2"></i>
+                    <p class="text-gray-600">${url}</p>
+                </div>
+            `;
+        }
+    } else {
+        previewDiv.classList.add('hidden');
+    }
+}
+
+function previewThumbnail(input) {
+    const preview = document.getElementById('thumbnailPreview');
+    const previewImage = document.getElementById('previewImage');
+    
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            previewImage.src = e.target.result;
+            previewImage.classList.remove('hidden');
+        }
+        
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+// Initialize preview for existing URL
+document.addEventListener('DOMContentLoaded', function() {
+    const liveUrl = document.getElementById('live_url').value;
+    if (liveUrl) {
+        previewLiveUrl(liveUrl);
+    }
+});
+</script>
+{% endblock %} 

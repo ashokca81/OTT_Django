@@ -1,0 +1,247 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'includes/sidebar.html' %}
+
+<!-- Main content -->
+<main class="main-content flex-1 p-6 overflow-auto">
+    {% include 'includes/header.html' with page_title="Settings" %}
+
+    <div class="w-full">
+        <!-- Settings Header -->
+        <div class="mb-8">
+            <h1 class="text-2xl font-bold text-gray-900">Settings</h1>
+            <p class="mt-2 text-sm text-gray-600">Manage your account settings and preferences</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <!-- Settings Navigation -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                    <nav class="space-y-1 p-2">
+                        <a href="#account" id="accountNav" class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-[#1e1e2d] bg-[#f3f4f6] rounded-lg transition-all duration-200">
+                            <i class="fas fa-user-circle text-gray-500 w-5"></i>
+                            <span>Account Settings</span>
+                        </a>
+                        <a href="#security" id="passwordNav" class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-600 hover:bg-gray-50 rounded-lg transition-all duration-200">
+                            <i class="fas fa-key text-gray-500 w-5"></i>
+                            <span>Change Password</span>
+                        </a>
+                        {% if user.is_superuser %}
+                        <a href="{% url 'withdrawal_limits' %}" class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-600 hover:bg-gray-50 rounded-lg transition-all duration-200">
+                            <i class="fas fa-money-bill-wave text-gray-500 w-5"></i>
+                            <span>Withdrawal Limits</span>
+                        </a>
+                        {% endif %}
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Settings Content -->
+            <div class="lg:col-span-10">
+                <!-- Account Settings -->
+                <div id="accountSection" class="bg-white rounded-xl shadow-sm p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h2 class="text-lg font-semibold text-gray-900">Account Settings</h2>
+                            <p class="mt-1 text-sm text-gray-500">Update your personal information</p>
+                        </div>
+                        {% if user_profile.role.name != 'editor' %}
+                        <button type="button" class="px-4 py-2 text-sm font-medium text-[#4338ca] hover:text-[#3730a3] focus:outline-none">
+                            <i class="fas fa-edit mr-2"></i>Edit Profile
+                        </button>
+                        {% endif %}
+                    </div>
+                    <form class="space-y-6" method="POST" action="{% url 'settings' %}">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                                <input type="text" name="first_name" value="{{ user.first_name }}" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4338ca] focus:border-transparent transition-all duration-200 {% if user_profile.role.name == 'editor' %}bg-gray-50{% endif %}" placeholder="Enter your first name" {% if user_profile.role.name == 'editor' %}readonly{% endif %}>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                                <input type="text" name="last_name" value="{{ user.last_name }}" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4338ca] focus:border-transparent transition-all duration-200 {% if user_profile.role.name == 'editor' %}bg-gray-50{% endif %}" placeholder="Enter your last name" {% if user_profile.role.name == 'editor' %}readonly{% endif %}>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                            <input type="email" name="email" value="{{ user.email }}" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4338ca] focus:border-transparent transition-all duration-200 {% if user_profile.role.name == 'editor' %}bg-gray-50{% endif %}" placeholder="Enter your email" {% if user_profile.role.name == 'editor' %}readonly{% endif %}>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                            <input type="tel" name="phone_number" value="{{ user.profile.phone }}" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4338ca] focus:border-transparent transition-all duration-200 {% if user_profile.role.name == 'editor' %}bg-gray-50{% endif %}" placeholder="Enter your phone number" {% if user_profile.role.name == 'editor' %}readonly{% endif %}>
+                        </div>
+                        {% csrf_token %}
+                        {% if user_profile.role.name != 'editor' %}
+                        <div class="flex justify-end pt-4">
+                            <button type="submit" class="px-6 py-2.5 bg-[#4338ca] text-white rounded-lg hover:bg-[#3730a3] focus:outline-none focus:ring-2 focus:ring-[#4338ca] focus:ring-offset-2 transition-all duration-200">
+                                Save Changes
+                            </button>
+                        </div>
+                        {% endif %}
+                    </form>
+                </div>
+
+                <!-- Change Password -->
+                <div id="passwordSection" class="bg-white rounded-xl shadow-sm p-6 hidden">
+                    <div class="mb-6">
+                        <h2 class="text-lg font-semibold text-gray-900">Change Password</h2>
+                        <p class="mt-1 text-sm text-gray-500">Update your password to keep your account secure</p>
+                    </div>
+                    <form class="space-y-6" method="POST" action="{% url 'change_password' %}">
+                        {% csrf_token %}
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Current Password</label>
+                            <div class="relative">
+                                <input type="password" name="current_password" id="currentPassword" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4338ca] focus:border-transparent transition-all duration-200" placeholder="Enter your current password" required>
+                                <button type="button" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700" onclick="togglePasswordVisibility('currentPassword')">
+                                    <i class="fas fa-eye" id="currentPasswordToggle"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">New Password</label>
+                            <div class="relative">
+                                <input type="password" name="new_password" id="newPassword" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4338ca] focus:border-transparent transition-all duration-200" placeholder="Enter your new password" required>
+                                <button type="button" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700" onclick="togglePasswordVisibility('newPassword')">
+                                    <i class="fas fa-eye" id="newPasswordToggle"></i>
+                                </button>
+                            </div>
+                            <p class="mt-2 text-sm text-gray-500">Password must be at least 8 characters long and include a number and special character</p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Confirm New Password</label>
+                            <div class="relative">
+                                <input type="password" name="confirm_password" id="confirmPassword" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4338ca] focus:border-transparent transition-all duration-200" placeholder="Confirm your new password" required>
+                                <button type="button" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700" onclick="togglePasswordVisibility('confirmPassword')">
+                                    <i class="fas fa-eye" id="confirmPasswordToggle"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="flex justify-end pt-4">
+                            <button type="submit" class="inline-flex items-center px-6 py-2.5 bg-[#4338ca] text-white rounded-lg hover:bg-[#3730a3] focus:outline-none focus:ring-2 focus:ring-[#4338ca] focus:ring-offset-2 transition-all duration-200">
+                                <i class="fas fa-key mr-2"></i>
+                                Change Password
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Show messages if any -->
+{% if messages %}
+<div class="fixed top-4 right-4 z-50" id="toastContainer">
+    {% for message in messages %}
+    <div class="mb-4 px-6 py-3 rounded-lg shadow-lg transform transition-all duration-500 ease-in-out {% if message.tags == 'success' %}bg-green-500 text-white{% else %}bg-red-500 text-white{% endif %} flex items-center justify-between" role="alert">
+        <div class="flex items-center">
+            <i class="fas {% if message.tags == 'success' %}fa-check-circle{% else %}fa-exclamation-circle{% endif %} mr-2"></i>
+            {{ message }}
+        </div>
+        <button type="button" class="ml-4 text-white hover:text-gray-200 focus:outline-none" onclick="this.parentElement.remove()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<script>
+    // Settings navigation
+    const accountNav = document.getElementById('accountNav');
+    const passwordNav = document.getElementById('passwordNav');
+    const accountSection = document.getElementById('accountSection');
+    const passwordSection = document.getElementById('passwordSection');
+
+    // Password visibility toggle function
+    function togglePasswordVisibility(inputId) {
+        const passwordInput = document.getElementById(inputId);
+        const toggleIcon = document.getElementById(inputId + 'Toggle');
+        
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            toggleIcon.classList.remove('fa-eye');
+            toggleIcon.classList.add('fa-eye-slash');
+        } else {
+            passwordInput.type = 'password';
+            toggleIcon.classList.remove('fa-eye-slash');
+            toggleIcon.classList.add('fa-eye');
+        }
+    }
+
+    accountNav.addEventListener('click', (e) => {
+        e.preventDefault();
+        // Update navigation styles
+        accountNav.classList.add('text-[#1e1e2d]', 'bg-[#f3f4f6]');
+        accountNav.classList.remove('text-gray-600', 'hover:bg-gray-50');
+        passwordNav.classList.add('text-gray-600', 'hover:bg-gray-50');
+        passwordNav.classList.remove('text-[#1e1e2d]', 'bg-[#f3f4f6]');
+        // Show/hide sections
+        accountSection.classList.remove('hidden');
+        passwordSection.classList.add('hidden');
+    });
+
+    passwordNav.addEventListener('click', (e) => {
+        e.preventDefault();
+        // Update navigation styles
+        passwordNav.classList.add('text-[#1e1e2d]', 'bg-[#f3f4f6]');
+        passwordNav.classList.remove('text-gray-600', 'hover:bg-gray-50');
+        accountNav.classList.add('text-gray-600', 'hover:bg-gray-50');
+        accountNav.classList.remove('text-[#1e1e2d]', 'bg-[#f3f4f6]');
+        // Show/hide sections
+        passwordSection.classList.remove('hidden');
+        accountSection.classList.add('hidden');
+    });
+
+    // Notifications dropdown
+    const notificationsBtn = document.getElementById('notificationsBtn');
+    const notificationsDropdown = document.getElementById('notificationsDropdown');
+    
+    notificationsBtn.addEventListener('click', () => {
+        notificationsDropdown.classList.toggle('hidden');
+    });
+
+    // User menu dropdown
+    const userMenuBtn = document.getElementById('userMenuBtn');
+    const userMenuDropdown = document.getElementById('userMenuDropdown');
+    
+    userMenuBtn.addEventListener('click', () => {
+        userMenuDropdown.classList.toggle('hidden');
+    });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!notificationsBtn.contains(e.target) && !notificationsDropdown.contains(e.target)) {
+            notificationsDropdown.classList.add('hidden');
+        }
+        if (!userMenuBtn.contains(e.target) && !userMenuDropdown.contains(e.target)) {
+            userMenuDropdown.classList.add('hidden');
+        }
+    });
+
+    // Auto-hide toast messages
+    document.addEventListener('DOMContentLoaded', function() {
+        const toastContainer = document.getElementById('toastContainer');
+        if (toastContainer) {
+            const toasts = toastContainer.getElementsByClassName('mb-4');
+            Array.from(toasts).forEach(toast => {
+                // Add slide-in animation
+                toast.style.transform = 'translateX(0)';
+                toast.style.opacity = '1';
+                
+                // Auto-hide after 3 seconds
+                setTimeout(() => {
+                    toast.style.transform = 'translateX(100%)';
+                    toast.style.opacity = '0';
+                    setTimeout(() => {
+                        toast.remove();
+                    }, 500);
+                }, 3000);
+            });
+        }
+    });
+</script>
+{% endblock %} 

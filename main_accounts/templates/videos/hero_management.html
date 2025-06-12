@@ -1,0 +1,220 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Manage Hero Videos{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-6">
+    <!-- Header Section -->
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold text-gray-800">Manage Hero Videos</h1>
+        <div class="flex space-x-4">
+            <button id="saveOrderBtn" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                Save Order
+            </button>
+            <a href="{% url 'video_list' %}" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors">
+                Back to Videos
+            </a>
+        </div>
+    </div>
+
+    <!-- Instructions -->
+    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
+        <div class="flex">
+            <div class="flex-shrink-0">
+                <i class="fas fa-info-circle text-blue-500"></i>
+            </div>
+            <div class="ml-3">
+                <h3 class="text-sm font-medium text-blue-800">Instructions</h3>
+                <div class="mt-2 text-sm text-blue-700">
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>Select videos to display in the hero section</li>
+                        <li>Drag and drop to reorder videos</li>
+                        <li>Toggle hero status using the switch</li>
+                        <li>Maximum 5 videos can be selected for hero section</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Videos Section -->
+    <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+        <h2 class="text-xl font-semibold mb-4">Current Hero Videos</h2>
+        <div id="heroVideosList" class="space-y-4">
+            {% for video in hero_videos %}
+            <div class="video-item bg-gray-50 p-4 rounded-lg flex items-center justify-between" data-id="{{ video.id }}">
+                <div class="flex items-center space-x-4">
+                    <i class="fas fa-grip-vertical text-gray-400 cursor-move"></i>
+                    <img src="{{ video.thumbnail.url }}" alt="{{ video.title }}" class="w-24 h-16 object-cover rounded">
+                    <div>
+                        <h3 class="font-medium">{{ video.title }}</h3>
+                        <p class="text-sm text-gray-600">{{ video.category.name }}</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span class="text-sm text-gray-600">Order: {{ video.hero_order }}</span>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" class="sr-only peer hero-toggle" {% if video.is_hero %}checked{% endif %} data-id="{{ video.id }}">
+                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                    </label>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Available Videos Section -->
+    <div class="bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-xl font-semibold mb-4">Available Videos</h2>
+        <div class="mb-4">
+            <input type="text" id="searchVideos" placeholder="Search videos..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {% for video in available_videos %}
+            <div class="video-card bg-gray-50 rounded-lg overflow-hidden">
+                <img src="{{ video.thumbnail.url }}" alt="{{ video.title }}" class="w-full h-40 object-cover">
+                <div class="p-4">
+                    <h3 class="font-medium mb-2">{{ video.title }}</h3>
+                    <p class="text-sm text-gray-600 mb-4">{{ video.category.name }}</p>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" class="sr-only peer hero-toggle" {% if video.is_hero %}checked{% endif %} data-id="{{ video.id }}">
+                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                        <span class="ml-3 text-sm font-medium text-gray-700">Add to Hero</span>
+                    </label>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.14.0/Sortable.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize drag and drop
+    new Sortable(document.getElementById('heroVideosList'), {
+        animation: 150,
+        handle: '.fa-grip-vertical',
+        onEnd: function() {
+            updateOrder();
+        }
+    });
+
+    // Search functionality
+    const searchInput = document.getElementById('searchVideos');
+    searchInput.addEventListener('input', function(e) {
+        const searchTerm = e.target.value.toLowerCase();
+        document.querySelectorAll('.video-card').forEach(card => {
+            const title = card.querySelector('h3').textContent.toLowerCase();
+            const category = card.querySelector('p').textContent.toLowerCase();
+            if (title.includes(searchTerm) || category.includes(searchTerm)) {
+                card.style.display = '';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+
+    // Toggle hero status
+    document.querySelectorAll('.hero-toggle').forEach(toggle => {
+        toggle.addEventListener('change', function() {
+            const videoId = this.dataset.id;
+            const isHero = this.checked;
+            
+            fetch(`{% url 'toggle_hero_status' video_id=0 %}`.replace('0', videoId), {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken')
+                },
+                body: JSON.stringify({
+                    is_hero: isHero
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    showNotification('Hero status updated successfully', 'success');
+                    if (isHero && document.querySelectorAll('#heroVideosList .video-item').length >= 5) {
+                        showNotification('Maximum 5 videos can be selected for hero section', 'warning');
+                        this.checked = false;
+                    }
+                } else {
+                    showNotification('Failed to update hero status', 'error');
+                    this.checked = !this.checked;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showNotification('An error occurred', 'error');
+                this.checked = !this.checked;
+            });
+        });
+    });
+
+    // Save order
+    document.getElementById('saveOrderBtn').addEventListener('click', function() {
+        const videoOrder = Array.from(document.querySelectorAll('#heroVideosList .video-item'))
+            .map((item, index) => ({
+                id: item.dataset.id,
+                order: index + 1
+            }));
+
+        fetch("{% url 'update_hero_order' %}", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken')
+            },
+            body: JSON.stringify({
+                order: videoOrder
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                showNotification('Order updated successfully', 'success');
+            } else {
+                showNotification('Failed to update order', 'error');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showNotification('An error occurred', 'error');
+        });
+    });
+
+    // Helper function to get CSRF token
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    // Notification function
+    function showNotification(message, type) {
+        const notification = document.createElement('div');
+        notification.className = `fixed bottom-4 right-4 p-4 rounded-lg text-white ${
+            type === 'success' ? 'bg-green-500' :
+            type === 'warning' ? 'bg-yellow-500' :
+            'bg-red-500'
+        }`;
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        setTimeout(() => notification.remove(), 3000);
+    }
+});
+</script>
+{% endblock %}
+{% endblock %} 

@@ -1,0 +1,349 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Referral Bonus Settings - OTT Admin{% endblock %}
+
+{% block content %}
+{% include 'includes/sidebar.html' %}
+
+    <!-- Main Content -->
+    <main class="main-content flex-1 p-6 overflow-auto">
+        {% include 'includes/header.html'%}
+        <div class="flex-1 overflow-x-hidden overflow-y-auto">
+        
+        <!-- Main Content Area -->
+        <main class="p-6">
+            <!-- Page Header -->
+            <div class="mb-8">
+                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Referral Bonus Settings</h3>
+                        <p class="mt-2 text-sm text-gray-600">Configure commission percentages for different referral levels</p>
+                    </div>
+                    <div class="mt-4 lg:mt-0 flex space-x-3">
+                        <button type="button" onclick="resetForm()" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            <i class="fas fa-undo mr-2"></i>Reset
+                        </button>
+                        <button type="button" onclick="showHelpModal()" class="inline-flex items-center px-4 py-2 bg-blue-500 text-white text-sm rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                            <i class="fas fa-question-circle mr-2"></i>Help
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alert Messages -->
+            {% if messages %}
+                {% for message in messages %}
+                <div class="mb-6">
+                    <div class="rounded-lg p-4 {% if message.tags == 'success' %}bg-green-100 text-green-700 border border-green-200{% else %}bg-red-100 text-red-700 border border-red-200{% endif %} flex items-center justify-between shadow-sm">
+                        <div class="flex items-center">
+                            <i class="fas {% if message.tags == 'success' %}fa-check-circle text-green-500{% else %}fa-exclamation-circle text-red-500{% endif %} text-xl mr-3"></i>
+                            <div>
+                                <p class="font-medium">{{ message }}</p>
+                                <p class="text-sm mt-1 {% if message.tags == 'success' %}text-green-600{% else %}text-red-600{% endif %}">
+                                    {% if message.tags == 'success' %}Settings have been updated successfully{% else %}Please check the form and try again{% endif %}
+                                </p>
+                            </div>
+                        </div>
+                        <button type="button" onclick="this.parentElement.remove()" class="text-gray-400 hover:text-gray-500">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+
+            <!-- Statistics Overview -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <!-- Total Active Levels -->
+                <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-600">Active Levels</p>
+                            <p class="text-2xl font-bold text-blue-600 mt-1">{{ bonus_levels|length }}</p>
+                        </div>
+                        <div class="bg-blue-100 rounded-full p-3">
+                            <i class="fas fa-layer-group text-blue-600"></i>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-2">Total number of referral levels</p>
+                </div>
+
+                <!-- Average Commission -->
+                <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-600">Average Commission</p>
+                            <p class="text-2xl font-bold text-green-600 mt-1">{{ bonus_levels.0.amount }}%</p>
+                        </div>
+                        <div class="bg-green-100 rounded-full p-3">
+                            <i class="fas fa-percentage text-green-600"></i>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-2">Level 1 direct referral commission</p>
+                </div>
+
+                <!-- Total Active Referrals -->
+                <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-600">Active Referrals</p>
+                            <p class="text-2xl font-bold text-purple-600 mt-1">{{ total_active_referrals|default:"0" }}</p>
+                        </div>
+                        <div class="bg-purple-100 rounded-full p-3">
+                            <i class="fas fa-users text-purple-600"></i>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-2">Total active referral chain users</p>
+                </div>
+            </div>
+
+            <!-- Referral Settings Form -->
+            <form method="POST" action="{% url 'update_referral_settings' %}" id="referralForm" class="space-y-6">
+                {% csrf_token %}
+                
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                    <div class="p-6">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                            <i class="fas fa-sliders-h text-blue-500 mr-2"></i>
+                            Commission Levels Configuration
+                        </h4>
+                        
+                        <!-- Levels Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {% for bonus in bonus_levels %}
+                            <div class="bg-gray-50 rounded-lg p-6 border border-gray-100 hover:border-blue-200 transition-colors duration-200">
+                                <div class="flex flex-col space-y-4">
+                                    <!-- Level Info -->
+                                    <div class="flex items-center justify-between">
+                                        <span class="px-4 py-2 inline-flex text-lg font-semibold rounded-full {% if bonus.level == 1 %}bg-blue-100 text-blue-800{% elif bonus.level == 2 %}bg-green-100 text-green-800{% elif bonus.level == 3 %}bg-purple-100 text-purple-800{% elif bonus.level == 4 %}bg-orange-100 text-orange-800{% else %}bg-pink-100 text-pink-800{% endif %}">
+                                            Level {{ bonus.level }}
+                                        </span>
+                                        <!-- Status Toggle -->
+                                        <div class="flex items-center space-x-2">
+                                            <label class="relative inline-flex items-center cursor-pointer">
+                                                <input type="checkbox" 
+                                                       name="status_{{ bonus.id }}"
+                                                       class="sr-only peer"
+                                                       {% if bonus.is_active %}checked{% endif %}>
+                                                <div class="w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-blue-600"></div>
+                                            </label>
+                                            <span class="text-sm font-medium {% if bonus.is_active %}text-green-600{% else %}text-red-600{% endif %}">
+                                                {% if bonus.is_active %}
+                                                <i class="fas fa-check-circle mr-1"></i>Active
+                                                {% else %}
+                                                <i class="fas fa-times-circle mr-1"></i>Inactive
+                                                {% endif %}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Commission Input -->
+                                    <div class="space-y-4">
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Commission Percentage</label>
+                                            <div class="relative rounded-md shadow-sm">
+                                                <input type="number" 
+                                                       name="amount_{{ bonus.id }}" 
+                                                       value="{{ bonus.amount }}"
+                                                       class="block w-full pr-10 h-12 border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 pl-4 text-lg"
+                                                       step="0.01"
+                                                       min="0"
+                                                       max="100"
+                                                       required>
+                                                <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                                    <span class="text-gray-500 sm:text-lg">%</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                                            <input type="text" 
+                                                   name="description_{{ bonus.id }}" 
+                                                   value="{{ bonus.description }}"
+                                                   class="block w-full h-12 border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 pl-4 text-base"
+                                                   required>
+                                        </div>
+                                    </div>
+
+                                    <!-- Current Value -->
+                                    <div class="mt-2 pt-4 border-t border-gray-200">
+                                        <div class="flex items-center justify-between text-sm">
+                                            <span class="text-gray-500">Current Commission:</span>
+                                            <span class="font-semibold {% if bonus.level == 1 %}text-blue-600{% elif bonus.level == 2 %}text-green-600{% elif bonus.level == 3 %}text-purple-600{% elif bonus.level == 4 %}text-orange-600{% else %}text-pink-600{% endif %}">
+                                                {{ bonus.amount }}%
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="px-6 py-4 bg-gray-50 border-t border-gray-200">
+                        <div class="flex items-center justify-between">
+                            <p class="text-sm text-gray-500">
+                                <i class="fas fa-info-circle mr-1"></i>
+                                Changes will take effect immediately
+                            </p>
+                            <button type="submit" 
+                                    class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200">
+                                <i class="fas fa-save mr-2"></i>
+                                Save Changes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </main>
+        </div>
+    </main>
+
+    <!-- Help Modal -->
+    <div id="helpModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
+        <div class="relative top-20 mx-auto p-5 border w-[500px] shadow-lg rounded-md bg-white">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-xl font-semibold text-gray-900">
+                    Referral System Guide
+                </h3>
+                <button type="button" class="text-gray-400 hover:text-gray-500" onclick="closeHelpModal()">
+                    <span class="sr-only">Close</span>
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="mt-4">
+                <div class="space-y-6">
+                    <!-- How it Works -->
+                    <div>
+                        <h4 class="text-sm font-medium text-gray-900 flex items-center">
+                            <i class="fas fa-info-circle text-blue-500 mr-2"></i>
+                            How Referral System Works
+                        </h4>
+                        <p class="mt-2 text-sm text-gray-600">
+                            Our multi-level referral system rewards users for bringing new members to the platform. Each level represents the depth of the referral chain.
+                        </p>
+                    </div>
+
+                    <!-- Levels Explanation -->
+                    <div class="bg-gray-50 p-4 rounded-md border border-gray-100">
+                        <h4 class="text-sm font-medium text-gray-900 mb-3">Referral Levels:</h4>
+                        <ul class="space-y-3">
+                            {% for i in "12345"|make_list %}
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <span class="flex h-6 w-6 items-center justify-center rounded-full {% if i == "1" %}bg-blue-100 text-blue-600{% elif i == "2" %}bg-green-100 text-green-600{% elif i == "3" %}bg-purple-100 text-purple-600{% elif i == "4" %}bg-orange-100 text-orange-600{% else %}bg-pink-100 text-pink-600{% endif %} text-sm font-medium">
+                                        {{ i }}
+                                    </span>
+                                </div>
+                                <p class="ml-3 text-sm text-gray-600">
+                                    {% if i == "1" %}
+                                    Direct referral - User directly invited by you
+                                    {% else %}
+                                    Level {{ i }} - Users invited by your level {{ i|add:"-1" }} referrals
+                                    {% endif %}
+                                </p>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <!-- Best Practices -->
+                    <div class="bg-blue-50 p-4 rounded-md border border-blue-100">
+                        <h4 class="text-sm font-medium text-blue-900 mb-2">Best Practices</h4>
+                        <ul class="space-y-2 text-sm text-blue-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle mt-1 mr-2"></i>
+                                <span>Keep higher percentages for direct referrals</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle mt-1 mr-2"></i>
+                                <span>Gradually decrease percentages for deeper levels</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle mt-1 mr-2"></i>
+                                <span>Maintain reasonable total commission across all levels</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-6">
+                <button type="button" 
+                        onclick="closeHelpModal()"
+                        class="w-full inline-flex justify-center items-center px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 border border-transparent rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                    <i class="fas fa-times mr-2"></i>
+                    Close Guide
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showHelpModal() {
+            document.getElementById('helpModal').classList.remove('hidden');
+        }
+
+        function closeHelpModal() {
+            document.getElementById('helpModal').classList.add('hidden');
+        }
+
+        function resetForm() {
+            if (confirm('Are you sure you want to reset all changes? This will revert all fields to their current values.')) {
+                document.getElementById('referralForm').reset();
+                // Remove any validation styles
+                document.querySelectorAll('input').forEach(input => {
+                    input.classList.remove('border-red-500', 'focus:border-red-500', 'focus:ring-red-500');
+                });
+            }
+        }
+
+        // Form validation with better user feedback
+        document.getElementById('referralForm').addEventListener('submit', function(e) {
+            let valid = true;
+            let errors = [];
+            
+            // Validate percentage inputs
+            this.querySelectorAll('input[type="number"]').forEach(input => {
+                const value = parseFloat(input.value);
+                if (isNaN(value) || value < 0 || value > 100) {
+                    valid = false;
+                    errors.push(`Commission percentage must be between 0 and 100`);
+                    input.classList.add('border-red-500', 'focus:border-red-500', 'focus:ring-red-500');
+                } else {
+                    input.classList.remove('border-red-500', 'focus:border-red-500', 'focus:ring-red-500');
+                }
+            });
+
+            if (!valid) {
+                e.preventDefault();
+                // Create error alert
+                let errorHtml = '<div class="mb-6"><div class="rounded-lg p-4 bg-red-100 text-red-700 border border-red-200 shadow-sm">' +
+                    '<div class="flex items-start">' +
+                    '<i class="fas fa-exclamation-circle text-red-500 text-xl mt-0.5 mr-3"></i>' +
+                    '<div>' +
+                    '<p class="font-medium">Please correct the following errors:</p>' +
+                    '<ul class="mt-2 text-sm space-y-1">';
+                
+                errors.forEach(error => {
+                    errorHtml += '<li>• ' + error + '</li>';
+                });
+                
+                errorHtml += '</ul></div></div></div></div>';
+                
+                // Insert error message at the top of the form
+                this.insertAdjacentHTML('afterbegin', errorHtml);
+                
+                // Scroll to error message
+                window.scrollTo({
+                    top: this.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    </script>
+{% endblock %} 

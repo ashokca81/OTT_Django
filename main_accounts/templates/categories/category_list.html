@@ -1,0 +1,502 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- Sidebar -->
+    {% include 'includes/sidebar.html' %}
+
+    <!-- Main Content -->
+    <main class="main-content flex-1 p-6 overflow-auto">
+        {% include 'includes/header.html' with page_title="Categories" %}
+        <div class="px-6 py-8">
+            <!-- Toast Container -->
+            <div id="toastContainer" class="fixed top-4 right-4 z-50">
+                {% for message in messages %}
+                    {% if 'category' in message.tags %}
+                    <div class="toast-message mb-4 p-4 rounded-md shadow-lg {% if 'error' in message.tags %}bg-red-500{% else %}bg-green-500{% endif %} text-white" style="min-width: 300px;">
+                        {{ message }}
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <!-- Page Header -->
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-semibold text-gray-900">Categories</h1>
+                {% if not is_editor %}
+                <a href="{% url 'add_category' %}" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                    <i class="fas fa-plus mr-2"></i>Add Category
+                </a>
+                {% endif %}
+            </div>
+
+            <!-- Search and Filter Section -->
+            <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                <form method="GET" class="flex flex-col md:flex-row gap-4">
+                    <div class="flex-1">
+                        <input type="text" name="search" value="{{ search_query }}" placeholder="Search categories..." 
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                    </div>
+                    <button type="submit" class="bg-gray-100 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
+                        <i class="fas fa-search mr-2"></i>Search
+                    </button>
+                </form>
+            </div>
+
+            <!-- Categories List -->
+            <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                {% if not is_editor %}
+                                <th class="w-10 px-6 py-3"></th>
+                                {% endif %}
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Home</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Subcategories</th>
+                                {% if is_superadmin %}
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created By</th>
+                                {% endif %}
+                                {% if not is_editor %}
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                {% endif %}
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200" {% if not is_editor %}id="sortable-categories"{% endif %}>
+                            {% for category in page_obj %}
+                            <tr data-category-id="{{ category.id }}" {% if not is_editor %}class="cursor-move hover:bg-gray-50"{% endif %}>
+                                {% if not is_editor %}
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center justify-center">
+                                        <i class="fas fa-grip-vertical text-gray-400 cursor-move"></i>
+                                    </div>
+                                </td>
+                                {% endif %}
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <button onclick="toggleSubcategories('{{ category.id }}')" class="mr-2 text-gray-400 hover:text-gray-600 focus:outline-none">
+                                            <i class="fas {% if category.subcategories.exists %}fa-chevron-right{% else %}fa-minus{% endif %} transition-transform duration-200" id="arrow-{{ category.id }}"></i>
+                                        </button>
+                                        {% if category.icon %}
+                                        <i class="{{ category.icon }} text-gray-500 mr-3"></i>
+                                        {% endif %}
+                                        <div class="text-sm font-medium text-gray-900">{{ category.name }}</div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="text-sm text-gray-500">{{ category.description|truncatechars:50 }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <button onclick="toggleCategoryStatus('{{ category.id }}')" 
+                                        class="px-3 py-1 rounded-full text-sm font-medium cursor-pointer {% if category.is_active %}bg-green-100 text-green-800 hover:bg-green-200{% else %}bg-red-100 text-red-800 hover:bg-red-200{% endif %}">
+                                        {{ category.is_active|yesno:"Active,Inactive" }}
+                                    </button>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <button onclick="toggleHome('{{ category.id }}')" 
+                                        class="px-3 py-1 rounded-full text-sm font-medium cursor-pointer {% if category.home %}bg-green-100 text-green-800 hover:bg-green-200{% else %}bg-gray-100 text-gray-800 hover:bg-gray-200{% endif %}">
+                                        {{ category.home|yesno:"Home,Not Home" }}
+                                    </button>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    {{ category.subcategories.count }}
+                                </td>
+                                {% if is_superadmin %}
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-user text-gray-400 mr-2"></i>
+                                        {{ category.created_by.get_full_name|default:category.created_by.username }}
+                                    </div>
+                                </td>
+                                {% endif %}
+                                {% if not is_editor %}
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <div class="flex space-x-3">
+                                        <a href="{% url 'edit_category' category.id %}" class="text-indigo-600 hover:text-indigo-900">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <button data-category-id="{{ category.id }}" onclick="deleteCategory(this.dataset.categoryId)" class="text-red-600 hover:text-red-900">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                                {% endif %}
+                            </tr>
+                            <!-- Subcategories -->
+                            {% for subcategory in category.subcategories.all %}
+                            <tr data-parent-id="{{ category.id }}" class="subcategory-row-{{ category.id }} hidden bg-gray-50">
+                                {% if not is_editor %}
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center justify-center">
+                                        <i class="fas fa-grip-vertical text-gray-400 cursor-move"></i>
+                                    </div>
+                                </td>
+                                {% endif %}
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="ml-8 flex items-center">
+                                            {% if subcategory.icon %}
+                                            <i class="{{ subcategory.icon }} text-gray-500 mr-3"></i>
+                                            {% endif %}
+                                            <div class="text-sm font-medium text-gray-900">{{ subcategory.name }}</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="text-sm text-gray-500">{{ subcategory.description|truncatechars:50 }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <button onclick="toggleCategoryStatus('{{ subcategory.id }}')" 
+                                        class="px-3 py-1 rounded-full text-sm font-medium cursor-pointer {% if subcategory.is_active %}bg-green-100 text-green-800 hover:bg-green-200{% else %}bg-red-100 text-red-800 hover:bg-red-200{% endif %}">
+                                        {{ subcategory.is_active|yesno:"Active,Inactive" }}
+                                    </button>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <button onclick="toggleHome('{{ subcategory.id }}')" 
+                                        class="px-3 py-1 rounded-full text-sm font-medium cursor-pointer {% if subcategory.home %}bg-green-100 text-green-800 hover:bg-green-200{% else %}bg-gray-100 text-gray-800 hover:bg-gray-200{% endif %}">
+                                        {{ subcategory.home|yesno:"Home,Not Home" }}
+                                    </button>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    {{ subcategory.subcategories.count }}
+                                </td>
+                                {% if is_superadmin %}
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-user text-gray-400 mr-2"></i>
+                                        {{ subcategory.created_by.get_full_name|default:subcategory.created_by.username }}
+                                    </div>
+                                </td>
+                                {% endif %}
+                                {% if not is_editor %}
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <div class="flex space-x-3">
+                                        <a href="{% url 'edit_category' subcategory.id %}" class="text-indigo-600 hover:text-indigo-900">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <button data-category-id="{{ subcategory.id }}" onclick="deleteCategory(this.dataset.categoryId)" class="text-red-600 hover:text-red-900">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+                            {% empty %}
+                            <tr>
+                                <td colspan="{% if is_editor %}6{% elif is_superadmin %}8{% else %}7{% endif %}" class="px-6 py-4 text-center text-gray-500">
+                                    No categories found
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            {% if page_obj.has_other_pages %}
+            <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6 mt-4">
+                <div class="flex-1 flex justify-between sm:hidden">
+                    {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                        Previous
+                    </a>
+                    {% endif %}
+                    {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                        Next
+                    </a>
+                    {% endif %}
+                </div>
+                <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                    <div>
+                        <p class="text-sm text-gray-700">
+                            Showing
+                            <span class="font-medium">{{ page_obj.start_index }}</span>
+                            to
+                            <span class="font-medium">{{ page_obj.end_index }}</span>
+                            of
+                            <span class="font-medium">{{ page_obj.paginator.count }}</span>
+                            results
+                        </p>
+                    </div>
+                    <div>
+                        <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                            {% if page_obj.has_previous %}
+                            <a href="?page={{ page_obj.previous_page_number }}" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                <span class="sr-only">Previous</span>
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+                            {% endif %}
+
+                            {% for num in page_obj.paginator.page_range %}
+                                {% if page_obj.number == num %}
+                                <span class="relative inline-flex items-center px-4 py-2 border border-indigo-500 bg-indigo-50 text-sm font-medium text-indigo-600">
+                                    {{ num }}
+                                </span>
+                                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                                <a href="?page={{ num }}" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                                    {{ num }}
+                                </a>
+                                {% endif %}
+                            {% endfor %}
+
+                            {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                <span class="sr-only">Next</span>
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                            {% endif %}
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </main>
+
+{% if not is_editor %}
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Auto-dismiss initial toast messages
+    const toasts = document.querySelectorAll('.toast-message');
+    toasts.forEach(toast => {
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transition = 'opacity 0.5s ease-out';
+            setTimeout(() => toast.remove(), 500);
+        }, 3000);
+    });
+
+    // Initialize Sortable
+    const sortableTable = document.getElementById('sortable-categories');
+    if (sortableTable) {
+        new Sortable(sortableTable, {
+            handle: '.fa-grip-vertical',
+            animation: 150,
+            ghostClass: 'bg-gray-100',
+            dragClass: 'sortable-drag',
+            onStart: function(evt) {
+                const draggedRow = evt.item;
+                const categoryId = draggedRow.dataset.categoryId;
+                if (categoryId) {
+                    // Show all subcategories of the dragged category
+                    const subcategories = document.querySelectorAll(`.subcategory-row-${categoryId}`);
+                    subcategories.forEach(row => {
+                        row.classList.remove('hidden');
+                        row.classList.add('dragging-with-parent');
+                    });
+                }
+            },
+            onEnd: function(evt) {
+                const rows = Array.from(evt.to.children);
+                const categories = [];
+                let currentOrder = 0;
+
+                // Remove dragging class from all subcategories
+                document.querySelectorAll('.dragging-with-parent').forEach(row => {
+                    row.classList.remove('dragging-with-parent');
+                });
+
+                // Process parent categories and their subcategories
+                rows.forEach((row) => {
+                    const categoryId = row.dataset.categoryId;
+                    const parentId = row.dataset.parentId;
+
+                    if (!parentId) {
+                        // This is a parent category
+                        if (categoryId) {
+                            categories.push({
+                                id: parseInt(categoryId),
+                                order: currentOrder,
+                                parent_id: null
+                            });
+                            currentOrder++;
+
+                            // Find and process its subcategories
+                            const subcategories = rows.filter(subRow => 
+                                subRow.dataset.parentId === categoryId
+                            );
+
+                            subcategories.forEach(subRow => {
+                                if (subRow.dataset.categoryId) {
+                                    categories.push({
+                                        id: parseInt(subRow.dataset.categoryId),
+                                        order: currentOrder,
+                                        parent_id: parseInt(categoryId)
+                                    });
+                                    currentOrder++;
+                                }
+                            });
+                        }
+                    }
+                });
+
+                // Only proceed if we have categories to update
+                if (categories.length > 0) {
+                    // Update order in database
+                    fetch('/categories/update-order/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': getCookie('csrftoken')
+                        },
+                        body: JSON.stringify({ categories: categories })
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.status === 'success') {
+                            showToast('Category order updated successfully', 'success');
+                        } else {
+                            showToast('Error updating category order: ' + data.message, 'error');
+                            location.reload();
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        showToast('An error occurred while updating the order', 'error');
+                        location.reload();
+                    });
+                }
+            }
+        });
+    }
+});
+
+// Toast notification function
+function showToast(message, type = 'success', messageType = 'category') {
+    if (messageType !== 'category') return; // Only show category messages
+    
+    const toast = document.createElement('div');
+    toast.className = `toast-message mb-4 p-4 rounded-md shadow-lg ${type === 'error' ? 'bg-red-500' : 'bg-green-500'} text-white`;
+    toast.style.minWidth = '300px';
+    toast.innerHTML = message;
+    
+    const toastContainer = document.getElementById('toastContainer');
+    toastContainer.appendChild(toast);
+    
+    // Remove toast after 3 seconds
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transition = 'opacity 0.5s ease-out';
+        setTimeout(() => toast.remove(), 500);
+    }, 3000);
+}
+
+// Toggle subcategories visibility
+function toggleSubcategories(categoryId) {
+    const arrow = document.getElementById(`arrow-${categoryId}`);
+    const subcategoryRows = document.querySelectorAll(`.subcategory-row-${categoryId}`);
+    
+    arrow.classList.toggle('rotate-90');
+    subcategoryRows.forEach(row => {
+        row.classList.toggle('hidden');
+    });
+}
+
+// Toggle category status
+function toggleCategoryStatus(categoryId) {
+    if (confirm('Are you sure you want to change the status of this category?')) {
+        fetch(`/categories/${categoryId}/toggle-status/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken')
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                showToast(data.message, 'success', data.message_type);
+                location.reload();
+            } else {
+                showToast('Error updating category status: ' + data.message, 'error', data.message_type);
+            }
+        })
+        .catch(error => {
+            showToast('An error occurred while updating the status', 'error', 'category');
+        });
+    }
+}
+
+// Delete category
+function deleteCategory(categoryId) {
+    if (confirm('Are you sure you want to delete this category? This action cannot be undone.')) {
+        fetch(`/categories/${categoryId}/delete/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken')
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                showToast(data.message, 'success', data.message_type);
+                location.reload();
+            } else {
+                showToast('Error deleting category: ' + data.message, 'error', data.message_type);
+            }
+        })
+        .catch(error => {
+            showToast('An error occurred while deleting the category', 'error', 'category');
+        });
+    }
+}
+
+// Toggle home status
+function toggleHome(categoryId) {
+    fetch(`/categories/${categoryId}/toggle-home/`, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': getCookie('csrftoken'),
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            // Show success message
+            showToast(data.message, 'success');
+            // Reload the page to show updated status
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
+        } else {
+            showToast(data.message, 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        showToast('An error occurred while updating home status', 'error');
+    });
+}
+
+// CSRF token helper function
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+</script>
+{% endif %}
+{% endblock %} 

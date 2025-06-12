@@ -1,0 +1,727 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'includes/sidebar.html' %}
+
+<!-- Main content -->
+<main class="main-content flex-1 p-4 overflow-auto">
+    {% include 'includes/header.html' with page_title="Manage Users" %}
+
+    <!-- Add CSRF Token -->
+    {% csrf_token %}
+
+    <div class="w-full">
+        <!-- Page Header -->
+        <div class="mb-6 bg-white rounded-lg shadow-sm p-4">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-2xl font-bold text-gray-900">
+                        {% if is_superuser %}
+                            Manage All Users
+                        {% else %}
+                            Manage Editors
+                        {% endif %}
+                    </h1>
+                    <p class="mt-2 text-sm text-gray-600">
+                        {% if is_superuser %}
+                            View and manage all editors and managers in your organization
+                        {% else %}
+                            View and manage editors in your organization
+                        {% endif %}
+                    </p>
+                </div>
+                <div class="flex gap-4">
+                    <!-- Export Buttons -->
+                    <div class="flex gap-2">
+                        <a href="{% url 'export_users_excel' %}" class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#4338ca] transition-colors duration-200">
+                            <i class="fas fa-file-excel text-green-600 mr-2"></i>
+                            Export Excel
+                        </a>
+                        <a href="{% url 'export_users_pdf' %}" class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#4338ca] transition-colors duration-200">
+                            <i class="fas fa-file-pdf text-red-600 mr-2"></i>
+                            Export PDF
+                        </a>
+                    </div>
+                    <a href="{% url 'create_manager' %}" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#4338ca] hover:bg-[#3730a3] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#4338ca] transition-colors duration-200">
+                        <i class="fas fa-user-plus mr-2"></i>
+                        {% if is_superuser %}
+                            Add User
+                        {% else %}
+                            Add Editor
+                        {% endif %}
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filters and Search -->
+        <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+            <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+                <div class="flex gap-4">
+                    {% if is_superuser %}
+                    <div class="relative">
+                        <select id="roleFilter" class="appearance-none bg-white border border-gray-300 rounded-lg pl-4 pr-10 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#4338ca] focus:border-transparent">
+                            <option value="all">All Roles</option>
+                            <option value="editor">Editors</option>
+                            <option value="manager">Managers</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-500">
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="relative">
+                        <select id="statusFilter" class="appearance-none bg-white border border-gray-300 rounded-lg pl-4 pr-10 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#4338ca] focus:border-transparent">
+                            <option value="all">All Status</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-500">
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative w-full md:w-64">
+                    <input type="text" id="searchInput" placeholder="Search users..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4338ca] focus:border-transparent">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <i class="fas fa-search text-gray-400"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Users Table -->
+        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full whitespace-nowrap">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                User
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Role
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Status
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Login Status
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Phone
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        {% for user in users %}
+                        <tr class="user-row hover:bg-gray-50" data-user-id="{{ user.user.id }}" data-role="{{ user.role.name }}" data-status="{% if user.user.is_active %}active{% else %}inactive{% endif %}">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0 h-10 w-10">
+                                        <div class="h-10 w-10 rounded-full {% if user.role.name == 'editor' %}bg-blue-100{% else %}bg-purple-100{% endif %} flex items-center justify-center">
+                                            <span class="{% if user.role.name == 'editor' %}text-blue-600{% else %}text-purple-600{% endif %} font-medium">
+                                                {{ user.user.get_full_name|default:user.user.username|slice:":2"|upper }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="ml-4">
+                                        <div class="text-sm font-medium text-gray-900 user-name">{{ user.user.get_full_name|default:user.user.username }}</div>
+                                        <div class="text-sm text-gray-500 user-email">{{ user.user.email }}</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full user-role {% if user.role.name == 'editor' %}bg-blue-100 text-blue-800{% else %}bg-purple-100 text-purple-800{% endif %}">
+                                    {{ user.role.get_name_display }}
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <button onclick="toggleUserStatus('{{ user.user.id }}', this)" 
+                                        class="status-toggle px-2 inline-flex text-xs leading-5 font-semibold rounded-full cursor-pointer {% if user.user.is_active %}bg-green-100 text-green-800{% else %}bg-red-100 text-red-800{% endif %} hover:opacity-80 transition-all duration-200"
+                                        data-status="{% if user.user.is_active %}active{% else %}inactive{% endif %}">
+                                    {% if user.user.is_active %}Active{% else %}Inactive{% endif %}
+                                </button>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0 h-2.5 w-2.5 rounded-full mr-2 {% if user.is_online %}bg-green-500{% else %}bg-gray-400{% endif %}"></div>
+                                    <span class="text-sm text-gray-900">{% if user.is_online %}Online{% else %}Offline{% endif %}</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 user-phone">
+                                {{ user.phone|default:"Not set" }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <button class="text-[#4338ca] hover:text-[#3730a3] mr-3 edit-user" data-user-id="{{ user.user.id }}">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button onclick="deleteUser('{{ user.user.id }}', '{{ user.user.get_full_name|default:user.user.username }}')" class="text-red-600 hover:text-red-900 cursor-pointer" type="button">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" class="px-6 py-4 text-center text-gray-500">
+                                No users found
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200">
+                <div class="flex-1 flex justify-between sm:hidden">
+                    <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                        Previous
+                    </a>
+                    <a href="#" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                        Next
+                    </a>
+                </div>
+                <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                    <div>
+                        <p class="text-sm text-gray-700">
+                            Showing <span class="font-medium">{{ users|length }}</span> results
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Edit User Modal -->
+<div id="editUserModal" class="fixed inset-0 bg-gray-600 bg-opacity-0 hidden overflow-y-auto h-full w-full transition-all duration-300 ease-in-out">
+    <div class="relative top-20 mx-auto p-8 border w-[500px] shadow-2xl rounded-xl bg-white transform transition-all duration-300 ease-in-out scale-95 opacity-0" id="modalContent">
+        <!-- Modal Header -->
+        <div class="flex items-center justify-between mb-6">
+            <h3 class="text-xl font-semibold text-gray-900">Edit User Details</h3>
+            <button type="button" onclick="closeEditModal()" class="text-gray-400 hover:text-gray-500 focus:outline-none transition-colors duration-200">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Modal Form -->
+        <form id="editUserForm" method="POST" action="{% url 'manage_users' %}" class="space-y-6">
+            {% csrf_token %}
+            <input type="hidden" id="editUserId" name="user_id">
+            
+            <!-- Name Fields -->
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                    <input type="text" id="editFirstName" name="first_name" 
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200"
+                           placeholder="Enter first name">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                    <input type="text" id="editLastName" name="last_name" 
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200"
+                           placeholder="Enter last name">
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <input type="email" id="editEmail" name="email" 
+                               class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200"
+                               placeholder="Enter email address">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+                            <i class="fas fa-phone"></i>
+                        </span>
+                        <input type="tel" id="editPhone" name="phone" 
+                               class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200"
+                               placeholder="Enter phone number">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Role Selection -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Role</label>
+                <div class="relative">
+                    <select id="editRole" name="role" 
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200 appearance-none">
+                        <option value="editor">Editor</option>
+                        <option value="manager">Manager</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Password Field -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">New Password</label>
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                    <input type="password" id="editPassword" name="password" 
+                           class="w-full pl-10 pr-12 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200"
+                           placeholder="Leave blank to keep current password">
+                    <button type="button" id="togglePassword" 
+                            class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 focus:outline-none">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+                <p class="mt-1 text-sm text-gray-500">Minimum 8 characters required if changing password</p>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex justify-end space-x-3 pt-4 border-t">
+                <button type="button" onclick="closeEditModal()" 
+                        class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors duration-200">
+                    Cancel
+                </button>
+                <button type="submit" 
+                        class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg transition-colors duration-200">
+                    Save Changes
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Add this before the script tag -->
+{% if messages %}
+<div id="django-messages" style="display: none;">
+    {% for message in messages %}
+    <div data-tag="{{ message.tags }}" data-text="{{ message }}"></div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<script>
+    // Initialize modal elements first
+    const editUserModal = document.getElementById('editUserModal');
+    const editUserForm = document.getElementById('editUserForm');
+    const modalContent = document.getElementById('modalContent');
+    const roleFilter = document.getElementById('roleFilter');
+    const statusFilter = document.getElementById('statusFilter');
+    const searchInput = document.getElementById('searchInput');
+    const userRows = document.querySelectorAll('.user-row');
+
+    // Modal functions with animations
+    function openEditModal(userId) {
+        editUserModal.classList.remove('hidden');
+        // Trigger reflow
+        editUserModal.offsetHeight;
+        editUserModal.classList.add('bg-opacity-50');
+        modalContent.classList.remove('scale-95', 'opacity-0');
+        modalContent.classList.add('scale-100', 'opacity-100');
+
+        // Initialize password toggle
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('editPassword');
+
+        togglePassword.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            // Toggle eye icon
+            const icon = this.querySelector('i');
+            icon.classList.toggle('fa-eye');
+            icon.classList.toggle('fa-eye-slash');
+        });
+
+        // Set user ID in form
+        document.getElementById('editUserId').value = userId;
+
+        // Get user data from the table row
+        const row = document.querySelector(`tr[data-user-id="${userId}"]`);
+        if (row) {
+            const name = row.querySelector('.user-name').textContent.trim();
+            const nameParts = name.split(' ');
+            document.getElementById('editFirstName').value = nameParts[0] || '';
+            document.getElementById('editLastName').value = nameParts.slice(1).join(' ') || '';
+            document.getElementById('editEmail').value = row.querySelector('.user-email').textContent.trim();
+            document.getElementById('editPhone').value = row.querySelector('.user-phone').textContent.trim();
+            document.getElementById('editRole').value = row.querySelector('.user-role').textContent.trim().toLowerCase();
+        }
+    }
+
+    function closeEditModal() {
+        // First fade out the content
+        modalContent.classList.remove('scale-100', 'opacity-100');
+        modalContent.classList.add('scale-95', 'opacity-0');
+        
+        // Then fade out the background
+        editUserModal.classList.remove('bg-opacity-50');
+        
+        // Wait for animations to complete before hiding
+        setTimeout(() => {
+            editUserModal.classList.add('hidden');
+            editUserForm.reset();
+            
+            // Reset password toggle
+            const togglePassword = document.getElementById('togglePassword');
+            const newTogglePassword = togglePassword.cloneNode(true);
+            togglePassword.parentNode.replaceChild(newTogglePassword, togglePassword);
+        }, 300);
+    }
+
+    // Form submission handler
+    editUserForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const submitButton = this.querySelector('button[type="submit"]');
+        const originalText = submitButton.innerHTML;
+        
+        // Show loading state
+        submitButton.disabled = true;
+        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Saving...';
+
+        const userId = document.getElementById('editUserId').value;
+        const formData = {
+            first_name: document.getElementById('editFirstName').value,
+            last_name: document.getElementById('editLastName').value,
+            email: document.getElementById('editEmail').value,
+            phone: document.getElementById('editPhone').value,
+            role: document.getElementById('editRole').value
+        };
+        
+        // Only add password if it's not empty
+        const password = document.getElementById('editPassword').value;
+        if (password) {
+            formData.password = password;
+        }
+        
+        fetch(`/api/users/${userId}/`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken')
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(data => {
+                    throw new Error(data.message || `HTTP error! status: ${response.status}`);
+                });
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                // Show success message
+                const successMessage = document.createElement('div');
+                successMessage.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg transform transition-all duration-500 ease-in-out translate-x-full';
+                successMessage.innerHTML = '<i class="fas fa-check-circle mr-2"></i>' + (data.message || 'User updated successfully');
+                document.body.appendChild(successMessage);
+                
+                // Animate in
+                setTimeout(() => {
+                    successMessage.classList.remove('translate-x-full');
+                }, 100);
+
+                // Animate out and remove
+                setTimeout(() => {
+                    successMessage.classList.add('translate-x-full');
+                    setTimeout(() => {
+                        document.body.removeChild(successMessage);
+                    }, 500);
+                }, 3000);
+
+                closeEditModal();
+                setTimeout(() => {
+                    location.reload();
+                }, 500);
+            } else {
+                throw new Error(data.message || 'Failed to update user');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error updating user: ' + error.message);
+        })
+        .finally(() => {
+            // Reset button state
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalText;
+        });
+    });
+
+    // Edit user click handlers
+    document.querySelectorAll('.edit-user').forEach(button => {
+        button.addEventListener('click', function() {
+            const userId = this.getAttribute('data-user-id');
+            openEditModal(userId);
+        });
+    });
+
+    // Filter functionality
+    function filterUsers() {
+        const roleValue = roleFilter.value;
+        const statusValue = statusFilter.value;
+        const searchValue = searchInput.value.toLowerCase();
+
+        userRows.forEach(row => {
+            const role = row.dataset.role;
+            const status = row.dataset.status;
+            const userName = row.querySelector('.user-name').textContent.toLowerCase();
+            const userEmail = row.querySelector('.user-email').textContent.toLowerCase();
+
+            const roleMatch = roleValue === 'all' || role === roleValue;
+            const statusMatch = statusValue === 'all' || status === statusValue;
+            const searchMatch = userName.includes(searchValue) || userEmail.includes(searchValue);
+
+            row.style.display = roleMatch && statusMatch && searchMatch ? '' : 'none';
+        });
+    }
+
+    roleFilter.addEventListener('change', filterUsers);
+    statusFilter.addEventListener('change', filterUsers);
+    searchInput.addEventListener('input', filterUsers);
+
+    // Helper function to get CSRF token
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    // Notifications dropdown
+    const notificationsBtn = document.getElementById('notificationsBtn');
+    const notificationsDropdown = document.getElementById('notificationsDropdown');
+    
+    notificationsBtn.addEventListener('click', () => {
+        notificationsDropdown.classList.toggle('hidden');
+    });
+
+    // User menu dropdown
+    const userMenuBtn = document.getElementById('userMenuBtn');
+    const userMenuDropdown = document.getElementById('userMenuDropdown');
+    
+    userMenuBtn.addEventListener('click', () => {
+        userMenuDropdown.classList.toggle('hidden');
+    });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!notificationsBtn.contains(e.target) && !notificationsDropdown.contains(e.target)) {
+            notificationsDropdown.classList.add('hidden');
+        }
+        if (!userMenuBtn.contains(e.target) && !userMenuDropdown.contains(e.target)) {
+            userMenuDropdown.classList.add('hidden');
+        }
+    });
+
+    // Toggle user status function
+    function toggleUserStatus(userId, button) {
+        const currentStatus = button.getAttribute('data-status');
+        const newStatus = currentStatus === 'active' ? 'inactive' : 'active';
+        
+        // Show loading state
+        const originalHTML = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+        button.disabled = true;
+
+        // Call API to update status
+        fetch(`/api/users/${userId}/toggle-status/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken')
+            },
+            body: JSON.stringify({ status: newStatus })
+        })
+        .then(response => response.json().then(data => ({status: response.ok, data: data})))
+        .then(({status, data}) => {
+            if (status) {
+                // Update button appearance based on actual status from server
+                const newStatus = data.is_active ? 'active' : 'inactive';
+                button.setAttribute('data-status', newStatus);
+                button.innerHTML = newStatus === 'active' ? 'Active' : 'Inactive';
+                button.className = `status-toggle px-2 inline-flex text-xs leading-5 font-semibold rounded-full cursor-pointer ${
+                    newStatus === 'active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                } hover:opacity-80 transition-all duration-200`;
+                
+                // Update row data attribute
+                const row = button.closest('tr');
+                row.setAttribute('data-status', newStatus);
+                
+                // Show success message
+                const successMessage = document.createElement('div');
+                successMessage.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg transform transition-all duration-500 ease-in-out';
+                successMessage.innerHTML = `<i class="fas fa-check-circle mr-2"></i>${data.message}`;
+                document.body.appendChild(successMessage);
+                
+                // Animate message
+                setTimeout(() => successMessage.classList.remove('translate-x-full'), 100);
+                setTimeout(() => {
+                    successMessage.classList.add('translate-x-full');
+                    setTimeout(() => successMessage.remove(), 500);
+                }, 3000);
+            } else {
+                throw new Error(data.message || 'Failed to update status');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            // Revert button state
+            button.innerHTML = originalHTML;
+            button.disabled = false;
+            
+            // Show error message
+            const errorMessage = document.createElement('div');
+            errorMessage.className = 'fixed top-4 right-4 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg transform transition-all duration-500 ease-in-out';
+            errorMessage.innerHTML = `<i class="fas fa-exclamation-circle mr-2"></i>${error.message}`;
+            document.body.appendChild(errorMessage);
+            
+            // Animate message
+            setTimeout(() => errorMessage.classList.remove('translate-x-full'), 100);
+            setTimeout(() => {
+                errorMessage.classList.add('translate-x-full');
+                setTimeout(() => errorMessage.remove(), 500);
+            }, 3000);
+        })
+        .finally(() => {
+            button.disabled = false;
+        });
+    }
+
+    // Delete user function
+    function deleteUser(userId, userName) {
+        if (confirm(`Are you sure you want to delete ${userName}? This action cannot be undone.`)) {
+            const button = document.querySelector(`button[onclick="deleteUser('${userId}', '${userName}')"]`);
+            const row = button.closest('tr');
+            
+            // Show loading state
+            const originalHTML = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            button.disabled = true;
+
+            // Send delete request
+            fetch(`/managers/delete/${userId}/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': getCookie('csrftoken')
+                }
+            })
+            .then(response => response.json().then(data => ({status: response.ok, data: data})))
+            .then(({status, data}) => {
+                if (status) {
+                    // Remove the row with animation
+                    row.style.transition = 'all 0.3s ease-out';
+                    row.style.opacity = '0';
+                    row.style.transform = 'translateX(20px)';
+                    
+                    setTimeout(() => {
+                        row.remove();
+                        
+                        // Show success message
+                        const successMessage = document.createElement('div');
+                        successMessage.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg transform transition-all duration-500 ease-in-out';
+                        successMessage.innerHTML = '<i class="fas fa-check-circle mr-2"></i>' + data.message;
+                        document.body.appendChild(successMessage);
+                        
+                        // Animate message
+                        setTimeout(() => successMessage.classList.remove('translate-x-full'), 100);
+                        setTimeout(() => {
+                            successMessage.classList.add('translate-x-full');
+                            setTimeout(() => successMessage.remove(), 500);
+                        }, 3000);
+
+                        // Check if table is empty
+                        const tbody = document.querySelector('tbody');
+                        if (tbody.children.length === 0) {
+                            tbody.innerHTML = `
+                                <tr>
+                                    <td colspan="6" class="px-6 py-4 text-center text-gray-500">
+                                        No users found
+                                    </td>
+                                </tr>
+                            `;
+                        }
+                    }, 300);
+                } else {
+                    throw new Error(data.message || 'Failed to delete user');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Revert button state
+                button.innerHTML = originalHTML;
+                button.disabled = false;
+                
+                // Show error message
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'fixed top-4 right-4 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg transform transition-all duration-500 ease-in-out';
+                errorMessage.innerHTML = `<i class="fas fa-exclamation-circle mr-2"></i>${error.message}`;
+                document.body.appendChild(errorMessage);
+                
+                // Animate message
+                setTimeout(() => errorMessage.classList.remove('translate-x-full'), 100);
+                setTimeout(() => {
+                    errorMessage.classList.add('translate-x-full');
+                    setTimeout(() => errorMessage.remove(), 500);
+                }, 3000);
+            });
+        }
+    }
+
+    // Show messages if any
+    const messageContainer = document.getElementById('django-messages');
+    if (messageContainer) {
+        const messages = messageContainer.querySelectorAll('div');
+        messages.forEach(message => {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'fixed top-4 right-4 px-6 py-3 rounded-lg shadow-lg transform transition-all duration-500 ease-in-out translate-x-full';
+            const icon = message.dataset.tag === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
+            messageDiv.innerHTML = `<i class="fas ${icon} mr-2"></i>${message.dataset.text}`;
+            
+            if (message.dataset.tag === 'success') {
+                messageDiv.classList.add('bg-green-500', 'text-white');
+            } else {
+                messageDiv.classList.add('bg-red-500', 'text-white');
+            }
+            
+            document.body.appendChild(messageDiv);
+            
+            // Animate in
+            setTimeout(() => {
+                messageDiv.classList.remove('translate-x-full');
+            }, 100);
+
+            // Animate out and remove
+            setTimeout(() => {
+                messageDiv.classList.add('translate-x-full');
+                setTimeout(() => {
+                    document.body.removeChild(messageDiv);
+                }, 500);
+            }, 3000);
+        });
+    }
+</script>
+{% endblock %} 

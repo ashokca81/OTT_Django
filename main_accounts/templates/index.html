@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- Sidebar -->
+    {% include 'includes/sidebar.html' %}
+
+    <!-- Main Content -->
+    <main class="main-content flex-1 p-6 overflow-auto">
+        <!-- Header -->
+        {% include 'includes/header.html' with page_title="Dashboard" %}
+
+        <!-- Page Content -->
+        <div class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100">
+            <div class="container mx-auto px-6 py-8">
+                <!-- Welcome Section -->
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h1 class="text-2xl font-semibold text-gray-900">Welcome to NO1 OTT Admin</h1>
+                            <p class="mt-1 text-sm text-gray-500">Manage your OTT platform content and settings</p>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <span class="text-sm text-gray-500">Last login: {{ user_profile.last_activity|date:"M d, Y H:i" }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                    <!-- Total Categories -->
+                    <div class="bg-white rounded-lg shadow-sm p-6">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-indigo-100 text-indigo-600">
+                                <i class="fas fa-layer-group text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h2 class="text-sm font-medium text-gray-500">Total Categories</h2>
+                                <p class="text-2xl font-semibold text-gray-900">{{ total_categories }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Active Categories -->
+                    <div class="bg-white rounded-lg shadow-sm p-6">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-green-100 text-green-600">
+                                <i class="fas fa-check-circle text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h2 class="text-sm font-medium text-gray-500">Active Categories</h2>
+                                <p class="text-2xl font-semibold text-gray-900">{{ active_categories }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Total Users -->
+                    <div class="bg-white rounded-lg shadow-sm p-6">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-blue-100 text-blue-600">
+                                <i class="fas fa-users text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h2 class="text-sm font-medium text-gray-500">Total Users</h2>
+                                <p class="text-2xl font-semibold text-gray-900">{{ total_users }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Online Users -->
+                    <div class="bg-white rounded-lg shadow-sm p-6">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-purple-100 text-purple-600">
+                                <i class="fas fa-user-check text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h2 class="text-sm font-medium text-gray-500">Online Users</h2>
+                                <p class="text-2xl font-semibold text-gray-900">{{ online_users }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="bg-white rounded-lg shadow-sm">
+                    <div class="p-6 border-b border-gray-200">
+                        <h2 class="text-lg font-medium text-gray-900">Recent Activity</h2>
+                    </div>
+                    <div class="p-6">
+                        <div class="flow-root">
+                            <ul class="-mb-8">
+                                {% for activity in recent_activities %}
+                                <li>
+                                    <div class="relative pb-8">
+                                        {% if not forloop.last %}
+                                        <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
+                                        {% endif %}
+                                        <div class="relative flex space-x-3">
+                                            <div>
+                                                <span class="h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center ring-8 ring-white">
+                                                    <i class="fas {{ activity.icon }} text-gray-500"></i>
+                                                </span>
+                                            </div>
+                                            <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
+                                                <div>
+                                                    <p class="text-sm text-gray-500">{{ activity.description }}</p>
+                                                </div>
+                                                <div class="text-right text-sm whitespace-nowrap text-gray-500">
+                                                    <time datetime="{{ activity.timestamp }}">{{ activity.timestamp|timesince }} ago</time>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                {% empty %}
+                                <li class="text-center text-gray-500 py-4">No recent activity</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      </div>
+      
+    </main>
+<script>
+// Mobile menu toggle
+document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.classList.toggle('hidden');
+});
+</script>
+{% endblock %} 

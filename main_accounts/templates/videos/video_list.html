@@ -1,0 +1,365 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Videos - OTT Admin{% endblock %}
+
+{% block content %}
+    <!-- Sidebar -->
+    {% with name=request.user.get_full_name|default:request.user.username %}
+        {% include 'includes/sidebar.html' %}
+    {% endwith %}
+
+    <!-- Main Content -->
+    <main class="main-content flex-1 p-6 overflow-auto">
+        {% include 'includes/header.html' with page_title="Videos" %}
+        <div class="px-6 py-8">
+            <!-- Toast Container -->
+            <div id="toastContainer" class="fixed top-4 right-4 z-50">
+                {% for message in messages %}
+                    {% if 'video' in message.tags %}
+                    <div class="toast-message mb-4 p-4 rounded-md shadow-lg {% if 'error' in message.tags %}bg-red-500{% else %}bg-green-500{% endif %} text-white" style="min-width: 300px;">
+                        {{ message }}
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <!-- Header Section -->
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-semibold text-gray-900">Videos</h1>
+                <a href="{% url 'add_video' %}" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                    <i class="fas fa-plus mr-2"></i>Add New Video
+                </a>
+            </div>
+
+            <!-- Filters Section -->
+            <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+                <form method="GET" class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <!-- Search -->
+                    <div>
+                        <label for="search" class="block text-sm font-medium text-gray-700 mb-1">Search</label>
+                        <input type="text" name="search" id="search" value="{{ search_query }}"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                            placeholder="Search by title or category">
+                    </div>
+
+                    <!-- Category Filter -->
+                    <div>
+                        <label for="category" class="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                        <select name="category" id="category"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                            <option value="">All Categories</option>
+                            {% for category in categories %}
+                                <option value="{{ category.id }}" {% if selected_category == category.id|stringformat:"i" %}selected{% endif %}>
+                                    {{ category.name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <!-- Type Filter -->
+                    <div>
+                        <label for="type" class="block text-sm font-medium text-gray-700 mb-1">Type</label>
+                        <select name="type" id="type"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                            <option value="">All Types</option>
+                            <option value="free" {% if selected_type == 'free' %}selected{% endif %}>Free</option>
+                            <option value="paid" {% if selected_type == 'paid' %}selected{% endif %}>Paid</option>
+                            <option value="rental" {% if selected_type == 'rental' %}selected{% endif %}>Rental</option>
+                        </select>
+                    </div>
+
+                    <!-- Filter Button -->
+                    <div class="flex items-end">
+                        <button type="submit"
+                            class="w-full px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
+                            <i class="fas fa-filter mr-2"></i>Apply Filters
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Videos Table -->
+            <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-10">
+                                <!-- Drag handle column -->
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Title
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Category
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Type
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Views
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Status
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="sortable-videos" class="bg-white divide-y divide-gray-200">
+                        {% for video in videos %}
+                            <tr data-video-id="{{ video.id }}" class="cursor-move hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center justify-center">
+                                        <i class="fas fa-grip-vertical text-gray-400 cursor-move"></i>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <img class="h-10 w-16 object-cover rounded mr-3"
+                                            src="{{ video.thumbnail_url|default:'/static/images/placeholder.png' }}"
+                                            alt="{{ video.title }}">
+                                        <div class="text-sm font-medium text-gray-900">{{ video.title }}</div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <a href="?category={{ video.category.id }}" class="text-sm text-indigo-600 hover:text-indigo-900">
+                                        {{ video.category.name }}
+                                    </a>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 py-1 text-xs leading-5 font-semibold rounded-full 
+                                        {% if video.video_type == 'free' %}bg-green-100 text-green-800
+                                        {% elif video.video_type == 'paid' %}bg-purple-100 text-purple-800
+                                        {% else %}bg-orange-100 text-orange-800{% endif %}">
+                                        {{ video.get_video_type_display }}
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    {{ video.views_count }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <button onclick="toggleVideoStatus('{{ video.id }}')" 
+                                        class="px-2 py-1 text-xs leading-5 font-semibold rounded-full cursor-pointer
+                                        {% if video.is_active %}bg-green-100 text-green-800 hover:bg-green-200
+                                        {% else %}bg-red-100 text-red-800 hover:bg-red-200{% endif %}">
+                                        {{ video.is_active|yesno:"Active,Inactive" }}
+                                    </button>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <a href="{% url 'edit_video' video.id %}" class="text-indigo-600 hover:text-indigo-900 mr-3">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                    <button onclick="deleteVideo('{{ video.id }}', '{{ video.title }}')" 
+                                        class="text-red-600 hover:text-red-900">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="7" class="px-6 py-4 text-center text-gray-500">
+                                    No videos found
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            {% if page_obj.has_other_pages %}
+                <div class="mt-4 flex justify-center">
+                    <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                        {% if page_obj.has_previous %}
+                            <a href="?page={{ page_obj.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if selected_type %}&type={{ selected_type }}{% endif %}"
+                                class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                <span class="sr-only">Previous</span>
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+                        {% endif %}
+
+                        {% for num in page_obj.paginator.page_range %}
+                            {% if page_obj.number == num %}
+                                <span class="relative inline-flex items-center px-4 py-2 border border-indigo-500 bg-indigo-50 text-sm font-medium text-indigo-600">
+                                    {{ num }}
+                                </span>
+                            {% else %}
+                                <a href="?page={{ num }}{% if search_query %}&search={{ search_query }}{% endif %}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if selected_type %}&type={{ selected_type }}{% endif %}"
+                                    class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                                    {{ num }}
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if selected_type %}&type={{ selected_type }}{% endif %}"
+                                class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                <span class="sr-only">Next</span>
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                        {% endif %}
+                    </nav>
+                </div>
+            {% endif %}
+        </div>
+    </main>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Auto-dismiss initial toast messages
+    const toasts = document.querySelectorAll('.toast-message');
+    toasts.forEach(toast => {
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transition = 'opacity 0.5s ease-out';
+            setTimeout(() => toast.remove(), 500);
+        }, 3000);
+    });
+
+    // Initialize Sortable
+    const sortableTable = document.getElementById('sortable-videos');
+    if (sortableTable) {
+        new Sortable(sortableTable, {
+            handle: '.fa-grip-vertical',
+            animation: 150,
+            ghostClass: 'bg-gray-100',
+            dragClass: 'sortable-drag',
+            onEnd: function(evt) {
+                const rows = Array.from(evt.to.children);
+                const videos = [];
+                let currentOrder = 0;
+
+                rows.forEach((row) => {
+                    const videoId = row.dataset.videoId;
+                    if (videoId) {
+                        videos.push({
+                            id: parseInt(videoId),
+                            order: currentOrder
+                        });
+                        currentOrder++;
+                    }
+                });
+
+                // Only proceed if we have videos to update
+                if (videos.length > 0) {
+                    // Update order in database
+                    fetch('/videos/update-order/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': getCookie('csrftoken')
+                        },
+                        body: JSON.stringify({ videos: videos })
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.status === 'success') {
+                            showToast('Video order updated successfully', 'success');
+                        } else {
+                            showToast('Error updating video order: ' + data.message, 'error');
+                            location.reload();
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        showToast('An error occurred while updating the order', 'error');
+                        location.reload();
+                    });
+                }
+            }
+        });
+    }
+});
+
+// Toast notification function
+function showToast(message, type = 'success') {
+    const toast = document.createElement('div');
+    toast.className = `toast-message mb-4 p-4 rounded-md shadow-lg ${type === 'error' ? 'bg-red-500' : 'bg-green-500'} text-white`;
+    toast.style.minWidth = '300px';
+    toast.innerHTML = message;
+    
+    const toastContainer = document.getElementById('toastContainer');
+    toastContainer.appendChild(toast);
+    
+    // Remove toast after 3 seconds
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transition = 'opacity 0.5s ease-out';
+        setTimeout(() => toast.remove(), 500);
+    }, 3000);
+}
+
+// CSRF token helper function
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+function toggleVideoStatus(videoId) {
+    fetch(`/api/videos/${videoId}/toggle-status/`, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': getCookie('csrftoken'),
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            location.reload();
+        } else {
+            showToast(data.message || 'Error toggling video status', 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        showToast('An error occurred while toggling the status', 'error');
+    });
+}
+
+function deleteVideo(videoId, title) {
+    if (confirm(`Are you sure you want to delete "${title}"?`)) {
+        fetch(`/api/videos/${videoId}/`, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRFToken': getCookie('csrftoken'),
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                showToast('Video deleted successfully', 'success');
+                setTimeout(() => location.reload(), 1000);
+            } else {
+                showToast(data.message || 'Error deleting video', 'error');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showToast('An error occurred while deleting the video', 'error');
+        });
+    }
+}
+</script>
+{% endblock %} 

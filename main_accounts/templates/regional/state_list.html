@@ -1,0 +1,282 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}States - Regional Content{% endblock %}
+
+{% block extra_css %}
+<style>
+    .sortable-ghost {
+        background-color: #f3f4f6 !important;
+        opacity: 0.5;
+    }
+    
+    .sortable-drag {
+        background-color: #ffffff;
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    
+    .drag-handle {
+        cursor: grab;
+    }
+    
+    .drag-handle:active {
+        cursor: grabbing;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+    <!-- Sidebar -->
+    {% include 'includes/sidebar.html' %}
+
+    <!-- Main Content -->
+    <main class="main-content flex-1 p-6 overflow-auto">
+        {% csrf_token %}
+        {% include 'includes/header.html' with page_title="States" %}
+        <div class="px-6 py-8">
+            <!-- Page Header -->
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-semibold text-gray-900">States</h1>
+                {% if not is_editor %}
+                <a href="{% url 'add_state' %}" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                    <i class="fas fa-plus mr-2"></i>Add State
+                </a>
+                {% endif %}
+            </div>
+
+            <!-- Search Form -->
+            <div class="mb-6">
+                <form method="get" class="flex gap-4">
+                    <div class="flex-1">
+                        <input type="text" name="search" value="{{ search_query }}" placeholder="Search states..."
+                               class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                    </div>
+                    <button type="submit" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
+                        <i class="fas fa-search mr-2"></i>Search
+                    </button>
+                </form>
+            </div>
+
+            <!-- States Table -->
+            <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                {% if not is_editor %}
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-10"></th>
+                                {% endif %}
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Districts</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200" id="statesTableBody">
+                            {% for state in states %}
+                            <tr data-id="{{ state.id }}" class="{% if not is_editor %}cursor-move{% endif %}">
+                                {% if not is_editor %}
+                                <td class="px-6 py-4 whitespace-nowrap drag-handle">
+                                    <i class="fas fa-grip-vertical text-gray-400"></i>
+                                </td>
+                                {% endif %}
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        {% if state.image %}
+                                        <img src="{{ state.image.url }}" alt="{{ state.name }}" class="w-8 h-8 rounded-full mr-3">
+                                        {% else %}
+                                        <div class="w-8 h-8 rounded-full bg-gray-200 mr-3 flex items-center justify-center">
+                                            <i class="fas fa-map-marker-alt text-gray-400"></i>
+                                        </div>
+                                        {% endif %}
+                                        <div class="text-sm font-medium text-gray-900">{{ state.name }}</div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ state.order }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <form method="POST" action="{% url 'toggle_state_status' state.id %}" class="inline">
+                                        {% csrf_token %}
+                                        <button type="submit" 
+                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full cursor-pointer
+                                                       {% if state.is_active %}
+                                                       bg-green-100 text-green-800 hover:bg-green-200
+                                                       {% else %}
+                                                       bg-red-100 text-red-800 hover:bg-red-200
+                                                       {% endif %}">
+                                            {{ state.is_active|yesno:"Active,Inactive" }}
+                                        </button>
+                                    </form>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    {{ state.districts.count }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    <div class="flex items-center gap-3">
+                                        {% if not is_editor %}
+                                        <a href="{% url 'edit_state' state.id %}" class="text-indigo-600 hover:text-indigo-900">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <button onclick="deleteState('{{ state.id }}')" class="text-red-600 hover:text-red-900">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="6" class="px-6 py-4 text-center text-gray-500">
+                                    No states found
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            {% if states.has_other_pages %}
+            <div class="flex justify-center mt-6">
+                <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                    {% if states.has_previous %}
+                    <a href="?page={{ states.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                        <span class="sr-only">Previous</span>
+                        <i class="fas fa-chevron-left"></i>
+                    </a>
+                    {% endif %}
+
+                    {% for i in states.paginator.page_range %}
+                    <a href="?page={{ i }}{% if search_query %}&search={{ search_query }}{% endif %}" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium {% if states.number == i %}text-indigo-600 bg-indigo-50{% else %}text-gray-700 hover:bg-gray-50{% endif %}">
+                        {{ i }}
+                    </a>
+                    {% endfor %}
+
+                    {% if states.has_next %}
+                    <a href="?page={{ states.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                        <span class="sr-only">Next</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                    {% endif %}
+                </nav>
+            </div>
+            {% endif %}
+        </div>
+    </main>
+{% endblock %}
+
+{% block extra_js %}
+<!-- SortableJS -->
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+
+<script>
+// Get CSRF token
+function getCSRFToken() {
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]');
+    if (!csrfToken) {
+        console.error('CSRF token not found');
+        return null;
+    }
+    return csrfToken.value;
+}
+
+// Initialize Sortable
+document.addEventListener('DOMContentLoaded', function() {
+    if (!document.querySelector('.drag-handle')) return; // Exit if not admin/editor
+    
+    const tbody = document.getElementById('statesTableBody');
+    if (!tbody) {
+        console.error('States table body not found');
+        return;
+    }
+    
+    new Sortable(tbody, {
+        handle: '.drag-handle',
+        animation: 150,
+        onEnd: function(evt) {
+            const itemEl = evt.item;
+            const newIndex = evt.newIndex;
+            const stateId = itemEl.dataset.id;
+            
+            // Get all state IDs in their new order
+            const stateIds = Array.from(tbody.querySelectorAll('tr[data-id]'))
+                .map(row => row.dataset.id)
+                .filter(id => id); // Remove undefined/null values
+            
+            console.log('Reordering states:', stateIds); // Debug log
+            
+            const csrfToken = getCSRFToken();
+            if (!csrfToken) {
+                alert('Error: CSRF token not found. Please refresh the page.');
+                location.reload();
+                return;
+            }
+            
+            // Save the new order
+            fetch('/api/reorder-states/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken,
+                },
+                body: JSON.stringify({
+                    state_ids: stateIds
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.status === 'success') {
+                    console.log('Order updated successfully'); // Debug log
+                    // Update order numbers in the UI
+                    document.querySelectorAll('tr[data-id]').forEach((row, index) => {
+                        const orderCell = row.querySelector('td:nth-child(3)');
+                        if (orderCell) {
+                            orderCell.textContent = index + 1;
+                            console.log(`Updated UI order for state ${row.dataset.id} to ${index + 1}`); // Debug log
+                        }
+                    });
+                } else {
+                    console.error('Failed to update order:', data.message); // Debug log
+                    alert('Failed to update order. Please try again.');
+                    location.reload();
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while updating the order');
+                location.reload();
+            });
+        }
+    });
+});
+
+function deleteState(stateId) {
+    if (confirm('Are you sure you want to delete this state? This action cannot be undone.')) {
+        fetch(`/states/delete/${stateId}/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                location.reload();
+            } else {
+                alert(data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while deleting the state');
+        });
+    }
+}
+</script>
+{% endblock %} 

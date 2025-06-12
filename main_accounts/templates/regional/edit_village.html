@@ -1,0 +1,330 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Edit Village - Regional Content{% endblock %}
+
+{% block content %}
+    {% include 'includes/sidebar.html' %}
+
+    <main class="main-content flex-1 overflow-auto bg-gray-50">
+        {% include 'includes/header.html' with page_title="Edit Village" %}
+        
+        <div class="py-6">
+            <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-6">
+                    <h1 class="text-2xl font-semibold text-gray-900">Edit Village</h1>
+                    <p class="mt-2 text-sm text-gray-600">Update village information in the system.</p>
+                </div>
+
+                <form method="post" enctype="multipart/form-data" class="bg-white shadow-sm rounded-lg">
+                    {% csrf_token %}
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6">
+                        <div class="space-y-6">
+                            <!-- Name Field -->
+                            <div class="relative">
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Village Name <span class="text-red-500">*</span>
+                                </label>
+                                <div class="relative rounded-md shadow-sm">
+                                    <input type="text" name="name" id="name" required
+                                           class="block w-full rounded-md border-gray-300 pl-4 pr-10 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm transition duration-150 ease-in-out hover:border-indigo-400"
+                                           placeholder="Enter village name"
+                                           value="{{ village.name }}">
+                                    <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                                        <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <p class="mt-2 text-sm text-gray-500">Enter the official name of the village</p>
+                            </div>
+
+                            <!-- State Field -->
+                            <div class="relative">
+                                <label for="state" class="block text-sm font-medium text-gray-700 mb-1">
+                                    State <span class="text-red-500">*</span>
+                                </label>
+                                <div class="relative rounded-md shadow-sm">
+                                    <select name="state" id="state" required
+                                            class="block w-full rounded-md border-gray-300 pl-4 pr-10 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm transition duration-150 ease-in-out hover:border-indigo-400">
+                                        <option value="">Select a State</option>
+                                        {% for state in states %}
+                                        <option value="{{ state.id }}" {% if state.id == village.mandal.constituency.district.state_id %}selected{% endif %}>{{ state.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                                        <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <p class="mt-2 text-sm text-gray-500">Select the state this village belongs to</p>
+                            </div>
+
+                            <!-- District Field -->
+                            <div class="relative">
+                                <label for="district" class="block text-sm font-medium text-gray-700 mb-1">
+                                    District <span class="text-red-500">*</span>
+                                </label>
+                                <div class="relative rounded-md shadow-sm">
+                                    <select name="district" id="district" required
+                                            class="block w-full rounded-md border-gray-300 pl-4 pr-10 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm transition duration-150 ease-in-out hover:border-indigo-400">
+                                        <option value="">Select a District</option>
+                                        {% if districts %}
+                                            {% for district in districts %}
+                                            <option value="{{ district.id }}" {% if district.id == village.mandal.constituency.district_id %}selected{% endif %}>{{ district.name }}</option>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </select>
+                                    <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                                        <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <p class="mt-2 text-sm text-gray-500">Select the district this village belongs to</p>
+                            </div>
+
+                            <!-- Constituency Field -->
+                            <div class="relative">
+                                <label for="constituency" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Constituency <span class="text-red-500">*</span>
+                                </label>
+                                <div class="relative rounded-md shadow-sm">
+                                    <select name="constituency" id="constituency" required
+                                            class="block w-full rounded-md border-gray-300 pl-4 pr-10 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm transition duration-150 ease-in-out hover:border-indigo-400">
+                                        <option value="">Select a Constituency</option>
+                                        {% if constituencies %}
+                                            {% for constituency in constituencies %}
+                                            <option value="{{ constituency.id }}" {% if constituency.id == village.mandal.constituency_id %}selected{% endif %}>{{ constituency.name }}</option>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </select>
+                                    <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                                        <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <p class="mt-2 text-sm text-gray-500">Select the constituency this village belongs to</p>
+                            </div>
+
+                            <!-- Mandal Field -->
+                            <div class="relative">
+                                <label for="mandal" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Mandal <span class="text-red-500">*</span>
+                                </label>
+                                <div class="relative rounded-md shadow-sm">
+                                    <select name="mandal" id="mandal" required
+                                            class="block w-full rounded-md border-gray-300 pl-4 pr-10 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm transition duration-150 ease-in-out hover:border-indigo-400">
+                                        <option value="">Select a Mandal</option>
+                                        {% if mandals %}
+                                            {% for mandal in mandals %}
+                                            <option value="{{ mandal.id }}" {% if mandal.id == village.mandal_id %}selected{% endif %}>{{ mandal.name }}</option>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </select>
+                                    <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                                        <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <p class="mt-2 text-sm text-gray-500">Select the mandal this village belongs to</p>
+                            </div>
+
+                            <!-- Status Field -->
+                            <div class="relative">
+                                <div class="flex items-center space-x-3 bg-gray-50 p-4 rounded-lg hover:bg-gray-100 transition duration-150 ease-in-out cursor-pointer">
+                                    <div class="flex items-center h-5">
+                                        <input type="checkbox" name="is_active" id="is_active"
+                                               class="h-5 w-5 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 transition duration-150 ease-in-out cursor-pointer"
+                                               {% if village.is_active %}checked{% endif %}>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <label for="is_active" class="font-medium text-sm text-gray-700">Active Status</label>
+                                        <p class="text-sm text-gray-500">Enable or disable this village in the system</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-6">
+                            <!-- Image Upload Field -->
+                            <div>
+                                <label for="image" class="block text-sm font-medium text-gray-700 mb-1">Village Image</label>
+                                <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg transition duration-150 ease-in-out hover:border-indigo-400 hover:bg-gray-50">
+                                    <div class="space-y-1 text-center">
+                                        <div class="flex flex-col items-center">
+                                            <img id="imagePreview" src="{% if village.image %}{{ village.image.url }}{% else %}{% static 'assets/images/placeholder.png' %}{% endif %}" alt="Preview" 
+                                                 class="w-32 h-32 object-cover mb-4 rounded-lg {% if not village.image %}hidden{% endif %}">
+                                            <svg class="mx-auto h-12 w-12 text-gray-400 {% if village.image %}hidden{% endif %}" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                                                <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" 
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                            <div class="flex text-sm text-gray-600">
+                                                <label for="image" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                                                    <span>Upload a file</span>
+                                                    <input id="image" name="image" type="file" class="sr-only" accept="image/*">
+                                                </label>
+                                                <p class="pl-1">or drag and drop</p>
+                                            </div>
+                                            <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="px-6 py-4 bg-gray-50 rounded-b-lg flex items-center justify-end space-x-3">
+                        <a href="{% url 'village_list' %}" 
+                           class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out">
+                            Cancel
+                        </a>
+                        <button type="submit"
+                                class="px-6 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out">
+                            Update Village
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.getElementById('image').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    const preview = document.getElementById('imagePreview');
+    const svg = preview.nextElementSibling;
+    
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+            preview.classList.remove('hidden');
+            svg.classList.add('hidden');
+        }
+        reader.readAsDataURL(file);
+    } else {
+        preview.classList.add('hidden');
+        svg.classList.remove('hidden');
+    }
+});
+
+// Cascading dropdowns
+document.getElementById('state').addEventListener('change', function() {
+    const stateId = this.value;
+    const districtSelect = document.getElementById('district');
+    const constituencySelect = document.getElementById('constituency');
+    const mandalSelect = document.getElementById('mandal');
+    
+    // Clear existing options
+    districtSelect.innerHTML = '<option value="">Select a District</option>';
+    constituencySelect.innerHTML = '<option value="">Select a Constituency</option>';
+    mandalSelect.innerHTML = '<option value="">Select a Mandal</option>';
+    
+    if (stateId) {
+        fetch(`/api/districts/${stateId}/`)
+            .then(response => response.json())
+            .then(districts => {
+                districts.forEach(district => {
+                    const option = document.createElement('option');
+                    option.value = district.id;
+                    option.textContent = district.name;
+                    districtSelect.appendChild(option);
+                });
+            });
+    }
+});
+
+document.getElementById('district').addEventListener('change', function() {
+    const districtId = this.value;
+    const constituencySelect = document.getElementById('constituency');
+    const mandalSelect = document.getElementById('mandal');
+    
+    // Clear existing options
+    constituencySelect.innerHTML = '<option value="">Select a Constituency</option>';
+    mandalSelect.innerHTML = '<option value="">Select a Mandal</option>';
+    
+    if (districtId) {
+        fetch(`/api/constituencies/${districtId}/`)
+            .then(response => response.json())
+            .then(constituencies => {
+                constituencies.forEach(constituency => {
+                    const option = document.createElement('option');
+                    option.value = constituency.id;
+                    option.textContent = constituency.name;
+                    constituencySelect.appendChild(option);
+                });
+            });
+    }
+});
+
+document.getElementById('constituency').addEventListener('change', function() {
+    const constituencyId = this.value;
+    const mandalSelect = document.getElementById('mandal');
+    
+    // Clear existing options
+    mandalSelect.innerHTML = '<option value="">Select a Mandal</option>';
+    
+    if (constituencyId) {
+        fetch(`/api/mandals/${constituencyId}/`)
+            .then(response => response.json())
+            .then(mandals => {
+                mandals.forEach(mandal => {
+                    const option = document.createElement('option');
+                    option.value = mandal.id;
+                    option.textContent = mandal.name;
+                    mandalSelect.appendChild(option);
+                });
+            });
+    }
+});
+
+// Drag and drop functionality
+const dropZone = document.querySelector('form');
+const fileInput = document.getElementById('image');
+
+['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+    dropZone.addEventListener(eventName, preventDefaults, false);
+});
+
+function preventDefaults(e) {
+    e.preventDefault();
+    e.stopPropagation();
+}
+
+['dragenter', 'dragover'].forEach(eventName => {
+    dropZone.addEventListener(eventName, highlight, false);
+});
+
+['dragleave', 'drop'].forEach(eventName => {
+    dropZone.addEventListener(eventName, unhighlight, false);
+});
+
+function highlight(e) {
+    dropZone.classList.add('border-indigo-500');
+}
+
+function unhighlight(e) {
+    dropZone.classList.remove('border-indigo-500');
+}
+
+dropZone.addEventListener('drop', handleDrop, false);
+
+function handleDrop(e) {
+    const dt = e.dataTransfer;
+    const files = dt.files;
+    fileInput.files = files;
+    
+    // Trigger change event
+    const event = new Event('change');
+    fileInput.dispatchEvent(event);
+}
+</script>
+{% endblock %} 

@@ -1,0 +1,401 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- Sidebar -->
+    {% include 'includes/sidebar.html' %}
+
+    <!-- Main Content -->
+    <main class="main-content flex-1 p-6 overflow-auto">
+        {% include 'includes/header.html' with page_title="Live Streams" %}
+        <div class="px-6 py-8">
+            <!-- Toast Container -->
+            <div id="toastContainer" class="fixed top-4 right-4 z-50">
+                {% for message in messages %}
+                    {% if 'live_stream' in message.tags %}
+                    <div class="toast-message mb-4 p-4 rounded-md shadow-lg {% if 'error' in message.tags %}bg-red-500{% else %}bg-green-500{% endif %} text-white" style="min-width: 300px;">
+                        {{ message }}
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <!-- Header Section -->
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-semibold text-gray-900">Live Streams</h1>
+                <a href="{% url 'add_live_stream' %}" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                    <i class="fas fa-plus mr-2"></i>Add Live Stream
+                </a>
+            </div>
+
+            <!-- Filters Section -->
+            <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+                <form method="GET" class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <!-- Search -->
+                    <div>
+                        <label for="search" class="block text-sm font-medium text-gray-700 mb-1">Search</label>
+                        <input type="text" name="search" id="search" value="{{ search_query }}"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                            placeholder="Search by title or category">
+                    </div>
+
+                    <!-- Category Filter -->
+                    <div>
+                        <label for="category" class="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                        <select name="category" id="category"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                            <option value="">All Categories</option>
+                            {% for category in categories %}
+                                <option value="{{ category.id }}" {% if selected_category == category.id|stringformat:"i" %}selected{% endif %}>
+                                    {{ category.name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <!-- Status Filter -->
+                    <div>
+                        <label for="status" class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                        <select name="status" id="status"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                            <option value="">All Status</option>
+                            <option value="active" {% if selected_status == 'active' %}selected{% endif %}>Active</option>
+                            <option value="inactive" {% if selected_status == 'inactive' %}selected{% endif %}>Inactive</option>
+                        </select>
+                    </div>
+
+                    <!-- Filter Button -->
+                    <div class="flex items-end">
+                        <button type="submit"
+                            class="w-full px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
+                            <i class="fas fa-filter mr-2"></i>Apply Filters
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Live Streams Table -->
+            <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-10">
+                                <!-- Drag handle column -->
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Title
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Category
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Status
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Created By
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Created At
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="sortable-live-streams" class="bg-white divide-y divide-gray-200">
+                        {% for live_stream in page_obj %}
+                            <tr data-live-stream-id="{{ live_stream.id }}" class="cursor-move hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center justify-center">
+                                        <i class="fas fa-grip-vertical text-gray-400 cursor-move"></i>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        {% if live_stream.thumbnail %}
+                                            <img src="{{ live_stream.thumbnail.url }}" alt="{{ live_stream.title }}" class="h-10 w-16 object-cover rounded mr-3">
+                                        {% else %}
+                                            {% with youtube_url=live_stream.live_url %}
+                                                {% if 'youtube.com' in youtube_url or 'youtu.be' in youtube_url %}
+                                                    {% with video_id=live_stream.live_url|slice:"-11:" %}
+                                                        <img src="https://img.youtube.com/vi/{{ video_id }}/mqdefault.jpg" 
+                                                             alt="{{ live_stream.title }}" 
+                                                             class="h-10 w-16 object-cover rounded mr-3 cursor-pointer"
+                                                             onclick="showVideoPreview('{{ video_id }}')">
+                                                    {% endwith %}
+                                                {% endif %}
+                                            {% endwith %}
+                                        {% endif %}
+                                        <div>
+                                            <div class="text-sm font-medium text-gray-900">{{ live_stream.title }}</div>
+                                            {% if live_stream.is_important %}
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                                    Important
+                                                </span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <a href="?category={{ live_stream.category.id }}" class="text-sm text-indigo-600 hover:text-indigo-900">
+                                        {{ live_stream.category.name }}
+                                    </a>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <form method="POST" action="{% url 'toggle_live_stream_status' live_stream.id %}" class="inline">
+                                        {% csrf_token %}
+                                        <button type="submit" 
+                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full cursor-pointer
+                                                       {% if live_stream.is_active %}
+                                                       bg-green-100 text-green-800 hover:bg-green-200
+                                                       {% else %}
+                                                       bg-red-100 text-red-800 hover:bg-red-200
+                                                       {% endif %}">
+                                            {{ live_stream.is_active|yesno:"Active,Inactive" }}
+                                        </button>
+                                    </form>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900">{{ live_stream.created_by.get_full_name|default:live_stream.created_by.username }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    {{ live_stream.created_at|date:"M d, Y" }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <a href="{% url 'edit_live_stream' live_stream.id %}" class="text-indigo-600 hover:text-indigo-900 mr-3">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                    <a href="#" onclick="deleteLiveStream('{{ live_stream.id }}', '{{ live_stream.title }}')" class="text-red-600 hover:text-red-900">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </a>
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="7" class="px-6 py-4 text-center text-gray-500">
+                                    No live streams found.
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            {% if page_obj.has_other_pages %}
+                <div class="mt-4 flex justify-center">
+                    <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                        {% if page_obj.has_previous %}
+                            <a href="?page={{ page_obj.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if selected_status %}&status={{ selected_status }}{% endif %}"
+                                class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                <span class="sr-only">Previous</span>
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+                        {% endif %}
+
+                        {% for num in page_obj.paginator.page_range %}
+                            {% if page_obj.number == num %}
+                                <span class="relative inline-flex items-center px-4 py-2 border border-indigo-500 bg-indigo-50 text-sm font-medium text-indigo-600">
+                                    {{ num }}
+                                </span>
+                            {% else %}
+                                <a href="?page={{ num }}{% if search_query %}&search={{ search_query }}{% endif %}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if selected_status %}&status={{ selected_status }}{% endif %}"
+                                    class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                                    {{ num }}
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if selected_status %}&status={{ selected_status }}{% endif %}"
+                                class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                <span class="sr-only">Next</span>
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                        {% endif %}
+                    </nav>
+                </div>
+            {% endif %}
+        </div>
+    </main>
+
+    <!-- Video Preview Modal -->
+    <div id="videoPreviewModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-4 w-[90%] max-w-5xl mx-4">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-semibold">Video Preview</h3>
+                <button onclick="closeVideoPreview()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="aspect-video w-full">
+                <iframe id="videoPreviewFrame" 
+                        src="" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen
+                        class="w-full h-full rounded-lg shadow-lg">
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    {% block extra_js %}
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Auto-dismiss initial toast messages
+        const toasts = document.querySelectorAll('.toast-message');
+        toasts.forEach(toast => {
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.5s ease-out';
+                setTimeout(() => toast.remove(), 500);
+            }, 3000);
+        });
+
+        // Initialize Sortable
+        const sortableTable = document.getElementById('sortable-live-streams');
+        if (sortableTable) {
+            new Sortable(sortableTable, {
+                handle: '.fa-grip-vertical',
+                animation: 150,
+                ghostClass: 'bg-gray-100',
+                dragClass: 'sortable-drag',
+                onEnd: function(evt) {
+                    const rows = Array.from(evt.to.children);
+                    const liveStreams = [];
+                    let currentOrder = 0;
+
+                    rows.forEach((row) => {
+                        const liveStreamId = row.dataset.liveStreamId;
+                        if (liveStreamId) {
+                            liveStreams.push({
+                                id: parseInt(liveStreamId),
+                                order: currentOrder
+                            });
+                            currentOrder++;
+                        }
+                    });
+
+                    // Only proceed if we have live streams to update
+                    if (liveStreams.length > 0) {
+                        // Update order in database
+                        fetch('/live-streams/update-order/', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRFToken': getCookie('csrftoken')
+                            },
+                            body: JSON.stringify({ live_streams: liveStreams })
+                        })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            if (data.status === 'success') {
+                                showToast('Live stream order updated successfully', 'success');
+                            } else {
+                                showToast('Error updating live stream order: ' + data.message, 'error');
+                                location.reload();
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            showToast('An error occurred while updating the order', 'error');
+                            location.reload();
+                        });
+                    }
+                }
+            });
+        }
+    });
+
+    // Toast notification function
+    function showToast(message, type = 'success') {
+        const toast = document.createElement('div');
+        toast.className = `toast-message mb-4 p-4 rounded-md shadow-lg ${type === 'error' ? 'bg-red-500' : 'bg-green-500'} text-white`;
+        toast.style.minWidth = '300px';
+        toast.innerHTML = message;
+        
+        const toastContainer = document.getElementById('toastContainer');
+        toastContainer.appendChild(toast);
+        
+        // Remove toast after 3 seconds
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transition = 'opacity 0.5s ease-out';
+            setTimeout(() => toast.remove(), 500);
+        }, 3000);
+    }
+
+    // CSRF token helper function
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    // Delete live stream function
+    function deleteLiveStream(id, title) {
+        if (confirm(`Are you sure you want to delete "${title}"?`)) {
+            fetch(`/live-streams/${id}/delete/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': getCookie('csrftoken'),
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    showToast(data.message, 'success');
+                    setTimeout(() => location.reload(), 1000);
+                } else {
+                    showToast(data.message, 'error');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showToast('An error occurred while deleting the live stream', 'error');
+            });
+        }
+    }
+
+    function showVideoPreview(videoId) {
+        const modal = document.getElementById('videoPreviewModal');
+        const iframe = document.getElementById('videoPreviewFrame');
+        iframe.src = `https://www.youtube.com/embed/${videoId}`;
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+    }
+
+    function closeVideoPreview() {
+        const modal = document.getElementById('videoPreviewModal');
+        const iframe = document.getElementById('videoPreviewFrame');
+        iframe.src = '';
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('videoPreviewModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeVideoPreview();
+        }
+    });
+    </script>
+    {% endblock %}
+{% endblock %} 

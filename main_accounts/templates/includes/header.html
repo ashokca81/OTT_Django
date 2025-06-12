@@ -1,0 +1,86 @@
+<header class="flex items-center justify-between mb-6">
+    <div class="flex items-center gap-3">
+     <button aria-label="Toggle Menu" class="menu-btn w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:text-gray-900" id="toggleSidebarBtn">
+      <i class="fas fa-bars">
+      </i>
+     </button>
+     <h1 class="text-lg font-semibold text-[#1e1e2d] select-none">
+      Dashboard
+     </h1>
+    </div>
+
+    <!-- Right side icons -->
+    <div class="flex items-center gap-2">
+     <button aria-label="Notifications" class="relative w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:text-gray-900">
+      <i class="fas fa-bell">
+      </i>
+      <span class="absolute top-1 right-1 text-[10px] font-semibold bg-red-600 text-white rounded-full w-5 h-5 flex items-center justify-center select-none">
+       24
+      </span>
+     </button>
+     
+     <button aria-label="Toggle Dark Mode" class="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:text-gray-900" id="darkModeToggle">
+      <i class="fas fa-moon">
+      </i>
+     </button>
+     
+     <button aria-label="Toggle Full Screen" class="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:text-gray-900" id="fullscreenToggle">
+      <i class="fas fa-expand">
+      </i>
+     </button>
+
+     <div class="hidden md:flex relative items-center border border-gray-300 rounded-md overflow-hidden">
+      <i class="fas fa-search text-gray-400 pl-3">
+      </i>
+      <input class="pl-8 pr-3 py-2 text-xs text-gray-600 placeholder-gray-400 focus:outline-none" placeholder="Search anything" type="search"/>
+     </div>
+
+     <div class="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center bg-[#4338ca] text-white relative cursor-pointer" id="userDropdown">
+       {% with name=user_profile.user.get_full_name|default:user_profile.user.username %}
+       <span class="text-sm font-semibold">{{ name|slice:":2"|upper }}</span>
+       {% endwith %}
+       <!-- Dropdown menu -->
+       <div class="absolute right-0 top-full mt-2 w-64 bg-white rounded-lg shadow-lg py-2 hidden z-50 border border-gray-100" id="userDropdownMenu">
+         <!-- User Info Section -->
+         <div class="px-4 py-3 border-b border-gray-100">
+           <div class="flex items-center gap-3">
+             <div class="w-12 h-12 rounded-full bg-[#4338ca] flex items-center justify-center text-white">
+               <span class="text-lg font-semibold">{{ user_profile.user.get_full_name|default:user_profile.user.username|slice:":2"|upper }}</span>
+             </div>
+             <div>
+               <p class="font-semibold text-sm text-gray-900">{{ user_profile.user.get_full_name|default:user_profile.user.username }}</p>
+               <p class="text-xs text-gray-500">{{ user_profile.user.email }}</p>
+             </div>
+           </div>
+         </div>
+         
+         <!-- Menu Items -->
+         <div class="py-1">
+           <a href="{% url 'profile' %}" class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+             <i class="fas fa-user-circle text-gray-400 w-5"></i>
+             <span>Profile</span>
+           </a>
+           <a href="{% url 'settings' %}" class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+             <i class="fas fa-cog text-gray-400 w-5"></i>
+             <span>Settings</span>
+           </a>
+           <a href="#" class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+             <i class="fas fa-question-circle text-gray-400 w-5"></i>
+             <span>Help Center</span>
+           </a>
+         </div>
+         
+         <!-- Divider -->
+         <div class="border-t border-gray-100 my-1"></div>
+         
+         <!-- Logout -->
+         <div class="py-1">
+           <a href="{% url 'logout' %}" class="flex items-center gap-3 px-4 py-2 text-sm text-red-600 hover:bg-red-50">
+             <i class="fas fa-sign-out-alt text-red-500 w-5"></i>
+             <span>Logout</span>
+           </a>
+         </div>
+       </div>
+     </div>
+    </div>
+</header>

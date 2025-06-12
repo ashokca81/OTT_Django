@@ -1,0 +1,424 @@
+{% load static %}
+    <aside class="sidebar bg-white border-r border-gray-200 flex flex-col justify-between">
+    <div>
+     <div class="flex items-center gap-2 px-6 py-5 border-b border-gray-200">
+      <img alt="Prodex logo icon" class="w-6 h-6" height="24" src="{% static 'assets/main_accounts/images/logo.png' %}" width="24"/>
+      <span class="font-semibold text-lg text-[#1e1e2d] select-none">
+       NO1 OTT
+      </span>
+      <button aria-label="Close sidebar" class="ml-auto text-gray-400 hover:text-gray-600 md:hidden" id="closeSidebarBtn">
+       <i class="fas fa-times">
+       </i>
+      </button>
+     </div>
+     <nav class="px-6 mt-1 space-y-1 text-sm text-gray-600 select-none">
+      <!-- Main Navigation -->
+      <ul class="space-y-1">
+       <!-- Dashboard -->
+       <li>
+        <a href="{% url 'dashboard' %}" class="flex items-center gap-3 w-full px-3 py-2 rounded-md hover:bg-gray-100 {% if request.resolver_match.url_name == 'dashboard' %}font-semibold text-[#1e1e2d] bg-[#f3f4f6]{% endif %}">
+         <i class="fas fa-th-large text-base">
+         </i>
+         Dashboard
+        </a>
+       </li>
+
+       <!-- User Management Section -->
+       {% if user_profile.role.name == 'super_admin' or user_profile.role.name == 'manager' %}
+       <li class="relative">
+        <button id="roleManagementBtn" class="flex items-center gap-3 w-full px-3 py-2 rounded-md hover:bg-gray-100 {% if request.resolver_match.url_name in 'manage_users,create_manager' %}font-semibold text-[#1e1e2d] bg-[#f3f4f6]{% endif %}">
+         <i class="fas fa-users-cog text-base"></i>
+         Role Management
+         <i class="fas fa-chevron-down ml-auto text-xs transition-transform duration-200 {% if request.resolver_match.url_name in 'manage_users,create_manager' %}rotate-180{% endif %}"></i>
+        </button>
+        <ul id="roleManagementMenu" class="mt-1 space-y-1 text-gray-500 text-xs {% if request.resolver_match.url_name in 'manage_users,create_manager' %}block{% else %}hidden{% endif %}">
+         <li class="relative pl-8">
+          <div class="absolute left-5 top-0 h-full w-px bg-gray-200"></div>
+          <a href="{% url 'manage_users' %}" class="block py-2 hover:text-gray-900 relative {% if request.resolver_match.url_name == 'manage_users' %}text-[#1e1e2d] font-medium{% endif %}">
+           <div class="absolute left-[-12px] top-1/2 w-2 h-px bg-gray-200"></div>
+           Manage Users
+          </a>
+         </li>
+         <li class="relative pl-8">
+          <div class="absolute left-5 top-[-4px] h-[calc(50%+4px)] w-px bg-gray-200"></div>
+          <a href="{% url 'create_manager' %}" class="block py-2 hover:text-gray-900 relative {% if request.resolver_match.url_name == 'create_manager' %}text-[#1e1e2d] font-medium{% endif %}">
+           <div class="absolute left-[-12px] top-1/2 w-2 h-px bg-gray-200"></div>
+           Create New User
+          </a>
+         </li>
+        </ul>
+       </li>
+       {% endif %}
+
+       <!-- Normal Users -->
+       <li class="relative">
+        <button id="usersBtn" class="flex items-center gap-3 w-full px-3 py-2 rounded-md hover:bg-gray-100 {% if request.resolver_match.url_name in 'normal_users' %}font-semibold text-[#1e1e2d] bg-[#f3f4f6]{% endif %}">
+         <i class="fas fa-users text-base"></i>
+         Users
+         <i class="fas fa-chevron-down ml-auto text-xs transition-transform duration-200 {% if request.resolver_match.url_name in 'normal_users' %}rotate-180{% endif %}"></i>
+        </button>
+        <ul id="usersMenu" class="mt-1 space-y-1 text-gray-500 text-xs {% if request.resolver_match.url_name in 'normal_users' %}block{% else %}hidden{% endif %}">
+         <li class="relative pl-8">
+          <div class="absolute left-5 top-0 h-full w-px bg-gray-200"></div>
+          <a href="{% url 'normal_users' %}" class="block py-2 hover:text-gray-900 relative {% if request.resolver_match.url_name == 'normal_users' %}text-[#1e1e2d] font-medium{% endif %}">
+           <div class="absolute left-[-12px] top-1/2 w-2 h-px bg-gray-200"></div>
+           Normal Users
+          </a>
+         </li>
+        </ul>
+       </li>
+
+       <!-- Content Management Section -->
+       <!-- Live Stream Menu -->
+       <li class="relative">
+        <button id="liveStreamBtn" class="flex items-center gap-3 w-full px-3 py-2 rounded-md hover:bg-gray-100 {% if request.resolver_match.url_name in 'live_stream_list,add_live_stream' %}font-semibold text-[#1e1e2d] bg-[#f3f4f6]{% endif %}">
+         <i class="fas fa-video text-base"></i>
+         Live Stream
+         <i class="fas fa-chevron-down ml-auto text-xs transition-transform duration-200 {% if request.resolver_match.url_name in 'live_stream_list,add_live_stream' %}rotate-180{% endif %}"></i>
+        </button>
+        <ul id="liveStreamMenu" class="mt-1 space-y-1 text-gray-500 text-xs {% if request.resolver_match.url_name in 'live_stream_list,add_live_stream' %}block{% else %}hidden{% endif %}">
+         <li class="relative pl-8">
+          <div class="absolute left-5 top-0 h-full w-px bg-gray-200"></div>
+          <a href="{% url 'add_live_stream' %}" class="block py-2 hover:text-gray-900 relative {% if request.resolver_match.url_name == 'add_live_stream' %}text-[#1e1e2d] font-medium{% endif %}">
+           <div class="absolute left-[-12px] top-1/2 w-2 h-px bg-gray-200"></div>
+           Add Live Stream
+          </a>
+         </li>
+         <li class="relative pl-8">
+          <div class="absolute left-5 top-[-4px] h-[calc(50%+4px)] w-px bg-gray-200"></div>
+          <a href="{% url 'live_stream_list' %}" class="block py-2 hover:text-gray-900 relative {% if request.resolver_match.url_name == 'live_stream_list' %}text-[#1e1e2d] font-medium{% endif %}">
+           <div class="absolute left-[-12px] top-1/2 w-2 h-px bg-gray-200"></div>
+           Live Stream List
+          </a>
+         </li>
+        </ul>
+       </li>
+
+       <!-- Videos Menu -->
+       <li class="relative">
+        <button id="videosBtn" class="flex items-center gap-3 w-full px-3 py-2 rounded-md hover:bg-gray-100 {% if request.resolver_match.url_name in 'video_list,add_video,edit_video' %}font-semibold text-[#1e1e2d] bg-[#f3f4f6]{% endif %}">
+         <i class="fas fa-film text-base"></i>
+         Videos
+         <i class="fas fa-chevron-down ml-auto text-xs transition-transform duration-200 {% if request.resolver_match.url_name in 'video_list,add_video,edit_video' %}rotate-180{% endif %}"></i>
+        </button>
+        <ul id="videosMenu" class="mt-1 space-y-1 text-gray-500 text-xs {% if request.resolver_match.url_name in 'video_list,add_video,edit_video' %}block{% else %}hidden{% endif %}">
+         <li class="relative pl-8">
+          <div class="absolute left-5 top-0 h-full w-px bg-gray-200"></div>
+          <a href="{% url 'video_list' %}" class="block py-2 hover:text-gray-900 relative {% if request.resolver_match.url_name == 'video_list' %}text-[#1e1e2d] font-medium{% endif %}">
+           <div class="absolute left-[-12px] top-1/2 w-2 h-px bg-gray-200"></div>
+           Video List
+          </a>
+         </li>
+         <li class="relative pl-8">
+          <div class="absolute left-5 top-[-4px] h-[calc(50%+4px)] w-px bg-gray-200"></div>
+          <a href="{% url 'add_video' %}" class="block py-2 hover:text-gray-900 relative {% if request.resolver_match.url_name == 'add_video' %}text-[#1e1e2d] font-medium{% endif %}">
+           <div class="absolute left-[-12px] top-1/2 w-2 h-px bg-gray-200"></div>
+           Add Video
+          </a>
+         </li>
+        </ul>
+       </li>
+
+       <!-- Categories Menu -->
+       <li class="relative">
+        <button id="categoriesBtn" class="flex items-center gap-3 w-full px-3 py-2 rounded-md hover:bg-gray-100 {% if request.resolver_match.url_name in 'category_list,add_category,edit_category' %}font-semibold text-[#1e1e2d] bg-[#f3f4f6]{% endif %}">
+         <i class="fas fa-layer-group text-base"></i>
+         Categories
+         <i class="fas fa-chevron-down ml-auto text-xs transition-transform duration-200 {% if request.resolver_match.url_name in 'category_list,add_category,edit_category' %}rotate-180{% endif %}"></i>
+        </button>
+        <ul id="categoriesMenu" class="mt-1 space-y-1 text-gray-500 text-xs {% if request.resolver_match.url_name in 'category_list,add_category,edit_category' %}block{% else %}hidden{% endif %}">
+         <li class="relative pl-8">
+          <div class="absolute left-5 top-0 h-full w-px bg-gray-200"></div>
+          <a href="{% url 'category_list' %}" class="block py-2 hover:text-gray-900 relative {% if request.resolver_match.url_name == 'category_list' %}text-[#1e1e2d] font-medium{% endif %}">
+           <div class="absolute left-[-12px] top-1/2 w-2 h-px bg-gray-200"></div>
+           Category List
+          </a>
+         </li>
+         {% if not is_editor %}
+         <li class="relative pl-8">
+          <div class="absolute left-5 top-[-4px] h-[calc(50%+4px)] w-px bg-gray-200"></div>
+          <a href="{% url 'add_category' %}" class="block py-2 hover:text-gray-900 relative {% if request.resolver_match.url_name == 'add_category' %}text-[#1e1e2d] font-medium{% endif %}">
+           <div class="absolute left-[-12px] top-1/2 w-2 h-px bg-gray-200"></div>
+           Add Category
+          </a>
+         </li>
+         {% endif %}
+        </ul>
+       </li>
+
+       <!-- Regional Content Menu -->
+       <li class="relative">
+        <button id="regionalContentBtn" class="flex items-center gap-3 w-full px-3 py-2 rounded-md hover:bg-gray-100 {% if request.resolver_match.url_name in 'state_list,add_state,edit_state,district_list,add_district,edit_district,constituency_list,add_constituency,edit_constituency,mandal_list,add_mandal,edit_mandal,village_list,add_village,edit_village' %}font-semibold text-[#1e1e2d] bg-[#f3f4f6]{% endif %}">
+         <i class="fas fa-map-marker-alt text-base"></i>
+         Regional Content
+         <i class="fas fa-chevron-down ml-auto text-xs transition-transform duration-200 {% if request.resolver_match.url_name in 'state_list,add_state,edit_state,district_list,add_district,edit_district,constituency_list,add_constituency,edit_constituency,mandal_list,add_mandal,edit_mandal,village_list,add_village,edit_village' %}rotate-180{% endif %}"></i>
+        </button>
+        <ul id="regionalContentMenu" class="mt-1 space-y-1 text-gray-500 text-xs {% if request.resolver_match.url_name in 'state_list,add_state,edit_state,district_list,add_district,edit_district,constituency_list,add_constituency,edit_constituency,mandal_list,add_mandal,edit_mandal,village_list,add_village,edit_village' %}block{% else %}hidden{% endif %}">
+         <li class="relative pl-8">
+          <div class="absolute left-5 top-0 h-full w-px bg-gray-200"></div>
+          <a href="{% url 'state_list' %}" class="block py-2 hover:text-gray-900 relative {% if request.resolver_match.url_name in 'state_list,add_state,edit_state' %}text-[#1e1e2d] font-medium{% endif %}">
+           <div class="absolute left-[-12px] top-1/2 w-2 h-px bg-gray-200"></div>
+           States
+          </a>
+         </li>
+         <li class="relative pl-8">
+          <div class="absolute left-5 top-0 h-full w-px bg-gray-200"></div>
+          <a href="{% url 'district_list' %}" class="block py-2 hover:text-gray-900 relative {% if request.resolver_match.url_name in 'district_list,add_district,edit_district' %}text-[#1e1e2d] font-medium{% endif %}">
+           <div class="absolute left-[-12px] top-1/2 w-2 h-px bg-gray-200"></div>
+           Districts
+          </a>
+         </li>
+         <li class="relative pl-8">
+          <div class="absolute left-5 top-0 h-full w-px bg-gray-200"></div>
+          <a href="{% url 'constituency_list' %}" class="block py-2 hover:text-gray-900 relative {% if request.resolver_match.url_name in 'constituency_list,add_constituency,edit_constituency' %}text-[#1e1e2d] font-medium{% endif %}">
+           <div class="absolute left-[-12px] top-1/2 w-2 h-px bg-gray-200"></div>
+           Constituencies
+          </a>
+         </li>
+         <li class="relative pl-8">
+          <div class="absolute left-5 top-0 h-full w-px bg-gray-200"></div>
+          <a href="{% url 'mandal_list' %}" class="block py-2 hover:text-gray-900 relative {% if request.resolver_match.url_name in 'mandal_list,add_mandal,edit_mandal' %}text-[#1e1e2d] font-medium{% endif %}">
+           <div class="absolute left-[-12px] top-1/2 w-2 h-px bg-gray-200"></div>
+           Mandals
+          </a>
+         </li>
+         <li class="relative pl-8">
+          <div class="absolute left-5 top-[-4px] h-[calc(50%+4px)] w-px bg-gray-200"></div>
+          <a href="{% url 'village_list' %}" class="block py-2 hover:text-gray-900 relative {% if request.resolver_match.url_name in 'village_list,add_village,edit_village' %}text-[#1e1e2d] font-medium{% endif %}">
+           <div class="absolute left-[-12px] top-1/2 w-2 h-px bg-gray-200"></div>
+           Villages
+          </a>
+         </li>
+        </ul>
+       </li>
+
+       <!-- Reports -->
+       <li>
+        <button class="flex items-center gap-3 w-full px-3 py-2 rounded-md hover:bg-gray-100">
+         <i class="fas fa-chart-bar text-base">
+         </i>
+         Reports
+        </button>
+       </li>
+      </ul>
+
+      <!-- Financial & System Settings -->
+      <h2 class="uppercase text-xs font-semibold text-gray-400 mt-8 mb-2">
+       Financial & System
+      </h2>
+      <ul class="space-y-1">
+        <!-- Payment Settings -->
+        <li>
+         <button class="flex items-center gap-3 w-full px-3 py-2 rounded-md hover:bg-gray-100">
+          <i class="fas fa-credit-card text-base">
+          </i>
+          Payment Gateways
+         </button>
+        </li>
+
+        <!-- Withdrawal Management -->
+        <li class="relative">
+         <button id="withdrawalBtn" class="flex items-center gap-3 w-full px-3 py-2 rounded-md hover:bg-gray-100 {% if request.resolver_match.url_name in 'withdrawal_management,withdrawal_limits' %}font-semibold text-[#1e1e2d] bg-[#f3f4f6]{% endif %}">
+          <i class="fas fa-money-bill-wave text-base"></i>
+          Withdrawal System
+          <i class="fas fa-chevron-down ml-auto text-xs transition-transform duration-200 {% if request.resolver_match.url_name in 'withdrawal_management,withdrawal_limits' %}rotate-180{% endif %}"></i>
+         </button>
+         <ul id="withdrawalMenu" class="mt-1 space-y-1 text-gray-500 text-xs {% if request.resolver_match.url_name in 'withdrawal_management,withdrawal_limits' %}block{% else %}hidden{% endif %}">
+          <li class="relative pl-8">
+           <div class="absolute left-5 top-0 h-full w-px bg-gray-200"></div>
+           <a href="{% url 'withdrawal_management' %}" class="block py-2 hover:text-gray-900 relative {% if request.resolver_match.url_name == 'withdrawal_management' %}text-[#1e1e2d] font-medium{% endif %}">
+            <div class="absolute left-[-12px] top-1/2 w-2 h-px bg-gray-200"></div>
+            Manage Withdrawals
+           </a>
+          </li>
+          <li class="relative pl-8">
+           <div class="absolute left-5 top-[-4px] h-[calc(50%+4px)] w-px bg-gray-200"></div>
+           <a href="{% url 'withdrawal_limits' %}" class="block py-2 hover:text-gray-900 relative {% if request.resolver_match.url_name == 'withdrawal_limits' %}text-[#1e1e2d] font-medium{% endif %}">
+            <div class="absolute left-[-12px] top-1/2 w-2 h-px bg-gray-200"></div>
+            Withdrawal Limits
+           </a>
+          </li>
+         </ul>
+        </li>
+
+        <!-- Referral System -->
+        <li class="relative">
+         <button id="referralBtn" class="flex items-center gap-3 w-full px-3 py-2 rounded-md hover:bg-gray-100 {% if request.resolver_match.url_name in 'referral_settings' %}font-semibold text-[#1e1e2d] bg-[#f3f4f6]{% endif %}">
+          <i class="fas fa-users-cog text-base"></i>
+          Referral System
+          <i class="fas fa-chevron-down ml-auto text-xs transition-transform duration-200 {% if request.resolver_match.url_name in 'referral_settings' %}rotate-180{% endif %}"></i>
+         </button>
+         <ul id="referralMenu" class="mt-1 space-y-1 text-gray-500 text-xs {% if request.resolver_match.url_name in 'referral_settings' %}block{% else %}hidden{% endif %}">
+          <li class="relative pl-8">
+           <div class="absolute left-5 top-0 h-full w-px bg-gray-200"></div>
+           <a href="{% url 'referral_settings' %}" class="block py-2 hover:text-gray-900 relative {% if request.resolver_match.url_name == 'referral_settings' %}text-[#1e1e2d] font-medium{% endif %}">
+            <div class="absolute left-[-12px] top-1/2 w-2 h-px bg-gray-200"></div>
+            Bonus Settings
+           </a>
+          </li>
+         </ul>
+        </li>
+
+        <!-- Marketplace -->
+        <li>
+         <button class="flex items-center gap-3 w-full px-3 py-2 rounded-md hover:bg-gray-100">
+          <i class="fas fa-store text-base">
+          </i>
+          Marketplace Sync
+         </button>
+        </li>
+      </ul>
+
+      <!-- General Settings -->
+      <h2 class="uppercase text-xs font-semibold text-gray-400 mt-8 mb-2">
+       General
+      </h2>
+      <ul class="space-y-1">
+        <li>
+         <a href="{% url 'settings' %}" class="flex items-center gap-3 w-full px-3 py-2 rounded-md hover:bg-gray-100 {% if request.resolver_match.url_name == 'settings' %}font-semibold text-[#1e1e2d] bg-[#f3f4f6]{% endif %}">
+          <i class="fas fa-cog text-base"></i>
+          Settings
+         </a>
+        </li>
+        <li>
+         <a href="{% url 'help_center' %}" class="flex items-center gap-3 w-full px-3 py-2 rounded-md hover:bg-gray-100 {% if request.resolver_match.url_name == 'help_center' %}font-semibold text-[#1e1e2d] bg-[#f3f4f6]{% endif %}">
+          <i class="fas fa-question-circle text-base"></i>
+          Help Center
+         </a>
+        </li>
+      </ul>
+     </nav>
+    </div>
+   </aside>
+
+<script>
+// Role Management Menu Toggle
+const roleManagementBtn = document.getElementById('roleManagementBtn');
+const roleManagementMenu = document.getElementById('roleManagementMenu');
+const roleChevron = roleManagementBtn.querySelector('.fa-chevron-down');
+
+if (roleManagementBtn) {
+    roleManagementBtn.addEventListener('click', () => {
+        roleManagementMenu.classList.toggle('hidden');
+        roleChevron.style.transform = roleManagementMenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+    });
+}
+
+// Categories Menu Toggle
+const categoriesBtn = document.getElementById('categoriesBtn');
+const categoriesMenu = document.getElementById('categoriesMenu');
+const categoriesChevron = categoriesBtn.querySelector('.fa-chevron-down');
+
+if (categoriesBtn) {
+    categoriesBtn.addEventListener('click', () => {
+        categoriesMenu.classList.toggle('hidden');
+        categoriesChevron.style.transform = categoriesMenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+    });
+}
+
+// Live Stream Menu Toggle
+const liveStreamBtn = document.getElementById('liveStreamBtn');
+const liveStreamMenu = document.getElementById('liveStreamMenu');
+const liveStreamChevron = liveStreamBtn.querySelector('.fa-chevron-down');
+
+if (liveStreamBtn) {
+    liveStreamBtn.addEventListener('click', () => {
+        liveStreamMenu.classList.toggle('hidden');
+        liveStreamChevron.style.transform = liveStreamMenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+    });
+}
+
+// Regional Content Menu Toggle
+const regionalContentBtn = document.getElementById('regionalContentBtn');
+const regionalContentMenu = document.getElementById('regionalContentMenu');
+const regionalContentChevron = regionalContentBtn.querySelector('.fa-chevron-down');
+
+if (regionalContentBtn) {
+    regionalContentBtn.addEventListener('click', () => {
+        regionalContentMenu.classList.toggle('hidden');
+        regionalContentChevron.style.transform = regionalContentMenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+    });
+}
+
+// Users Menu Toggle
+const usersBtn = document.getElementById('usersBtn');
+const usersMenu = document.getElementById('usersMenu');
+const usersChevron = usersBtn.querySelector('.fa-chevron-down');
+
+if (usersBtn) {
+    usersBtn.addEventListener('click', () => {
+        usersMenu.classList.toggle('hidden');
+        usersChevron.style.transform = usersMenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+    });
+}
+
+// Close button for mobile
+const closeSidebarBtn = document.getElementById('closeSidebarBtn');
+if (closeSidebarBtn) {
+    closeSidebarBtn.addEventListener('click', () => {
+        document.querySelector('.sidebar').classList.add('hidden');
+    });
+}
+
+// Highlight active menu based on current URL
+document.addEventListener('DOMContentLoaded', () => {
+    const currentPath = window.location.pathname;
+    
+    // Check if current path matches any submenu items
+    const allMenuLinks = document.querySelectorAll('.sidebar a');
+    allMenuLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPath) {
+            link.classList.add('text-[#1e1e2d]', 'font-medium');
+            
+            // Show parent menu if it's a submenu item
+            const parentMenu = link.closest('ul');
+            if (parentMenu && parentMenu.id) {
+                parentMenu.classList.remove('hidden');
+                const parentBtn = document.getElementById(parentMenu.id.replace('Menu', 'Btn'));
+                if (parentBtn) {
+                    const chevron = parentBtn.querySelector('.fa-chevron-down');
+                    if (chevron) {
+                        chevron.style.transform = 'rotate(180deg)';
+                    }
+                }
+            }
+        }
+    });
+});
+
+// Referral Menu Toggle
+const referralBtn = document.getElementById('referralBtn');
+const referralMenu = document.getElementById('referralMenu');
+const referralChevron = referralBtn.querySelector('.fa-chevron-down');
+
+if (referralBtn) {
+    referralBtn.addEventListener('click', () => {
+        referralMenu.classList.toggle('hidden');
+        referralChevron.style.transform = referralMenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+    });
+}
+
+// Withdrawal Menu Toggle
+const withdrawalBtn = document.getElementById('withdrawalBtn');
+const withdrawalMenu = document.getElementById('withdrawalMenu');
+const withdrawalChevron = withdrawalBtn.querySelector('.fa-chevron-down');
+
+if (withdrawalBtn) {
+    withdrawalBtn.addEventListener('click', () => {
+        withdrawalMenu.classList.toggle('hidden');
+        withdrawalChevron.style.transform = withdrawalMenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+    });
+}
+
+// Videos Menu Toggle
+const videosBtn = document.getElementById('videosBtn');
+const videosMenu = document.getElementById('videosMenu');
+const videosChevron = videosBtn.querySelector('.fa-chevron-down');
+
+if (videosBtn) {
+    videosBtn.addEventListener('click', () => {
+        videosMenu.classList.toggle('hidden');
+        videosChevron.style.transform = videosMenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+    });
+}
+</script>

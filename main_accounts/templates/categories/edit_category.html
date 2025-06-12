@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'includes/sidebar.html' %}
+<main class="main-content flex-1 p-6 overflow-auto">
+    {% include 'includes/header.html' with page_title="Edit Category" %}
+    <div class="px-6 py-8">
+        <div class="flex items-center justify-between mb-6">
+            <div>
+                <h1 class="text-2xl font-semibold text-gray-900">Edit Category</h1>
+                <p class="mt-1 text-sm text-gray-500">Update category details for your OTT platform</p>
+            </div>
+            <a href="{% url 'category_list' %}" class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                <i class="fas fa-arrow-left mr-2"></i>
+                Back to Categories
+            </a>
+        </div>
+
+        {% if messages %}
+        <div class="mb-6">
+            {% for message in messages %}
+            <div class="p-4 {% if message.tags == 'error' %}bg-red-100 text-red-700{% else %}bg-green-100 text-green-700{% endif %} rounded-md">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="bg-white shadow rounded-lg">
+            <form method="post" class="space-y-6 p-6" id="editCategoryForm" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <!-- Category Name -->
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700">Category Name <span class="text-red-500">*</span></label>
+                    <input type="text" name="name" id="name" required value="{{ category.name }}" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="e.g., Movies, TV Shows, Sports">
+                </div>
+
+                <!-- Description -->
+                <div>
+                    <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                    <textarea name="description" id="description" rows="3" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Enter a brief description of this category">{{ category.description }}</textarea>
+                </div>
+
+                <!-- Parent Category -->
+                <div>
+                    <label for="parent" class="block text-sm font-medium text-gray-700">Parent Category</label>
+                    <select name="parent" id="parent" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        <option value="">None (Main Category)</option>
+                        {% for parent in parent_categories %}
+                        <option value="{{ parent.id }}" {% if parent.id == category.parent.id %}selected{% endif %}>{{ parent.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Category Image -->
+                <div>
+                    <label for="image" class="block text-sm font-medium text-gray-700">Category Image</label>
+                    <div class="mt-2 flex items-center space-x-4">
+                        {% if category.image %}
+                        <div class="relative w-32 h-32">
+                            <img src="{{ category.image.url }}" alt="{{ category.name }}" class="object-cover w-full h-full rounded-lg">
+                        </div>
+                        {% endif %}
+                        <div class="flex-1">
+                            <div class="flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                <div class="space-y-1 text-center">
+                                    <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                                        <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    <div class="flex text-sm text-gray-600">
+                                        <label for="image" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                                            <span>Upload a file</span>
+                                            <input id="image" name="image" type="file" class="sr-only" accept="image/*">
+                                        </label>
+                                        <p class="pl-1">or drag and drop</p>
+                                    </div>
+                                    <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Status -->
+                <div>
+                    <div class="flex items-center">
+                        <input type="checkbox" name="is_active" id="is_active" {% if category.is_active %}checked{% endif %} class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                        <label for="is_active" class="ml-2 block text-sm text-gray-700">Active</label>
+                    </div>
+                    <p class="mt-1 text-sm text-gray-500">Inactive categories will not be visible to users</p>
+                </div>
+
+                <div class="flex justify-end space-x-3">
+                    <a href="{% url 'category_list' %}" class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Cancel
+                    </a>
+                    <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        <i class="fas fa-save mr-2"></i>
+                        Update Category
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('editCategoryForm');
+    const imageInput = document.getElementById('image');
+    const dropZone = document.querySelector('.border-dashed');
+
+    // Drag and drop functionality
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, preventDefaults, false);
+    });
+
+    function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    ['dragenter', 'dragover'].forEach(eventName => {
+        dropZone.addEventListener(eventName, highlight, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, unhighlight, false);
+    });
+
+    function highlight(e) {
+        dropZone.classList.add('border-indigo-500');
+        dropZone.classList.add('bg-indigo-50');
+    }
+
+    function unhighlight(e) {
+        dropZone.classList.remove('border-indigo-500');
+        dropZone.classList.remove('bg-indigo-50');
+    }
+
+    dropZone.addEventListener('drop', handleDrop, false);
+
+    function handleDrop(e) {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        imageInput.files = files;
+        
+        // Show preview
+        if (files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const preview = document.querySelector('img');
+                if (preview) {
+                    preview.src = e.target.result;
+                } else {
+                    const newPreview = document.createElement('div');
+                    newPreview.className = 'relative w-32 h-32';
+                    newPreview.innerHTML = `<img src="${e.target.result}" alt="Preview" class="object-cover w-full h-full rounded-lg">`;
+                    document.querySelector('.flex.items-center.space-x-4').insertBefore(newPreview, document.querySelector('.flex-1'));
+                }
+            }
+            reader.readAsDataURL(files[0]);
+        }
+    }
+
+    // Handle file input change
+    imageInput.addEventListener('change', function(e) {
+        if (this.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const preview = document.querySelector('img');
+                if (preview) {
+                    preview.src = e.target.result;
+                } else {
+                    const newPreview = document.createElement('div');
+                    newPreview.className = 'relative w-32 h-32';
+                    newPreview.innerHTML = `<img src="${e.target.result}" alt="Preview" class="object-cover w-full h-full rounded-lg">`;
+                    document.querySelector('.flex.items-center.space-x-4').insertBefore(newPreview, document.querySelector('.flex-1'));
+                }
+            }
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
+});
+</script>
+{% endblock %} 
