@@ -1,0 +1,147 @@
+
+/* Dark mode styles */  
+body {
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Layout Container */
+.layout-container {
+    display: flex;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 18rem; /* w-72 = 18rem */
+    flex-shrink: 0;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Desktop Sidebar Collapsed State */
+.sidebar.desktop-collapsed {
+    transform: translateX(-18rem);
+}
+
+/* Main Content Styles */
+.main-content {
+    flex: 1;
+    min-width: 0; /* Prevent content overflow */
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.main-content.expanded {
+    margin-left: -18rem;
+}
+
+/* Mobile Sidebar Styles */
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        left: -100%;
+        top: 0;
+        bottom: 0;
+        width: 80%;
+        max-width: 300px;
+        z-index: 50;
+        transform: none;
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+    .main-content.expanded {
+        margin-left: 0;
+    }
+
+    .sidebar-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease-in-out;
+        z-index: 40;
+    }
+
+    .sidebar-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/* Show menu button on all screen sizes */
+.menu-btn {
+    display: flex !important;
+}
+
+/* Dark mode styles */
+body.dark {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+body.dark aside {
+    background-color: #2d2d2d;
+    border-color: #3d3d3d;
+}
+
+body.dark .bg-white {
+    background-color: #2d2d2d;
+}
+
+body.dark .text-gray-600,
+body.dark .text-gray-500,
+body.dark .text-gray-400,
+body.dark .text-gray-700 {
+    color: #ffffff;
+}
+
+body.dark .border-gray-300,
+body.dark .border-gray-200,
+body.dark .border-gray-100 {
+    border-color: #4a4a4a;
+}
+
+body.dark input {
+    background-color: #2d2d2d;
+    color: #ffffff;
+}
+
+body.dark input::placeholder {
+    color: #9ca3af;
+}
+
+body.dark button:hover {
+    background-color: #3d3d3d;
+}
+
+body.dark .hover\:bg-gray-50:hover,
+body.dark .hover\:bg-gray-100:hover {
+    background-color: #3d3d3d;
+}
+
+body.dark .bg-\[\#f3f4f6\] {
+    background-color: #3d3d3d;
+    color: #ffffff;
+}
+
+body.dark table tbody tr:hover {
+    background-color: #3d3d3d;
+}
+
+body.dark .text-\[\#1e1e2d\] {
+    color: #ffffff;
+}
+
+/* Submenu tree line styles for dark mode */
+body.dark .before\:bg-gray-200::before {
+    background-color: #4a4a4a;
+}
+
+body.dark .before\:bg-gray-600::before {
+    background-color: #4a4a4a;
+}

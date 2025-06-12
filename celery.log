@@ -1,0 +1,53 @@
+ERROR 2025-06-10 13:45:07,418 tasks 18576 8412286848 Video 22 not found
+INFO 2025-06-10 13:45:07,444 tasks 18576 8412286848 Starting video processing for video 23
+INFO 2025-06-10 13:45:07,446 tasks 18576 8412286848 Updated video 23 status to processing
+ERROR 2025-06-10 13:45:07,470 tasks 18576 8412286848 Error processing video 23: This backend doesn't support absolute paths.
+INFO 2025-06-10 13:45:07,472 tasks 18576 8412286848 Updated video 23 status to failed
+INFO 2025-06-10 13:45:07,472 tasks 18576 8412286848 Retrying video 23 processing in 60 seconds (attempt 1)
+INFO 2025-06-10 13:45:07,483 tasks 18576 8412286848 Starting video processing for video 24
+INFO 2025-06-10 13:45:07,484 tasks 18576 8412286848 Updated video 24 status to processing
+ERROR 2025-06-10 13:45:07,484 tasks 18576 8412286848 Error processing video 24: This backend doesn't support absolute paths.
+INFO 2025-06-10 13:45:07,486 tasks 18576 8412286848 Updated video 24 status to failed
+INFO 2025-06-10 13:45:07,486 tasks 18576 8412286848 Retrying video 24 processing in 60 seconds (attempt 1)
+INFO 2025-06-10 13:51:21,448 tasks 19260 8412286848 Starting video processing for video 25
+INFO 2025-06-10 13:51:21,448 tasks 19259 8412286848 Starting video processing for video 23
+INFO 2025-06-10 13:51:21,448 tasks 19266 8412286848 Starting video processing for video 24
+INFO 2025-06-10 13:51:21,451 tasks 19260 8412286848 Updated video 25 status to processing
+INFO 2025-06-10 13:51:21,451 tasks 19259 8412286848 Updated video 23 status to processing
+INFO 2025-06-10 13:51:21,451 tasks 19266 8412286848 Updated video 24 status to processing
+INFO 2025-06-10 13:51:21,538 tasks 19260 8412286848 Downloading video from S3: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 13:51:21,538 tasks 19259 8412286848 Downloading video from S3: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 13:51:21,538 tasks 19266 8412286848 Downloading video from S3: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+ERROR 2025-06-10 13:51:21,692 tasks 19266 8412286848 Error downloading video from S3: An error occurred (404) when calling the HeadObject operation: Not Found
+ERROR 2025-06-10 13:51:21,692 tasks 19266 8412286848 Error processing video 24: An error occurred (404) when calling the HeadObject operation: Not Found
+INFO 2025-06-10 13:51:21,696 tasks 19266 8412286848 Updated video 24 status to failed
+INFO 2025-06-10 13:51:21,696 tasks 19266 8412286848 Retrying video 24 processing in 120 seconds (attempt 2)
+ERROR 2025-06-10 13:51:21,698 tasks 19259 8412286848 Error downloading video from S3: An error occurred (404) when calling the HeadObject operation: Not Found
+ERROR 2025-06-10 13:51:21,699 tasks 19259 8412286848 Error processing video 23: An error occurred (404) when calling the HeadObject operation: Not Found
+INFO 2025-06-10 13:51:21,701 tasks 19259 8412286848 Updated video 23 status to failed
+INFO 2025-06-10 13:51:21,701 tasks 19259 8412286848 Retrying video 23 processing in 120 seconds (attempt 2)
+ERROR 2025-06-10 13:51:21,712 tasks 19260 8412286848 Error downloading video from S3: An error occurred (404) when calling the HeadObject operation: Not Found
+ERROR 2025-06-10 13:51:21,713 tasks 19260 8412286848 Error processing video 25: An error occurred (404) when calling the HeadObject operation: Not Found
+INFO 2025-06-10 13:51:21,715 tasks 19260 8412286848 Updated video 25 status to failed
+INFO 2025-06-10 13:51:21,715 tasks 19260 8412286848 Retrying video 25 processing in 60 seconds (attempt 1)
+INFO 2025-06-10 13:53:14,969 tasks 19453 8412286848 Starting video processing for video 25
+INFO 2025-06-10 13:53:14,972 tasks 19453 8412286848 Updated video 25 status to processing
+INFO 2025-06-10 13:53:15,038 tasks 19453 8412286848 Downloading video from S3: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+ERROR 2025-06-10 13:53:15,204 tasks 19453 8412286848 Error downloading video from S3: An error occurred (404) when calling the HeadObject operation: Not Found
+ERROR 2025-06-10 13:53:15,205 tasks 19453 8412286848 Error processing video 25: An error occurred (404) when calling the HeadObject operation: Not Found
+INFO 2025-06-10 13:53:15,208 tasks 19453 8412286848 Updated video 25 status to failed
+INFO 2025-06-10 13:53:15,208 tasks 19453 8412286848 Retrying video 25 processing in 120 seconds (attempt 2)
+INFO 2025-06-10 13:53:21,708 tasks 19453 8412286848 Starting video processing for video 24
+INFO 2025-06-10 13:53:21,712 tasks 19453 8412286848 Updated video 24 status to processing
+INFO 2025-06-10 13:53:21,720 tasks 19453 8412286848 Downloading video from S3: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 13:53:21,724 tasks 19446 8412286848 Starting video processing for video 23
+INFO 2025-06-10 13:53:21,728 tasks 19446 8412286848 Updated video 23 status to processing
+INFO 2025-06-10 13:53:21,794 tasks 19446 8412286848 Downloading video from S3: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+ERROR 2025-06-10 13:53:21,860 tasks 19453 8412286848 Error downloading video from S3: An error occurred (404) when calling the HeadObject operation: Not Found
+ERROR 2025-06-10 13:53:21,860 tasks 19453 8412286848 Error processing video 24: An error occurred (404) when calling the HeadObject operation: Not Found
+INFO 2025-06-10 13:53:21,863 tasks 19453 8412286848 Updated video 24 status to failed
+INFO 2025-06-10 13:53:21,863 tasks 19453 8412286848 Retrying video 24 processing in 180 seconds (attempt 3)
+ERROR 2025-06-10 13:53:21,925 tasks 19446 8412286848 Error downloading video from S3: An error occurred (404) when calling the HeadObject operation: Not Found
+ERROR 2025-06-10 13:53:21,926 tasks 19446 8412286848 Error processing video 23: An error occurred (404) when calling the HeadObject operation: Not Found
+INFO 2025-06-10 13:53:21,928 tasks 19446 8412286848 Updated video 23 status to failed
+INFO 2025-06-10 13:53:21,928 tasks 19446 8412286848 Retrying video 23 processing in 180 seconds (attempt 3)

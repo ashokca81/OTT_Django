@@ -1,0 +1,1452 @@
+INFO 2025-06-09 12:09:25,898 views Entering add_state view
+INFO 2025-06-09 12:09:33,585 views Entering add_state view
+INFO 2025-06-09 12:09:33,588 views Processing POST request
+INFO 2025-06-09 12:09:33,588 views Name received: Trending Videos
+INFO 2025-06-09 12:09:33,588 views Image received: No.jpg
+INFO 2025-06-09 12:09:33,588 views Is active: True
+INFO 2025-06-09 12:09:33,591 views Creating state object
+ERROR 2025-06-09 12:09:33,593 views Error creating state: 'PublicMediaStorage' object has no attribute '_clean_name'
+INFO 2025-06-09 12:09:33,604 views Entering add_state view
+INFO 2025-06-09 12:11:15,953 views Entering add_state view
+INFO 2025-06-09 12:11:23,539 views Entering add_state view
+INFO 2025-06-09 12:11:23,541 views Processing POST request
+INFO 2025-06-09 12:11:23,541 views Name received: Trending Videos
+INFO 2025-06-09 12:11:23,541 views Image received: No.jpg
+INFO 2025-06-09 12:11:23,542 views Is active: True
+INFO 2025-06-09 12:11:23,543 views Creating state object
+INFO 2025-06-09 12:11:23,545 storage_backends Getting available name for: states/No.jpg
+INFO 2025-06-09 12:11:23,816 storage_backends Saving file: states/No.jpg
+INFO 2025-06-09 12:11:23,816 storage_backends Cleaned file name: media/No.jpg
+ERROR 2025-06-09 12:11:23,866 storage_backends Error saving file media/No.jpg: An error occurred (AccessControlListNotSupported) when calling the PutObject operation: The bucket does not allow ACLs
+ERROR 2025-06-09 12:11:23,866 views Error creating state: An error occurred (AccessControlListNotSupported) when calling the PutObject operation: The bucket does not allow ACLs
+INFO 2025-06-09 12:11:23,875 views Entering add_state view
+INFO 2025-06-09 12:13:47,103 views Entering add_state view
+INFO 2025-06-09 12:13:54,618 views Entering add_state view
+INFO 2025-06-09 12:13:54,634 views Processing POST request
+INFO 2025-06-09 12:13:54,634 views Name received: Trending Videos
+INFO 2025-06-09 12:13:54,635 views Image received: No.jpg
+INFO 2025-06-09 12:13:54,635 views Is active: True
+INFO 2025-06-09 12:13:54,640 views Creating state object
+INFO 2025-06-09 12:13:54,641 storage_backends Getting available name for: states/No.jpg
+INFO 2025-06-09 12:13:54,883 storage_backends Saving file: states/No.jpg
+INFO 2025-06-09 12:13:54,883 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-09 12:13:55,210 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-09 12:13:55,220 views State created with ID: 4
+INFO 2025-06-09 12:13:55,220 views Image URL: https://noonenews.s3.amazonaws.com/media/media/No.jpg
+INFO 2025-06-09 12:13:55,220 views Redirecting to state_list
+INFO 2025-06-09 12:17:58,436 storage_backends Getting available name for: states/No.jpg
+INFO 2025-06-09 12:17:58,694 storage_backends Saving file: states/No.jpg
+INFO 2025-06-09 12:17:58,695 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-09 12:17:59,020 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-09 13:14:22,360 storage_backends Getting available name for: categories/referral_qr_AHSII146.png
+INFO 2025-06-09 13:14:22,638 storage_backends Saving file: categories/referral_qr_AHSII146.png
+INFO 2025-06-09 13:14:22,638 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-09 13:14:22,751 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+INFO 2025-06-09 13:15:39,984 storage_backends Getting available name for: categories/referral_qr_AHSII146.png
+INFO 2025-06-09 13:15:40,254 storage_backends Saving file: categories/referral_qr_AHSII146.png
+INFO 2025-06-09 13:15:40,254 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-09 13:15:40,367 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+INFO 2025-06-09 13:16:53,628 storage_backends Getting available name for: categories/referral_qr_AHSII146.png
+INFO 2025-06-09 13:16:53,873 storage_backends Saving file: categories/referral_qr_AHSII146.png
+INFO 2025-06-09 13:16:53,873 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-09 13:16:53,974 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+INFO 2025-06-09 13:21:27,701 storage_backends Getting available name for: categories/maxresdefault.jpg
+INFO 2025-06-09 13:21:27,747 storage_backends Saving file: categories/maxresdefault.jpg
+INFO 2025-06-09 13:21:27,748 storage_backends Cleaned file name: media/maxresdefault.jpg
+INFO 2025-06-09 13:21:28,247 storage_backends File saved successfully: media/maxresdefault.jpg
+INFO 2025-06-09 13:21:43,616 storage_backends Getting available name for: categories/referral_qr_AHSII146.png
+INFO 2025-06-09 13:21:43,658 storage_backends Saving file: categories/referral_qr_AHSII146.png
+INFO 2025-06-09 13:21:43,658 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-09 13:21:43,750 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+INFO 2025-06-09 13:46:14,923 storage_backends Getting available name for: categories/ott-temp-1.png
+INFO 2025-06-09 13:46:14,969 storage_backends Saving file: categories/ott-temp-1.png
+INFO 2025-06-09 13:46:14,970 storage_backends Cleaned file name: media/ott-temp-1.png
+INFO 2025-06-09 13:46:15,574 storage_backends File saved successfully: media/ott-temp-1.png
+INFO 2025-06-09 14:34:44,733 storage_backends Getting available name for: categories/education-copy.png
+INFO 2025-06-09 14:34:44,800 storage_backends Saving file: categories/education-copy.png
+INFO 2025-06-09 14:34:44,800 storage_backends Cleaned file name: media/education-copy.png
+INFO 2025-06-09 14:34:46,173 storage_backends File saved successfully: media/education-copy.png
+INFO 2025-06-09 14:37:26,296 storage_backends Getting available name for: categories/education-copy.jpg
+INFO 2025-06-09 14:37:26,585 storage_backends Saving file: categories/education-copy.jpg
+INFO 2025-06-09 14:37:26,585 storage_backends Cleaned file name: media/education-copy.jpg
+INFO 2025-06-09 14:37:27,579 storage_backends File saved successfully: media/education-copy.jpg
+INFO 2025-06-09 14:38:58,413 storage_backends Getting available name for: categories/education-copy.png
+INFO 2025-06-09 14:38:58,686 storage_backends Saving file: categories/education-copy.png
+INFO 2025-06-09 14:38:58,686 storage_backends Cleaned file name: media/education-copy.png
+INFO 2025-06-09 14:38:59,892 storage_backends File saved successfully: media/education-copy.png
+INFO 2025-06-09 14:39:42,796 storage_backends Getting available name for: categories/education-copy.png
+INFO 2025-06-09 14:39:43,033 storage_backends Saving file: categories/education-copy.png
+INFO 2025-06-09 14:39:43,033 storage_backends Cleaned file name: media/education-copy.png
+INFO 2025-06-09 14:39:44,075 storage_backends File saved successfully: media/education-copy.png
+INFO 2025-06-09 15:57:52,730 storage_backends Getting available name for: categories/education-copy.png
+INFO 2025-06-09 15:57:52,992 storage_backends Saving file: categories/education-copy.png
+INFO 2025-06-09 15:57:52,992 storage_backends Cleaned file name: media/education-copy.png
+INFO 2025-06-09 15:57:54,009 storage_backends File saved successfully: media/education-copy.png
+INFO 2025-06-09 15:58:01,763 storage_backends Getting available name for: categories/education-copy.png
+INFO 2025-06-09 15:58:01,923 storage_backends Saving file: categories/education-copy.png
+INFO 2025-06-09 15:58:01,923 storage_backends Cleaned file name: media/education-copy.png
+INFO 2025-06-09 15:58:02,883 storage_backends File saved successfully: media/education-copy.png
+INFO 2025-06-09 15:58:13,189 storage_backends Getting available name for: categories/education-copy.png
+INFO 2025-06-09 15:58:13,346 storage_backends Saving file: categories/education-copy.png
+INFO 2025-06-09 15:58:13,346 storage_backends Cleaned file name: media/education-copy.png
+INFO 2025-06-09 15:58:14,248 storage_backends File saved successfully: media/education-copy.png
+INFO 2025-06-09 15:58:27,997 storage_backends Getting available name for: categories/education-copy.png
+INFO 2025-06-09 15:58:28,252 storage_backends Saving file: categories/education-copy.png
+INFO 2025-06-09 15:58:28,252 storage_backends Cleaned file name: media/education-copy.png
+INFO 2025-06-09 15:58:29,380 storage_backends File saved successfully: media/education-copy.png
+INFO 2025-06-09 15:58:39,230 storage_backends Getting available name for: categories/education-copy.png
+INFO 2025-06-09 15:58:39,413 storage_backends Saving file: categories/education-copy.png
+INFO 2025-06-09 15:58:39,413 storage_backends Cleaned file name: media/education-copy.png
+INFO 2025-06-09 15:58:40,620 storage_backends File saved successfully: media/education-copy.png
+INFO 2025-06-09 15:58:48,297 storage_backends Getting available name for: categories/education-copy.png
+INFO 2025-06-09 15:58:48,486 storage_backends Saving file: categories/education-copy.png
+INFO 2025-06-09 15:58:48,486 storage_backends Cleaned file name: media/education-copy.png
+INFO 2025-06-09 15:58:49,689 storage_backends File saved successfully: media/education-copy.png
+INFO 2025-06-09 16:07:19,793 storage_backends Getting available name for: categories/devotional.png
+INFO 2025-06-09 16:07:19,849 storage_backends Saving file: categories/devotional.png
+INFO 2025-06-09 16:07:19,850 storage_backends Cleaned file name: media/devotional.png
+INFO 2025-06-09 16:07:20,178 storage_backends File saved successfully: media/devotional.png
+INFO 2025-06-09 16:09:49,688 storage_backends Getting available name for: categories/devotional.png
+INFO 2025-06-09 16:09:49,941 storage_backends Saving file: categories/devotional.png
+INFO 2025-06-09 16:09:49,941 storage_backends Cleaned file name: media/devotional.png
+INFO 2025-06-09 16:09:51,173 storage_backends File saved successfully: media/devotional.png
+INFO 2025-06-09 16:10:12,810 storage_backends Getting available name for: categories/devotional.png
+INFO 2025-06-09 16:10:12,859 storage_backends Saving file: categories/devotional.png
+INFO 2025-06-09 16:10:12,859 storage_backends Cleaned file name: media/devotional.png
+INFO 2025-06-09 16:10:14,045 storage_backends File saved successfully: media/devotional.png
+INFO 2025-06-09 17:14:22,359 storage_backends Getting available name for: videos/thumbnails/No.jpg
+INFO 2025-06-09 17:14:22,702 storage_backends Saving file: videos/thumbnails/No.jpg
+INFO 2025-06-09 17:14:22,702 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-09 17:14:23,153 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-09 17:14:23,154 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 17:14:23,207 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 17:14:23,207 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 17:14:25,903 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 17:17:12,262 storage_backends Getting available name for: videos/thumbnails/No.jpg
+INFO 2025-06-09 17:17:12,511 storage_backends Saving file: videos/thumbnails/No.jpg
+INFO 2025-06-09 17:17:12,511 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-09 17:17:12,934 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-09 17:17:12,935 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 17:17:12,974 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 17:17:12,974 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 17:17:15,152 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 17:24:12,088 storage_backends Getting available name for: videos/thumbnails/No.jpg
+INFO 2025-06-09 17:24:12,392 storage_backends Saving file: videos/thumbnails/No.jpg
+INFO 2025-06-09 17:24:12,392 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-09 17:24:12,885 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-09 17:24:12,886 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 17:24:12,941 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 17:24:12,942 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 17:24:15,360 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 17:28:19,400 storage_backends Getting available name for: videos/thumbnails/No.jpg
+INFO 2025-06-09 17:28:19,668 storage_backends Saving file: videos/thumbnails/No.jpg
+INFO 2025-06-09 17:28:19,668 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-09 17:28:20,170 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-09 17:28:20,171 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 17:28:20,217 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 17:28:20,217 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 17:28:22,981 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 17:37:45,116 views Entering add_state view
+INFO 2025-06-09 17:51:34,954 storage_backends Getting available name for: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-09 17:51:35,246 storage_backends Saving file: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-09 17:51:35,246 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-09 17:51:35,457 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+INFO 2025-06-09 17:51:35,458 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 17:51:35,505 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 17:51:35,505 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 17:51:38,623 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 18:02:49,760 storage_backends Getting available name for: videos/thumbnails/No.jpg
+INFO 2025-06-09 18:02:50,030 storage_backends Saving file: videos/thumbnails/No.jpg
+INFO 2025-06-09 18:02:50,030 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-09 18:02:50,453 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-09 18:02:50,454 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 18:02:50,494 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 18:02:50,495 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 18:02:52,682 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 18:04:36,128 storage_backends Getting available name for: videos/thumbnails/No.jpg
+INFO 2025-06-09 18:04:36,394 storage_backends Saving file: videos/thumbnails/No.jpg
+INFO 2025-06-09 18:04:36,395 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-09 18:04:36,845 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-09 18:04:36,845 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 18:04:36,891 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 18:04:36,891 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 18:04:39,436 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 18:06:55,737 storage_backends Getting available name for: videos/thumbnails/No.jpg
+INFO 2025-06-09 18:06:55,977 storage_backends Saving file: videos/thumbnails/No.jpg
+INFO 2025-06-09 18:06:55,977 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-09 18:06:56,466 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-09 18:06:56,466 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 18:06:56,506 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 18:06:56,506 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 18:06:59,089 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 18:08:56,333 storage_backends Getting available name for: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-09 18:08:56,664 storage_backends Saving file: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-09 18:08:56,664 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-09 18:08:56,860 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+INFO 2025-06-09 18:08:56,861 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 18:08:56,909 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 18:08:56,910 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 18:08:59,397 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 18:09:40,400 storage_backends Getting available name for: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-09 18:09:40,666 storage_backends Saving file: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-09 18:09:40,666 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-09 18:09:40,890 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+INFO 2025-06-09 18:09:40,891 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 18:09:40,933 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 18:09:40,934 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 18:09:44,111 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 18:16:30,892 storage_backends Getting available name for: videos/thumbnails/No.jpg
+INFO 2025-06-09 18:16:31,178 storage_backends Saving file: videos/thumbnails/No.jpg
+INFO 2025-06-09 18:16:31,178 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-09 18:16:31,587 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-09 18:16:31,588 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 18:16:31,637 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 18:16:31,637 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 18:16:34,532 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 18:30:03,362 storage_backends Getting available name for: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-09 18:30:03,615 storage_backends Saving file: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-09 18:30:03,616 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-09 18:30:03,735 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+INFO 2025-06-09 18:30:03,735 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 18:30:03,773 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 18:30:03,773 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 18:30:06,334 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 18:58:29,258 storage_backends Getting available name for: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-09 18:58:29,549 storage_backends Saving file: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-09 18:58:29,549 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-09 18:58:29,674 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+INFO 2025-06-09 18:58:29,674 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 18:58:29,723 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 18:58:29,723 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 18:58:32,993 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+ERROR 2025-06-09 18:58:48,280 views Error processing video 3: FFmpeg conversion failed: Command '['ffmpeg', '-i', '/var/folders/15/whgv0bxd1pndzmyr972k171w0000gn/T/tmp0ei12su4/input.mp4', '-profile:v', 'baseline', '-level', '3.0', '-start_number', '0', '-hls_time', '10', '-hls_list_size', '0', '-f', 'hls', '-filter_complex', '[0:v]split=3[v1][v2][v3]', '-map', '[v1]', '-s:v:0', '640x360', '-c:v:0', 'h264', '-b:v:0', '800k', '-map', '[v2]', '-s:v:1', '842x480', '-c:v:1', 'h264', '-b:v:1', '1400k', '-map', '[v3]', '-s:v:2', '1280x720', '-c:v:2', 'h264', '-b:v:2', '2800k', '-map', '0:a', '-c:a', 'aac', '-b:a', '128k', '-var_stream_map', 'v:0,a:0,name:360p v:1,a:0,name:480p v:2,a:0,name:720p', '-master_pl_name', 'master.m3u8', '-f', 'hls', '-hls_segment_filename', '/var/folders/15/whgv0bxd1pndzmyr972k171w0000gn/T/tmp0ei12su4/hls/a686b5e4-f9c7-460c-82a6-ad3def090186_%v/segment_%03d.ts', '/var/folders/15/whgv0bxd1pndzmyr972k171w0000gn/T/tmp0ei12su4/hls/a686b5e4-f9c7-460c-82a6-ad3def090186_%v/playlist.m3u8']' returned non-zero exit status 234.
+INFO 2025-06-09 19:04:17,525 storage_backends Getting available name for: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-09 19:04:17,805 storage_backends Saving file: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-09 19:04:17,805 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-09 19:04:17,928 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+INFO 2025-06-09 19:04:17,928 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 19:04:17,976 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 19:04:17,976 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 19:04:21,181 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+ERROR 2025-06-09 19:04:23,091 views Error processing video 4: FFmpeg conversion failed with return code 234
+INFO 2025-06-09 19:08:49,087 storage_backends Getting available name for: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-09 19:08:49,354 storage_backends Saving file: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-09 19:08:49,355 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-09 19:08:49,450 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+INFO 2025-06-09 19:08:49,451 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 19:08:49,492 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 19:08:49,492 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 19:08:52,213 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+ERROR 2025-06-09 19:08:56,428 views Error processing video 5: FFmpeg conversion failed with return code 254
+INFO 2025-06-09 19:12:49,019 storage_backends Getting available name for: videos/thumbnails/referral_qr_AZRJZ138.png
+INFO 2025-06-09 19:12:49,305 storage_backends Saving file: videos/thumbnails/referral_qr_AZRJZ138.png
+INFO 2025-06-09 19:12:49,305 storage_backends Cleaned file name: media/referral_qr_AZRJZ138.png
+INFO 2025-06-09 19:12:49,428 storage_backends File saved successfully: media/referral_qr_AZRJZ138.png
+INFO 2025-06-09 19:12:49,428 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 19:12:49,481 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 19:12:49,481 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 19:12:53,037 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+ERROR 2025-06-09 19:13:02,856 views Error processing video 6: Failed to upload /var/folders/15/whgv0bxd1pndzmyr972k171w0000gn/T/tmp406e1xxb/hls/hls/master.m3u8 to noonenews/videos/hls/6/hls/master.m3u8: An error occurred (AccessControlListNotSupported) when calling the PutObject operation: The bucket does not allow ACLs
+INFO 2025-06-09 19:17:21,160 storage_backends Getting available name for: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-09 19:17:21,448 storage_backends Saving file: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-09 19:17:21,448 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-09 19:17:21,559 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+INFO 2025-06-09 19:17:21,560 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 19:17:21,605 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 19:17:21,605 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 19:17:24,872 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 19:52:22,796 storage_backends Getting available name for: videos/thumbnails/Nagarkurnool.png
+INFO 2025-06-09 19:52:23,091 storage_backends Saving file: videos/thumbnails/Nagarkurnool.png
+INFO 2025-06-09 19:52:23,092 storage_backends Cleaned file name: media/Nagarkurnool.png
+INFO 2025-06-09 19:52:23,347 storage_backends File saved successfully: media/Nagarkurnool.png
+INFO 2025-06-09 19:52:23,348 storage_backends Getting available name for: videos/files/Duvvada_Interview_Part_-_1.mp4
+INFO 2025-06-09 19:52:23,393 storage_backends Saving file: videos/files/Duvvada_Interview_Part_-_1.mp4
+INFO 2025-06-09 19:52:23,394 storage_backends Cleaned file name: media/Duvvada_Interview_Part_-_1.mp4
+INFO 2025-06-09 19:54:15,069 storage_backends File saved successfully: media/Duvvada_Interview_Part_-_1.mp4
+ERROR 2025-06-09 20:26:22,244 views Error processing video 8: cannot schedule new futures after interpreter shutdown
+INFO 2025-06-09 20:29:43,996 storage_backends Getting available name for: videos/thumbnails/referral_qr_AZRJZ138.png
+INFO 2025-06-09 20:29:44,277 storage_backends Saving file: videos/thumbnails/referral_qr_AZRJZ138.png
+INFO 2025-06-09 20:29:44,277 storage_backends Cleaned file name: media/referral_qr_AZRJZ138.png
+INFO 2025-06-09 20:29:44,379 storage_backends File saved successfully: media/referral_qr_AZRJZ138.png
+INFO 2025-06-09 20:29:44,379 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 20:29:44,420 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 20:29:44,420 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 20:29:47,233 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+ERROR 2025-06-09 20:29:47,822 views Error processing video 9: convert_to_hls() missing 1 required positional argument: 'video_instance'
+INFO 2025-06-09 20:33:31,284 storage_backends Getting available name for: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-09 20:33:31,544 storage_backends Saving file: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-09 20:33:31,544 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-09 20:33:31,656 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+INFO 2025-06-09 20:33:31,656 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 20:33:31,700 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 20:33:31,700 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 20:33:34,496 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 20:36:44,489 storage_backends Getting available name for: videos/thumbnails/No.jpg
+INFO 2025-06-09 20:36:44,763 storage_backends Saving file: videos/thumbnails/No.jpg
+INFO 2025-06-09 20:36:44,763 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-09 20:36:45,442 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-09 20:36:45,443 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 20:36:45,485 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 20:36:45,486 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 20:36:48,293 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 20:40:27,304 storage_backends Getting available name for: videos/thumbnails/No.jpg
+INFO 2025-06-09 20:40:27,565 storage_backends Saving file: videos/thumbnails/No.jpg
+INFO 2025-06-09 20:40:27,565 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-09 20:40:27,962 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-09 20:40:27,963 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 20:40:28,004 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 20:40:28,004 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 20:40:30,477 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 20:42:25,405 storage_backends Getting available name for: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-09 20:42:25,655 storage_backends Saving file: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-09 20:42:25,655 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-09 20:42:25,758 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+INFO 2025-06-09 20:42:25,759 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 20:42:25,797 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 20:42:25,797 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 20:42:28,413 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 20:47:46,425 storage_backends Getting available name for: videos/thumbnails/No.jpg
+INFO 2025-06-09 20:47:46,690 storage_backends Saving file: videos/thumbnails/No.jpg
+INFO 2025-06-09 20:47:46,690 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-09 20:47:47,038 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-09 20:47:47,039 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 20:47:47,078 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 20:47:47,078 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 20:47:49,396 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 20:52:34,152 storage_backends Getting available name for: videos/thumbnails/referral_qr_.png
+INFO 2025-06-09 20:52:34,427 storage_backends Saving file: videos/thumbnails/referral_qr_.png
+INFO 2025-06-09 20:52:34,427 storage_backends Cleaned file name: media/referral_qr_.png
+INFO 2025-06-09 20:52:34,536 storage_backends File saved successfully: media/referral_qr_.png
+INFO 2025-06-09 20:52:34,537 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 20:52:34,581 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 20:52:34,581 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 20:52:37,547 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 20:59:24,323 storage_backends Getting available name for: videos/thumbnails/referral_qr_.png
+INFO 2025-06-09 20:59:24,613 storage_backends Saving file: videos/thumbnails/referral_qr_.png
+INFO 2025-06-09 20:59:24,613 storage_backends Cleaned file name: media/referral_qr_.png
+INFO 2025-06-09 20:59:24,712 storage_backends File saved successfully: media/referral_qr_.png
+INFO 2025-06-09 20:59:24,712 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 20:59:24,752 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 20:59:24,752 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 20:59:25,160 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 21:04:00,239 storage_backends Getting available name for: videos/thumbnails/No.jpg
+INFO 2025-06-09 21:04:00,497 storage_backends Saving file: videos/thumbnails/No.jpg
+INFO 2025-06-09 21:04:00,498 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-09 21:04:00,875 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-09 21:04:00,876 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 21:04:00,914 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 21:04:00,914 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 21:04:03,315 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 21:06:14,818 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['J5SzcXKN8gEDtkGPAKikelGq1cvpqOX7OaRtlEp6IObeFqzu1mK5nbR0KRuGN6to'], 'title': ['sas'], 'description': ['sasas'], 'category': ['7'], 'video_type': ['free'], 'release_date': ['2025-06-09'], 'duration': ['2'], 'rental_duration[]': ['4'], 'rental_price[]': ['44']}>
+INFO 2025-06-09 21:06:14,818 views Received FILES: <MultiValueDict: {'thumbnail': [<InMemoryUploadedFile: No.jpg (image/jpeg)>], 'video_file': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM.mp4 (video/mp4)>]}>
+INFO 2025-06-09 21:06:14,819 storage_backends Getting available name for: videos/thumbnails/No.jpg
+INFO 2025-06-09 21:06:15,052 storage_backends Saving file: videos/thumbnails/No.jpg
+INFO 2025-06-09 21:06:15,052 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-09 21:06:15,396 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-09 21:06:15,396 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 21:06:15,440 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 21:06:15,441 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 21:06:17,815 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+ERROR 2025-06-09 21:06:17,822 views Error in add_video: (1364, "Field 'progress_percent' doesn't have a default value")
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/db/backends/mysql/base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/pymysql/cursors.py", line 153, in execute
+    result = self._query(query)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/pymysql/cursors.py", line 322, in _query
+    conn.query(q)
+    ~~~~~~~~~~^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/pymysql/connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/pymysql/connections.py", line 825, in _read_query_result
+    result.read()
+    ~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/pymysql/connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/pymysql/connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1364, "Field 'progress_percent' doesn't have a default value")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/saisudhakarmanchala/Documents/ott_python/new_ott/ott_admin/main_accounts/views.py", line 3951, in add_video
+    video = Video.objects.create(
+        title=request.POST['title'],
+    ...<8 lines>...
+        processing_status='processing'
+    )
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/db/models/query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, fields, returning_fields, raw
+    )
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/db/models/query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1822, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/db/backends/utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/db/backends/utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/db/backends/mysql/base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/pymysql/cursors.py", line 153, in execute
+    result = self._query(query)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/pymysql/cursors.py", line 322, in _query
+    conn.query(q)
+    ~~~~~~~~~~^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/pymysql/connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/pymysql/connections.py", line 825, in _read_query_result
+    result.read()
+    ~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/pymysql/connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/pymysql/connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+django.db.utils.OperationalError: (1364, "Field 'progress_percent' doesn't have a default value")
+INFO 2025-06-09 21:09:31,144 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['qsYwQQOcT9jc8uFZ5Obivn78mv225RjevxXqZxtvtHQNkAyEwqD3EdiI5a1js9Pv'], 'title': ['dsd'], 'description': ['dsdsd'], 'category': ['7'], 'video_type': ['free'], 'release_date': ['2025-06-09'], 'duration': ['2'], 'rental_duration[]': ['22'], 'rental_price[]': ['22']}>
+INFO 2025-06-09 21:09:31,144 views Received FILES: <MultiValueDict: {'thumbnail': [<InMemoryUploadedFile: No.jpg (image/jpeg)>], 'video_file': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM.mp4 (video/mp4)>]}>
+INFO 2025-06-09 21:09:31,145 storage_backends Getting available name for: videos/thumbnails/No.jpg
+INFO 2025-06-09 21:09:31,406 storage_backends Saving file: videos/thumbnails/No.jpg
+INFO 2025-06-09 21:09:31,406 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-09 21:09:31,782 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-09 21:09:31,783 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 21:09:31,826 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 21:09:31,826 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 21:09:34,388 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-09 21:09:34,397 views Successfully created video with ID: 10
+INFO 2025-06-10 11:15:39,549 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['nuGHStxqX007RScrRuiW9e8jrmMdQbuBznJYAhoK6PKEH6rTRlQUAA91Nyt5kEjh'], 'title': ['dsd'], 'description': ['dsdsd'], 'category': ['2'], 'video_type': ['free'], 'release_date': ['2025-06-10'], 'duration': ['2'], 'rental_duration[]': ['2'], 'rental_price[]': ['22']}>
+INFO 2025-06-10 11:15:39,550 views Received FILES: <MultiValueDict: {'thumbnail': [<InMemoryUploadedFile: referral_qr_AHSII146.png (image/png)>], 'video_file': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM (1).mp4 (video/mp4)>]}>
+INFO 2025-06-10 11:15:39,551 storage_backends Getting available name for: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 11:15:39,833 storage_backends Saving file: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 11:15:39,833 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-10 11:15:39,942 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+INFO 2025-06-10 11:15:39,942 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 11:15:39,988 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 11:15:39,989 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 11:15:42,966 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 11:15:42,974 views Successfully created video with ID: 11
+INFO 2025-06-10 11:39:59,681 storage_backends Getting available name for: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 11:39:59,943 storage_backends Saving file: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 11:39:59,943 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-10 11:40:00,038 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+ERROR 2025-06-10 11:40:00,191 views Error processing video 12: 'NoneType' object has no attribute 'group_send'
+INFO 2025-06-10 11:43:59,982 storage_backends Getting available name for: videos/thumbnails/ImageForNews_791838_17277470175183673.webp
+INFO 2025-06-10 11:44:00,234 storage_backends Saving file: videos/thumbnails/ImageForNews_791838_17277470175183673.webp
+INFO 2025-06-10 11:44:00,235 storage_backends Cleaned file name: media/ImageForNews_791838_17277470175183673.webp
+INFO 2025-06-10 11:44:00,504 storage_backends File saved successfully: media/ImageForNews_791838_17277470175183673.webp
+ERROR 2025-06-10 11:44:00,986 views Error processing video 13: 'NoneType' object has no attribute 'group_send'
+INFO 2025-06-10 11:45:52,721 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['9rFH2jWUiulY3Y9ZLgrEjCjW9ZLupD4LBcL1r2UDFSw2sdI67yDGPyZ9vQX9RRHZ'], 'title': ['FKJFJ'], 'description': ['jhjh'], 'category': ['6'], 'video_type': ['free'], 'release_date': ['2025-06-10'], 'duration': ['5'], 'rental_duration[]': ['55'], 'rental_price[]': ['55']}>
+INFO 2025-06-10 11:45:52,721 views Received FILES: <MultiValueDict: {'thumbnail': [<TemporaryUploadedFile: ImageForNews_791838_17277470175183673.webp (image/webp)>], 'video_file': [<TemporaryUploadedFile: surgeons-performing-operation-in-operation-room-2023-11-27-04-55-34-utc.mov (video/quicktime)>]}>
+INFO 2025-06-10 11:45:52,722 storage_backends Getting available name for: videos/thumbnails/ImageForNews_791838_17277470175183673.webp
+INFO 2025-06-10 11:45:52,971 storage_backends Saving file: videos/thumbnails/ImageForNews_791838_17277470175183673.webp
+INFO 2025-06-10 11:45:52,971 storage_backends Cleaned file name: media/ImageForNews_791838_17277470175183673.webp
+INFO 2025-06-10 11:45:53,309 storage_backends File saved successfully: media/ImageForNews_791838_17277470175183673.webp
+INFO 2025-06-10 11:45:53,310 storage_backends Getting available name for: videos/files/surgeons-performing-operation-in-operation-room-2023-11-27-04-55-34-utc.mov
+INFO 2025-06-10 11:45:53,356 storage_backends Saving file: videos/files/surgeons-performing-operation-in-operation-room-2023-11-27-04-55-34-utc.mov
+INFO 2025-06-10 11:45:53,356 storage_backends Cleaned file name: media/surgeons-performing-operation-in-operation-room-2023-11-27-04-55-34-utc.mov
+INFO 2025-06-10 11:46:02,547 storage_backends File saved successfully: media/surgeons-performing-operation-in-operation-room-2023-11-27-04-55-34-utc.mov
+INFO 2025-06-10 11:46:02,552 views Successfully created video with ID: 14
+ERROR 2025-06-10 11:46:09,085 views Error processing video 14: FFmpeg conversion failed with return code 234
+INFO 2025-06-10 11:49:27,640 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['iy1n3HjffSjZg9ZZiliYsL9fhrm0RVLmur4ELvazoH3w6nericQWT7aXDD3SloA2'], 'title': ['dsd'], 'description': ['dsdsd'], 'category': ['7'], 'video_type': ['free'], 'release_date': ['2025-06-10'], 'duration': ['2'], 'rental_duration[]': ['22'], 'rental_price[]': ['22']}>
+INFO 2025-06-10 11:49:27,640 views Received FILES: <MultiValueDict: {'thumbnail': [<InMemoryUploadedFile: No.jpg (image/jpeg)>], 'video_file': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM (1).mp4 (video/mp4)>]}>
+INFO 2025-06-10 11:49:27,641 storage_backends Getting available name for: videos/thumbnails/No.jpg
+INFO 2025-06-10 11:49:27,900 storage_backends Saving file: videos/thumbnails/No.jpg
+INFO 2025-06-10 11:49:27,900 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-10 11:49:28,416 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-10 11:49:28,417 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 11:49:28,462 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 11:49:28,462 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 11:49:31,249 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 11:49:31,256 views Successfully created video with ID: 15
+INFO 2025-06-10 11:51:20,645 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['GaMi4w58MdKMcZt7pOGOCk6W7kOVZ2CV8VSCtf3R9BVQBe2eL6SQ8gM9tb0Argf9'], 'title': ['gfgfg'], 'description': ['gfgfg'], 'category': ['2'], 'video_type': ['free'], 'release_date': ['2025-06-10'], 'duration': ['3'], 'rental_duration[]': ['33'], 'rental_price[]': ['33']}>
+INFO 2025-06-10 11:51:20,645 views Received FILES: <MultiValueDict: {'thumbnail': [<TemporaryUploadedFile: ImageForNews_791838_17277470175183673.webp (image/webp)>], 'video_file': [<TemporaryUploadedFile: surgeons-performing-operation-in-operation-room-2023-11-27-04-55-34-utc.mov (video/quicktime)>]}>
+INFO 2025-06-10 11:51:20,646 storage_backends Getting available name for: videos/thumbnails/ImageForNews_791838_17277470175183673.webp
+INFO 2025-06-10 11:51:20,809 storage_backends Saving file: videos/thumbnails/ImageForNews_791838_17277470175183673.webp
+INFO 2025-06-10 11:51:20,809 storage_backends Cleaned file name: media/ImageForNews_791838_17277470175183673.webp
+INFO 2025-06-10 11:51:21,061 storage_backends File saved successfully: media/ImageForNews_791838_17277470175183673.webp
+INFO 2025-06-10 11:51:21,061 storage_backends Getting available name for: videos/files/surgeons-performing-operation-in-operation-room-2023-11-27-04-55-34-utc.mov
+INFO 2025-06-10 11:51:21,106 storage_backends Saving file: videos/files/surgeons-performing-operation-in-operation-room-2023-11-27-04-55-34-utc.mov
+INFO 2025-06-10 11:51:21,107 storage_backends Cleaned file name: media/surgeons-performing-operation-in-operation-room-2023-11-27-04-55-34-utc.mov
+INFO 2025-06-10 11:51:28,301 storage_backends File saved successfully: media/surgeons-performing-operation-in-operation-room-2023-11-27-04-55-34-utc.mov
+INFO 2025-06-10 11:51:28,306 views Successfully created video with ID: 16
+ERROR 2025-06-10 11:51:36,468 views Error processing video 16: FFmpeg conversion failed with return code 234
+INFO 2025-06-10 11:56:41,497 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['KPecZD4Age6Ka4Rh2acbhaEGa29HIG6DcAkwom2jDChOzjqoosodN6kTwTlmaUJR'], 'title': ['faf'], 'description': ['eqe'], 'category': ['4'], 'video_type': ['free'], 'release_date': ['2025-06-10'], 'duration': ['2'], 'rental_duration[]': ['3'], 'rental_price[]': ['55']}>
+INFO 2025-06-10 11:56:41,497 views Received FILES: <MultiValueDict: {'thumbnail': [<TemporaryUploadedFile: guide_waterpollution_66615937_2400.jpg (image/jpeg)>], 'video_file': [<TemporaryUploadedFile: surgeons-performing-operation-in-operation-room-2023-11-27-04-55-34-utc.mov (video/quicktime)>]}>
+INFO 2025-06-10 11:56:41,498 storage_backends Getting available name for: videos/thumbnails/guide_waterpollution_66615937_2400.jpg
+INFO 2025-06-10 11:56:41,762 storage_backends Saving file: videos/thumbnails/guide_waterpollution_66615937_2400.jpg
+INFO 2025-06-10 11:56:41,762 storage_backends Cleaned file name: media/guide_waterpollution_66615937_2400.jpg
+INFO 2025-06-10 11:56:42,327 storage_backends File saved successfully: media/guide_waterpollution_66615937_2400.jpg
+INFO 2025-06-10 11:56:42,328 storage_backends Getting available name for: videos/files/surgeons-performing-operation-in-operation-room-2023-11-27-04-55-34-utc.mov
+INFO 2025-06-10 11:56:42,369 storage_backends Saving file: videos/files/surgeons-performing-operation-in-operation-room-2023-11-27-04-55-34-utc.mov
+INFO 2025-06-10 11:56:42,369 storage_backends Cleaned file name: media/surgeons-performing-operation-in-operation-room-2023-11-27-04-55-34-utc.mov
+INFO 2025-06-10 11:56:50,255 storage_backends File saved successfully: media/surgeons-performing-operation-in-operation-room-2023-11-27-04-55-34-utc.mov
+INFO 2025-06-10 11:56:50,260 views Successfully created video with ID: 17
+INFO 2025-06-10 12:08:55,078 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['pg5FwlG9A1qrFjZ2zDDUSPaAXtsclZDvR1bZV4ESXpBv4yy9VVPWoLQNjkERNdgJ'], 'title': ['rwt'], 'description': ['fdtgf'], 'category': ['6'], 'video_type': ['free'], 'release_date': ['2025-06-03'], 'duration': ['2']}>
+INFO 2025-06-10 12:08:55,079 views Received FILES: <MultiValueDict: {'thumbnail': [<TemporaryUploadedFile: guide_waterpollution_66615937_2400.jpg (image/jpeg)>]}>
+INFO 2025-06-10 12:08:55,080 storage_backends Getting available name for: videos/thumbnails/guide_waterpollution_66615937_2400.jpg
+INFO 2025-06-10 12:08:55,273 storage_backends Saving file: videos/thumbnails/guide_waterpollution_66615937_2400.jpg
+INFO 2025-06-10 12:08:55,273 storage_backends Cleaned file name: media/guide_waterpollution_66615937_2400.jpg
+INFO 2025-06-10 12:08:55,835 storage_backends File saved successfully: media/guide_waterpollution_66615937_2400.jpg
+INFO 2025-06-10 12:08:55,846 views Successfully created video with ID: 18
+ERROR 2025-06-10 12:08:55,854 views Error processing video 18: The 'video_file' attribute has no file associated with it.
+ERROR 2025-06-10 12:26:58,839 views Error in add_video: You cannot set the upload handlers after the upload has been processed.
+ERROR 2025-06-10 12:29:34,561 views Error in add_video: You cannot set the upload handlers after the upload has been processed.
+INFO 2025-06-10 12:30:50,874 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['WjVzmEIY8Xh78ZcPRvyY77kVrqiZkjxuo41TLnGHvlsbxeLWdNK0D308NhuEMxaI'], 'title': ['dfhdh'], 'description': ['rtjjartj'], 'category': ['2'], 'video_type': ['paid'], 'release_date': ['2025-06-10'], 'duration': ['35'], 'rental_duration[]': ['46'], 'rental_price[]': ['64']}>
+INFO 2025-06-10 12:30:50,874 views Received FILES: <MultiValueDict: {'thumbnail': [<TemporaryUploadedFile: WHITE-BOARD.jpg (image/jpeg)>], 'video_file': [<TemporaryUploadedFile: logo 1st.mp4 (video/mp4)>]}>
+INFO 2025-06-10 12:30:50,876 storage_backends Getting available name for: videos/thumbnails/WHITE-BOARD.jpg
+INFO 2025-06-10 12:30:51,131 storage_backends Saving file: videos/thumbnails/WHITE-BOARD.jpg
+INFO 2025-06-10 12:30:51,131 storage_backends Cleaned file name: media/WHITE-BOARD.jpg
+INFO 2025-06-10 12:30:51,341 storage_backends File saved successfully: media/WHITE-BOARD.jpg
+INFO 2025-06-10 12:30:51,342 storage_backends Getting available name for: videos/files/logo_1st.mp4
+INFO 2025-06-10 12:30:51,384 storage_backends Saving file: videos/files/logo_1st.mp4
+INFO 2025-06-10 12:30:51,384 storage_backends Cleaned file name: media/logo_1st.mp4
+INFO 2025-06-10 12:30:56,210 storage_backends File saved successfully: media/logo_1st.mp4
+INFO 2025-06-10 12:30:56,217 views Successfully created video with ID: 19
+INFO 2025-06-10 12:50:18,847 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['xn27RkVylg2TbcVvvLBZLQsPpxqUMBYZZ88rg3ThIEdXAruCR3N1hM82LoCzePBd'], 'title': ['STRH'], 'description': ['ERHG'], 'category': ['4'], 'video_type': ['rental'], 'release_date': ['2025-06-10'], 'duration': ['3'], 'rental_duration[]': ['4'], 'rental_price[]': ['46']}>
+INFO 2025-06-10 12:50:18,848 views Received FILES: <MultiValueDict: {'thumbnail': [<TemporaryUploadedFile: ewewewewe.jpg (image/jpeg)>], 'video_file': [<TemporaryUploadedFile: 02 Interview.mp4 (video/mp4)>]}>
+INFO 2025-06-10 12:50:18,849 storage_backends Getting available name for: videos/thumbnails/ewewewewe.jpg
+INFO 2025-06-10 12:50:19,162 storage_backends Saving file: videos/thumbnails/ewewewewe.jpg
+INFO 2025-06-10 12:50:19,162 storage_backends Cleaned file name: media/ewewewewe.jpg
+INFO 2025-06-10 12:50:19,522 storage_backends File saved successfully: media/ewewewewe.jpg
+INFO 2025-06-10 12:50:19,522 storage_backends Getting available name for: videos/files/02_Interview.mp4
+INFO 2025-06-10 12:50:19,564 storage_backends Saving file: videos/files/02_Interview.mp4
+INFO 2025-06-10 12:50:19,564 storage_backends Cleaned file name: media/02_Interview.mp4
+INFO 2025-06-10 12:50:51,256 storage_backends File saved successfully: media/02_Interview.mp4
+INFO 2025-06-10 12:50:51,270 views Successfully created video with ID: 20
+ERROR 2025-06-10 13:02:39,952 views Error processing video 20: cannot schedule new futures after interpreter shutdown
+INFO 2025-06-10 13:36:04,260 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 13:36:04,520 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 13:36:04,520 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 13:36:07,161 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 13:36:07,161 storage_backends Getting available name for: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 13:36:07,202 storage_backends Saving file: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 13:36:07,202 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-10 13:36:07,303 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+ERROR 2025-06-10 13:36:07,306 views Error in add_video: name 'process_video_task' is not defined
+INFO 2025-06-10 13:38:24,324 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 13:38:24,551 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 13:38:24,551 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 13:38:27,316 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 13:38:27,316 storage_backends Getting available name for: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 13:38:27,354 storage_backends Saving file: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 13:38:27,355 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-10 13:38:27,440 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+INFO 2025-06-10 13:40:34,518 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 13:40:34,747 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 13:40:34,748 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 13:40:37,621 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 13:40:37,622 storage_backends Getting available name for: videos/thumbnails/No.jpg
+INFO 2025-06-10 13:40:37,664 storage_backends Saving file: videos/thumbnails/No.jpg
+INFO 2025-06-10 13:40:37,664 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-10 13:40:37,761 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-10 14:03:38,891 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['yVytxMWnr9lrl96kQkVEDm0QXEBgP1hHKOBKfANHAY5YbnlMQbtC4I1yjQi8ju6n'], 'title': ['dsd'], 'description': ['dsdsd'], 'category': ['7'], 'video_type': ['free'], 'release_date': ['2025-06-10'], 'duration': ['22'], 'rental_duration[]': ['22'], 'rental_price[]': ['22']}>
+INFO 2025-06-10 14:03:38,892 views Received FILES: <MultiValueDict: {'thumbnail': [<InMemoryUploadedFile: No.jpg (image/jpeg)>], 'video_file': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM (1).mp4 (video/mp4)>]}>
+INFO 2025-06-10 14:03:38,894 storage_backends Getting available name for: videos/thumbnails/No.jpg
+INFO 2025-06-10 14:03:39,152 storage_backends Saving file: videos/thumbnails/No.jpg
+INFO 2025-06-10 14:03:39,152 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-10 14:03:39,517 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-10 14:03:39,517 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 14:03:39,559 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 14:03:39,559 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 14:03:41,922 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 14:03:41,927 views Successfully created video with ID: 28
+INFO 2025-06-10 15:27:00,572 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['3H3QyvsZLNl1NCRga40eVi3paPcwMceRfA67gjjjUC5yDQ6IaVycmE47w1TogF3x'], 'title': ['sdd'], 'description': ['dsdsd'], 'category': ['4'], 'video_type': ['free'], 'release_date': ['2025-06-10'], 'duration': ['22'], 'rental_duration[]': ['2'], 'rental_price[]': ['2']}>
+INFO 2025-06-10 15:27:00,574 views Received FILES: <MultiValueDict: {'thumbnail': [<InMemoryUploadedFile: referral_qr_AZRJZ138.png (image/png)>], 'video_file': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM (1).mp4 (video/mp4)>]}>
+INFO 2025-06-10 15:27:00,575 storage_backends Getting available name for: videos/thumbnails/referral_qr_AZRJZ138.png
+INFO 2025-06-10 15:27:00,840 storage_backends Saving file: videos/thumbnails/referral_qr_AZRJZ138.png
+INFO 2025-06-10 15:27:00,840 storage_backends Cleaned file name: media/referral_qr_AZRJZ138.png
+INFO 2025-06-10 15:27:00,944 storage_backends File saved successfully: media/referral_qr_AZRJZ138.png
+INFO 2025-06-10 15:27:00,944 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 15:27:00,980 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 15:27:00,980 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 15:27:03,600 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 15:27:03,614 views Successfully created video with ID: 29
+INFO 2025-06-10 15:31:21,801 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['Zdmp6ILjPWL27ZkTyTC3hW8LYuwRjWfcrYsJvrJ2ckW6weT0UbO5NSOYklIwLaSq'], 'title': ['trr'], 'description': ['trtrt'], 'category': ['7'], 'video_type': ['free'], 'release_date': ['2025-06-10'], 'duration': ['3'], 'rental_duration[]': ['3'], 'rental_price[]': ['33']}>
+INFO 2025-06-10 15:31:21,803 views Received FILES: <MultiValueDict: {'thumbnail': [<TemporaryUploadedFile: maxresdefault (1).webp (image/webp)>], 'video_file': [<TemporaryUploadedFile: 02 Interview.mp4 (video/mp4)>]}>
+INFO 2025-06-10 15:31:21,804 storage_backends Getting available name for: videos/thumbnails/maxresdefault_1.webp
+INFO 2025-06-10 15:31:22,099 storage_backends Saving file: videos/thumbnails/maxresdefault_1.webp
+INFO 2025-06-10 15:31:22,099 storage_backends Cleaned file name: media/maxresdefault_1.webp
+INFO 2025-06-10 15:31:22,538 storage_backends File saved successfully: media/maxresdefault_1.webp
+INFO 2025-06-10 15:31:22,539 storage_backends Getting available name for: videos/files/02_Interview.mp4
+INFO 2025-06-10 15:31:22,583 storage_backends Saving file: videos/files/02_Interview.mp4
+INFO 2025-06-10 15:31:22,583 storage_backends Cleaned file name: media/02_Interview.mp4
+INFO 2025-06-10 15:31:49,522 storage_backends File saved successfully: media/02_Interview.mp4
+INFO 2025-06-10 15:31:49,540 views Successfully created video with ID: 30
+INFO 2025-06-10 15:53:28,509 storage_backends Getting available name for: categories/devotional.png
+INFO 2025-06-10 15:53:28,723 storage_backends Saving file: categories/devotional.png
+INFO 2025-06-10 15:53:28,723 storage_backends Cleaned file name: media/devotional.png
+INFO 2025-06-10 15:53:29,537 storage_backends File saved successfully: media/devotional.png
+INFO 2025-06-10 18:56:40,522 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['h4CjrFCatzlpgOXlg3vB2IPq2bG6IGHltXFA9ttuCo5W62cNgU3zt4Q8onnYc9w1'], 'title': ['dcdf'], 'description': ['dsdsdd'], 'cast': ['MSR, Demo'], 'category': ['4'], 'video_type': ['paid'], 'release_date': ['2025-06-10'], 'duration': ['22'], 'rental_duration[]': [''], 'rental_price[]': ['']}>
+INFO 2025-06-10 18:56:40,522 views Received FILES: <MultiValueDict: {'thumbnail': [<InMemoryUploadedFile: referral_qr_AZRJZ138.png (image/png)>], 'portrait_thumbnail': [<InMemoryUploadedFile: referral_qr_AHSII146.png (image/png)>], 'promo_video': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM (1).mp4 (video/mp4)>], 'video_file': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM (1).mp4 (video/mp4)>]}>
+INFO 2025-06-10 18:56:40,523 storage_backends Getting available name for: videos/thumbnails/referral_qr_AZRJZ138.png
+INFO 2025-06-10 18:56:40,785 storage_backends Saving file: videos/thumbnails/referral_qr_AZRJZ138.png
+INFO 2025-06-10 18:56:40,785 storage_backends Cleaned file name: media/referral_qr_AZRJZ138.png
+INFO 2025-06-10 18:56:40,872 storage_backends File saved successfully: media/referral_qr_AZRJZ138.png
+INFO 2025-06-10 18:56:40,872 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 18:56:40,909 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 18:56:40,910 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 18:56:43,363 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 18:56:43,375 views Successfully created video with ID: 31
+INFO 2025-06-10 19:17:17,044 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['tRlXIrQBDGTtG9k6wyqvOKIK7J1yonRGgheo54HafVUbDWWFAJMPTtDEyLrJkhqd'], 'title': ['MSR DEMO WITH PROMO '], 'description': [" is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions o"], 'cast': ['MSR, DEMO'], 'category': ['7'], 'video_type': ['free'], 'release_date': ['2025-06-10'], 'duration': ['10'], 'rental_duration[]': [''], 'rental_price[]': ['']}>
+INFO 2025-06-10 19:17:17,045 views Received FILES: <MultiValueDict: {'thumbnail': [<TemporaryUploadedFile: Kostaandhra_Andhra_Pradesh_new_districts.png (image/png)>], 'portrait_thumbnail': [<TemporaryUploadedFile: b2f8b3eaefb26a15c6020baf4770c002 (1).jpg (image/jpeg)>], 'promo_video': [<TemporaryUploadedFile: 00050.mp4 (video/mp4)>], 'video_file': [<TemporaryUploadedFile: సేనాని సైలెన్స్ వెనుక వ్యూహమేంటి.._ _ _ Weekend Voice By MSR Ep-3 _ #pawankalyan #janasena.mp4 (video/mp4)>]}>
+INFO 2025-06-10 19:17:17,046 storage_backends Getting available name for: videos/thumbnails/Kostaandhra_Andhra_Pradesh_new_districts.png
+INFO 2025-06-10 19:17:17,329 storage_backends Saving file: videos/thumbnails/Kostaandhra_Andhra_Pradesh_new_districts.png
+INFO 2025-06-10 19:17:17,329 storage_backends Cleaned file name: media/Kostaandhra_Andhra_Pradesh_new_districts.png
+INFO 2025-06-10 19:17:18,131 storage_backends File saved successfully: media/Kostaandhra_Andhra_Pradesh_new_districts.png
+INFO 2025-06-10 19:17:18,131 storage_backends Getting available name for: videos/files/సనన_సలనస_వనక_వయహమట..______Weekend_Voice_By_MSR_Ep-3___pawankalyan_janasena.mp4
+INFO 2025-06-10 19:17:18,180 storage_backends Saving file: videos/files/సనన_సలనస_వనక_వయహమట..______Weekend_Voice_By_MSR_Ep-3___pawankalyan_janasena.mp4
+INFO 2025-06-10 19:17:18,180 storage_backends Cleaned file name: media/సనన_సలనస_వనక_వయహమట..______Weekend_Voice_By_MSR_Ep-3___pawankalyan_janasena.mp4
+INFO 2025-06-10 19:17:23,845 storage_backends File saved successfully: media/సనన_సలనస_వనక_వయహమట..______Weekend_Voice_By_MSR_Ep-3___pawankalyan_janasena.mp4
+INFO 2025-06-10 19:17:23,851 views Successfully created video with ID: 32
+INFO 2025-06-10 19:29:55,380 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['LV6ZC4j96UUDgSgpHUVoRtCIlU5oeNc3XO9gkSatfJEa66vRHLtmiPDqH6MgIg1J'], 'title': ['dadadad'], 'description': ['dadadd'], 'cast': ['sadsad,dadadda'], 'category': ['4'], 'video_type': ['free'], 'release_date': ['2025-06-10'], 'duration': ['110'], 'rental_duration[]': [''], 'rental_price[]': ['']}>
+INFO 2025-06-10 19:29:55,380 views Received FILES: <MultiValueDict: {'thumbnail': [<InMemoryUploadedFile: maxresdefault.jpg (image/jpeg)>], 'portrait_thumbnail': [<InMemoryUploadedFile: referral_qr_AHSII146.png (image/png)>], 'promo_video': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM (1).mp4 (video/mp4)>], 'video_file': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM (1).mp4 (video/mp4)>]}>
+INFO 2025-06-10 19:29:55,381 storage_backends Getting available name for: videos/thumbnails/maxresdefault.jpg
+INFO 2025-06-10 19:29:55,684 storage_backends Saving file: videos/thumbnails/maxresdefault.jpg
+INFO 2025-06-10 19:29:55,685 storage_backends Cleaned file name: media/maxresdefault.jpg
+INFO 2025-06-10 19:29:56,286 storage_backends File saved successfully: media/maxresdefault.jpg
+INFO 2025-06-10 19:29:56,286 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 19:29:56,326 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 19:29:56,326 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 19:29:58,511 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 19:29:58,529 views Successfully created video with ID: 33
+INFO 2025-06-10 19:34:37,592 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['AmGGWspverbmdvdanJxPXdg9thhpZKzDMfJXEggPngVT3JsCnA5NozhRPtYhtdoj'], 'title': ['dss'], 'description': ['dfsdsdsd'], 'cast': ['dsdsd,dsdsd'], 'category': ['7'], 'video_type': ['free'], 'release_date': ['2025-06-10'], 'duration': ['110'], 'rental_duration[]': [''], 'rental_price[]': ['']}>
+INFO 2025-06-10 19:34:37,593 views Received FILES: <MultiValueDict: {'thumbnail': [<InMemoryUploadedFile: No.jpg (image/jpeg)>], 'portrait_thumbnail': [<InMemoryUploadedFile: referral_qr_AHSII146.png (image/png)>], 'promo_video': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM (1).mp4 (video/mp4)>], 'video_file': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM.mp4 (video/mp4)>]}>
+INFO 2025-06-10 19:34:37,594 storage_backends Getting available name for: videos/thumbnails/No.jpg
+INFO 2025-06-10 19:34:37,842 storage_backends Saving file: videos/thumbnails/No.jpg
+INFO 2025-06-10 19:34:37,842 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-10 19:34:38,318 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-10 19:34:38,318 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 19:34:38,359 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 19:34:38,359 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 19:34:40,880 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 19:34:40,890 views Successfully created video with ID: 34
+INFO 2025-06-10 19:40:07,197 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['sHGPGo0gpFDvMqXUXNOnSeGxx9lhhNdFEAJ6ocRAyun2CEcmXEmljAHfTl29Lg2l'], 'title': ['sas'], 'description': ['sasas'], 'cast': ['sasas,sasas'], 'category': ['7'], 'video_type': ['free'], 'release_date': ['2025-06-10'], 'duration': ['110'], 'rental_duration[]': [''], 'rental_price[]': ['']}>
+INFO 2025-06-10 19:40:07,198 views Received FILES: <MultiValueDict: {'thumbnail': [<InMemoryUploadedFile: No.jpg (image/jpeg)>], 'portrait_thumbnail': [<InMemoryUploadedFile: referral_qr_AHSII146.png (image/png)>], 'promo_video': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM (1).mp4 (video/mp4)>], 'video_file': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM.mp4 (video/mp4)>]}>
+INFO 2025-06-10 19:40:07,200 storage_backends Getting available name for: videos/thumbnails/No.jpg
+INFO 2025-06-10 19:40:07,487 storage_backends Saving file: videos/thumbnails/No.jpg
+INFO 2025-06-10 19:40:07,487 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-10 19:40:07,970 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-10 19:40:07,971 storage_backends Getting available name for: videos/portrait_thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 19:40:08,024 storage_backends Saving file: videos/portrait_thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 19:40:08,024 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-10 19:40:08,137 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+INFO 2025-06-10 19:40:08,138 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 19:40:08,187 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 19:40:08,187 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 19:40:11,289 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 19:40:11,289 storage_backends Getting available name for: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 19:40:11,342 storage_backends Saving file: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 19:40:11,343 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 19:40:12,896 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 19:40:12,903 views Successfully created video with ID: 35
+ERROR 2025-06-10 19:40:12,904 views Error uploading video: name 'process_video_upload' is not defined
+INFO 2025-06-10 19:45:29,924 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['PpLcwStjB2r4aHy2cfqVOXcKa7C1TXWl1iOteGkDKRbB0VNuc6YTfjdswjjTnqL1'], 'title': ['csfcsf'], 'description': ['fsfsf'], 'cast': ['fsfsf,fsfsf'], 'category': ['7'], 'video_type': ['free'], 'release_date': ['2025-06-10'], 'duration': ['110'], 'rental_duration[]': [''], 'rental_price[]': ['']}>
+INFO 2025-06-10 19:45:29,925 views Received FILES: <MultiValueDict: {'thumbnail': [<InMemoryUploadedFile: No.jpg (image/jpeg)>], 'portrait_thumbnail': [<InMemoryUploadedFile: referral_qr_AHSII146.png (image/png)>], 'promo_video': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM (1).mp4 (video/mp4)>], 'video_file': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM.mp4 (video/mp4)>]}>
+INFO 2025-06-10 19:45:29,927 storage_backends Getting available name for: videos/thumbnails/No.jpg
+INFO 2025-06-10 19:45:30,163 storage_backends Saving file: videos/thumbnails/No.jpg
+INFO 2025-06-10 19:45:30,163 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-10 19:45:30,526 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-10 19:45:30,527 storage_backends Getting available name for: videos/portrait_thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 19:45:30,570 storage_backends Saving file: videos/portrait_thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 19:45:30,570 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-10 19:45:30,655 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+INFO 2025-06-10 19:45:30,656 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 19:45:30,694 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 19:45:30,694 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 19:45:32,914 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 19:45:32,914 storage_backends Getting available name for: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 19:45:32,954 storage_backends Saving file: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 19:45:32,954 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 19:45:34,054 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 19:45:34,065 views Successfully created video with ID: 36
+ERROR 2025-06-10 19:45:34,065 views Error uploading video: name 'process_video_upload' is not defined
+INFO 2025-06-10 19:52:15,841 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['dNjq7lgJl8Hrf4gIMIHjNKpmfMighsefpGmHP973uXrY5ivaMzfhe6q4BYZ8LV3V'], 'title': ['dsdsd'], 'description': ['sdsd'], 'cast': ['dsds,dsdsd'], 'category': ['7'], 'video_type': ['free'], 'release_date': ['2025-06-10'], 'duration': ['110'], 'rental_duration[]': [''], 'rental_price[]': ['']}>
+INFO 2025-06-10 19:52:15,842 views Received FILES: <MultiValueDict: {'thumbnail': [<InMemoryUploadedFile: No.jpg (image/jpeg)>], 'portrait_thumbnail': [<InMemoryUploadedFile: referral_qr_AHSII146.png (image/png)>], 'promo_video': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM (1).mp4 (video/mp4)>], 'video_file': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM.mp4 (video/mp4)>]}>
+INFO 2025-06-10 19:52:15,843 storage_backends Getting available name for: videos/thumbnails/No.jpg
+INFO 2025-06-10 19:52:16,125 storage_backends Saving file: videos/thumbnails/No.jpg
+INFO 2025-06-10 19:52:16,125 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-10 19:52:16,573 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-10 19:52:16,573 storage_backends Getting available name for: videos/portrait_thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 19:52:16,622 storage_backends Saving file: videos/portrait_thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 19:52:16,622 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-10 19:52:16,726 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+INFO 2025-06-10 19:52:16,726 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 19:52:16,774 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 19:52:16,774 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 19:52:19,915 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 19:52:19,916 storage_backends Getting available name for: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 19:52:19,968 storage_backends Saving file: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 19:52:19,968 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 19:52:21,511 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 19:52:21,518 views Successfully created video with ID: 37
+ERROR 2025-06-10 19:52:21,519 views Error uploading video: name 'process_video_upload' is not defined
+INFO 2025-06-10 19:55:15,660 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['fkCYf7bAKqDYvvU75hFhPuGF3RTGUUBvrdFfXV2UTfnvlJ9z58dfgQHnp3Ayonqb'], 'title': ['dsds'], 'description': ['dsdsd'], 'cast': ['dsds,dsdsd'], 'category': ['7'], 'video_type': ['free'], 'release_date': ['2025-06-10'], 'duration': ['110'], 'rental_duration[]': [''], 'rental_price[]': ['']}>
+INFO 2025-06-10 19:55:15,660 views Received FILES: <MultiValueDict: {'thumbnail': [<InMemoryUploadedFile: No.jpg (image/jpeg)>], 'portrait_thumbnail': [<InMemoryUploadedFile: referral_qr_AHSII146.png (image/png)>], 'promo_video': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM (1).mp4 (video/mp4)>], 'video_file': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM.mp4 (video/mp4)>]}>
+INFO 2025-06-10 19:55:15,662 storage_backends Getting available name for: videos/thumbnails/No.jpg
+INFO 2025-06-10 19:55:15,901 storage_backends Saving file: videos/thumbnails/No.jpg
+INFO 2025-06-10 19:55:15,901 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-10 19:55:16,291 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-10 19:55:16,292 storage_backends Getting available name for: videos/portrait_thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 19:55:16,336 storage_backends Saving file: videos/portrait_thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 19:55:16,337 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-10 19:55:16,455 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+INFO 2025-06-10 19:55:16,455 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 19:55:16,501 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 19:55:16,501 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 19:55:19,161 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 19:55:19,163 storage_backends Getting available name for: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 19:55:19,207 storage_backends Saving file: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 19:55:19,207 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 19:55:20,576 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 19:55:20,583 views Successfully created video with ID: 38
+ERROR 2025-06-10 19:55:21,817 views HLS conversion failed: FFmpeg conversion failed for 120p
+ERROR 2025-06-10 19:55:22,142 views Error processing promo video for video 38: FFmpeg conversion failed for 120p
+INFO 2025-06-10 19:56:42,091 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['lIuVXH3ZNulRjWbqxO3YIOXet2dzPZDtxBxcFvUjWj5o9aqSxFBW9aYWPeUrjss9'], 'title': ['dsd'], 'description': ['dsdsd'], 'cast': ['dsdsd'], 'category': ['7'], 'video_type': ['free'], 'release_date': ['2025-06-10'], 'duration': ['110'], 'rental_duration[]': [''], 'rental_price[]': ['']}>
+INFO 2025-06-10 19:56:42,092 views Received FILES: <MultiValueDict: {'thumbnail': [<InMemoryUploadedFile: referral_qr_AHSII146.png (image/png)>], 'portrait_thumbnail': [<InMemoryUploadedFile: referral_qr_AHSII146.png (image/png)>], 'promo_video': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM (1).mp4 (video/mp4)>], 'video_file': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM.mp4 (video/mp4)>]}>
+INFO 2025-06-10 19:56:42,093 storage_backends Getting available name for: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 19:56:42,339 storage_backends Saving file: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 19:56:42,339 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-10 19:56:42,467 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+INFO 2025-06-10 19:56:42,467 storage_backends Getting available name for: videos/portrait_thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 19:56:42,507 storage_backends Saving file: videos/portrait_thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 19:56:42,508 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-10 19:56:42,593 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+INFO 2025-06-10 19:56:42,593 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 19:56:42,629 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 19:56:42,630 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 19:56:44,971 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 19:56:44,972 storage_backends Getting available name for: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 19:56:45,011 storage_backends Saving file: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 19:56:45,011 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 19:56:46,123 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 19:56:46,132 views Successfully created video with ID: 39
+ERROR 2025-06-10 19:56:46,133 views Error uploading video: name 'process_video_upload' is not defined
+INFO 2025-06-10 19:58:19,573 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['UQc8mTwlc1Btk7dSePWtE362i8ZZgIE56Jfp4HnFlQl0alskeGur5p7KEkGRKbtL'], 'title': ['dsdsd'], 'description': ['sddsds'], 'cast': ['dsdsd,dsdsd'], 'category': ['7'], 'video_type': ['free'], 'release_date': ['2025-06-10'], 'duration': ['110'], 'rental_duration[]': [''], 'rental_price[]': ['']}>
+INFO 2025-06-10 19:58:19,574 views Received FILES: <MultiValueDict: {'thumbnail': [<InMemoryUploadedFile: referral_qr_AHSII146.png (image/png)>], 'portrait_thumbnail': [<InMemoryUploadedFile: No.jpg (image/jpeg)>], 'promo_video': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM.mp4 (video/mp4)>], 'video_file': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM (1).mp4 (video/mp4)>]}>
+INFO 2025-06-10 19:58:19,575 storage_backends Getting available name for: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 19:58:19,839 storage_backends Saving file: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 19:58:19,840 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-10 19:58:19,962 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+INFO 2025-06-10 19:58:19,962 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 19:58:20,020 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 19:58:20,020 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 19:58:23,373 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 19:58:23,379 views Successfully created video with ID: 40
+INFO 2025-06-10 20:12:23,827 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['vZUw95s5VM4ViaRWuP820BU0tA67qK0gHSXNRTjp4BOs8o6ouGG0rXVIPMNZUdPW'], 'title': ['dsdd'], 'description': ['dsdsd'], 'cast': ['dsdsd,dsdsd'], 'category': ['7'], 'video_type': ['free'], 'release_date': ['2025-06-10'], 'duration': ['110'], 'rental_duration[]': [''], 'rental_price[]': ['']}>
+INFO 2025-06-10 20:12:23,827 views Received FILES: <MultiValueDict: {'thumbnail': [<InMemoryUploadedFile: No.jpg (image/jpeg)>], 'portrait_thumbnail': [<InMemoryUploadedFile: referral_qr_AHSII146.png (image/png)>], 'promo_video': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM (1).mp4 (video/mp4)>], 'video_file': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM.mp4 (video/mp4)>]}>
+INFO 2025-06-10 20:12:23,828 storage_backends Getting available name for: videos/thumbnails/No.jpg
+INFO 2025-06-10 20:12:24,105 storage_backends Saving file: videos/thumbnails/No.jpg
+INFO 2025-06-10 20:12:24,106 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-10 20:12:24,554 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-10 20:12:24,555 storage_backends Getting available name for: videos/portrait_thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 20:12:24,608 storage_backends Saving file: videos/portrait_thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 20:12:24,608 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-10 20:12:24,720 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+INFO 2025-06-10 20:12:24,720 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:12:24,771 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:12:24,771 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:12:27,834 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:12:27,835 storage_backends Getting available name for: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:12:27,882 storage_backends Saving file: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:12:27,882 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:12:29,434 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:12:29,450 views Successfully created video with ID: 41
+ERROR 2025-06-10 20:12:29,450 views Error adding video: name 'process_video_upload' is not defined
+INFO 2025-06-10 20:16:14,722 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['GbACqcU145aLdwhE7ZRmCgoDzQL6KGjQS4DT80LldUUi3Kw67Qpk3CplV2sYe98w'], 'title': ['sdadsd'], 'description': ['dsdsd'], 'cast': ['dadad,dadd'], 'category': ['7'], 'video_type': ['free'], 'release_date': ['2025-06-10'], 'duration': ['110'], 'rental_duration[]': [''], 'rental_price[]': ['']}>
+INFO 2025-06-10 20:16:14,723 views Received FILES: <MultiValueDict: {'thumbnail': [<InMemoryUploadedFile: No.jpg (image/jpeg)>], 'portrait_thumbnail': [<InMemoryUploadedFile: referral_qr_AHSII146.png (image/png)>], 'promo_video': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM (1).mp4 (video/mp4)>], 'video_file': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM.mp4 (video/mp4)>]}>
+INFO 2025-06-10 20:16:14,724 storage_backends Getting available name for: videos/thumbnails/No.jpg
+INFO 2025-06-10 20:16:14,959 storage_backends Saving file: videos/thumbnails/No.jpg
+INFO 2025-06-10 20:16:14,959 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-10 20:16:15,298 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-10 20:16:15,299 storage_backends Getting available name for: videos/portrait_thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 20:16:15,339 storage_backends Saving file: videos/portrait_thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 20:16:15,340 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-10 20:16:15,427 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+INFO 2025-06-10 20:16:15,428 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:16:15,468 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:16:15,468 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:16:17,777 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:16:17,777 storage_backends Getting available name for: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:16:17,813 storage_backends Saving file: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:16:17,813 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:16:18,956 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:16:18,965 views Successfully created video with ID: 42
+INFO 2025-06-10 20:20:58,843 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['8LfD4hyhcGDWbpBEUzJrEEWpRmhuMg0ekEiUM5pBlvnt1DQ6Uqhp50X7dyYmgJPU'], 'title': ['dsdsd'], 'description': ['dsdsdsd'], 'cast': ['dsdsd,dsdsd'], 'category': ['7'], 'video_type': ['free'], 'release_date': ['2025-06-10'], 'duration': ['110'], 'rental_duration[]': [''], 'rental_price[]': ['']}>
+INFO 2025-06-10 20:20:58,844 views Received FILES: <MultiValueDict: {'thumbnail': [<InMemoryUploadedFile: No.jpg (image/jpeg)>], 'portrait_thumbnail': [<InMemoryUploadedFile: referral_qr_AHSII146.png (image/png)>], 'promo_video': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM (1).mp4 (video/mp4)>], 'video_file': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM.mp4 (video/mp4)>]}>
+INFO 2025-06-10 20:20:58,845 storage_backends Getting available name for: videos/thumbnails/No.jpg
+INFO 2025-06-10 20:20:59,096 storage_backends Saving file: videos/thumbnails/No.jpg
+INFO 2025-06-10 20:20:59,096 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-10 20:20:59,465 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-10 20:20:59,465 storage_backends Getting available name for: videos/portrait_thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 20:20:59,505 storage_backends Saving file: videos/portrait_thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 20:20:59,505 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-10 20:20:59,605 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+INFO 2025-06-10 20:20:59,605 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:20:59,649 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:20:59,650 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:21:02,211 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:21:02,212 storage_backends Getting available name for: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:21:02,260 storage_backends Saving file: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:21:02,260 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:21:03,527 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:21:03,543 views Successfully created video with ID: 43
+INFO 2025-06-10 20:21:03,544 views Starting main video processing for video ID: 43
+INFO 2025-06-10 20:21:22,027 views Starting promo video processing for video ID: 43
+INFO 2025-06-10 20:26:02,957 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['H6ughyLV6WQyigFbgeybw2SxTIcevhmLTZxxZmCffLA58uUDg569XoTffUT6ZKbr'], 'title': ['dcsd'], 'description': ['dsdsd'], 'cast': ['sdsdsd,dsdsd'], 'category': ['7'], 'video_type': ['free'], 'release_date': ['2025-06-10'], 'duration': ['110'], 'rental_duration[]': [''], 'rental_price[]': ['']}>
+INFO 2025-06-10 20:26:02,958 views Received FILES: <MultiValueDict: {'thumbnail': [<InMemoryUploadedFile: No.jpg (image/jpeg)>], 'portrait_thumbnail': [<InMemoryUploadedFile: referral_qr_AHSII146.png (image/png)>], 'promo_video': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM (1).mp4 (video/mp4)>], 'video_file': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM.mp4 (video/mp4)>]}>
+INFO 2025-06-10 20:26:02,959 storage_backends Getting available name for: videos/thumbnails/No.jpg
+INFO 2025-06-10 20:26:03,199 storage_backends Saving file: videos/thumbnails/No.jpg
+INFO 2025-06-10 20:26:03,199 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-10 20:26:03,527 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-10 20:26:03,528 storage_backends Getting available name for: videos/portrait_thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 20:26:03,566 storage_backends Saving file: videos/portrait_thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 20:26:03,566 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-10 20:26:03,653 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+INFO 2025-06-10 20:26:03,654 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:26:03,693 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:26:03,693 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:26:05,969 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:26:05,969 storage_backends Getting available name for: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:26:06,006 storage_backends Saving file: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:26:06,006 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:26:07,085 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:26:07,093 views Successfully created video with ID: 44
+INFO 2025-06-10 20:26:07,094 views Starting main video processing for video ID: 44
+INFO 2025-06-10 20:26:22,974 views Main video processing completed for video ID: 44
+INFO 2025-06-10 20:26:22,974 views Starting promo video processing for video ID: 44
+INFO 2025-06-10 20:26:38,869 views Promo video processing completed for video ID: 44
+INFO 2025-06-10 20:31:22,313 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['Krj3gggRcPxW7GQhrE0ognuRvIlzpWarWkmkY47blEhtXU5JrvymHJvzRU2rTpZ7'], 'title': ['dcsc'], 'description': ['xcxcxc'], 'cast': ['xcxcx,cxcxc'], 'category': ['7'], 'video_type': ['free'], 'release_date': ['2025-06-10'], 'duration': ['110'], 'rental_duration[]': [''], 'rental_price[]': ['']}>
+INFO 2025-06-10 20:31:22,314 views Received FILES: <MultiValueDict: {'thumbnail': [<InMemoryUploadedFile: No.jpg (image/jpeg)>], 'portrait_thumbnail': [<InMemoryUploadedFile: referral_qr_AHSII146.png (image/png)>], 'promo_video': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM (1).mp4 (video/mp4)>], 'video_file': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM.mp4 (video/mp4)>]}>
+INFO 2025-06-10 20:31:22,315 storage_backends Getting available name for: videos/thumbnails/No.jpg
+INFO 2025-06-10 20:31:22,582 storage_backends Saving file: videos/thumbnails/No.jpg
+INFO 2025-06-10 20:31:22,582 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-10 20:31:22,975 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-10 20:31:22,976 storage_backends Getting available name for: videos/portrait_thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 20:31:23,018 storage_backends Saving file: videos/portrait_thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 20:31:23,018 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-10 20:31:23,105 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+INFO 2025-06-10 20:31:23,105 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:31:23,142 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:31:23,143 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:31:25,666 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:31:25,667 storage_backends Getting available name for: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:31:25,714 storage_backends Saving file: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:31:25,714 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:31:26,953 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:31:26,968 views Successfully created video with ID: 45
+INFO 2025-06-10 20:31:26,969 views Starting main video processing for video ID: 45
+INFO 2025-06-10 20:31:43,481 views Main video processing completed for video ID: 45
+INFO 2025-06-10 20:31:43,482 views Starting promo video processing for video ID: 45
+INFO 2025-06-10 20:31:59,185 views Promo video processing completed for video ID: 45
+INFO 2025-06-10 20:35:32,528 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['sOraZJXGL7raXs3jLAhss9HUX6iyAx1qhZ9QKaRpIF4rmHFK5wxMUhwSj4FLSYcw'], 'title': ['fdf'], 'description': ['ffdfdf'], 'cast': ['fdfdf,fdfdf'], 'category': ['7'], 'video_type': ['free'], 'release_date': ['2025-06-10'], 'duration': ['110'], 'rental_duration[]': [''], 'rental_price[]': ['']}>
+INFO 2025-06-10 20:35:32,529 views Received FILES: <MultiValueDict: {'thumbnail': [<TemporaryUploadedFile: 1212.jpeg (image/jpeg)>], 'portrait_thumbnail': [<TemporaryUploadedFile: 6.jpg (image/jpeg)>], 'promo_video': [<TemporaryUploadedFile: Channel Intro.mp4 (video/mp4)>], 'video_file': [<TemporaryUploadedFile: Breaking plate.mp4 (video/mp4)>]}>
+INFO 2025-06-10 20:35:32,530 storage_backends Getting available name for: videos/thumbnails/1212.jpeg
+INFO 2025-06-10 20:35:32,779 storage_backends Saving file: videos/thumbnails/1212.jpeg
+INFO 2025-06-10 20:35:32,779 storage_backends Cleaned file name: media/1212.jpeg
+INFO 2025-06-10 20:35:32,876 storage_backends File saved successfully: media/1212.jpeg
+INFO 2025-06-10 20:35:32,877 storage_backends Getting available name for: videos/portrait_thumbnails/6.jpg
+INFO 2025-06-10 20:35:32,922 storage_backends Saving file: videos/portrait_thumbnails/6.jpg
+INFO 2025-06-10 20:35:32,922 storage_backends Cleaned file name: media/6.jpg
+INFO 2025-06-10 20:35:33,665 storage_backends File saved successfully: media/6.jpg
+INFO 2025-06-10 20:35:33,665 storage_backends Getting available name for: videos/files/Breaking_plate.mp4
+INFO 2025-06-10 20:35:33,707 storage_backends Saving file: videos/files/Breaking_plate.mp4
+INFO 2025-06-10 20:35:33,707 storage_backends Cleaned file name: media/Breaking_plate.mp4
+INFO 2025-06-10 20:35:38,461 storage_backends File saved successfully: media/Breaking_plate.mp4
+INFO 2025-06-10 20:35:38,461 storage_backends Getting available name for: videos/promos/Channel_Intro.mp4
+INFO 2025-06-10 20:35:38,507 storage_backends Saving file: videos/promos/Channel_Intro.mp4
+INFO 2025-06-10 20:35:38,507 storage_backends Cleaned file name: media/Channel_Intro.mp4
+INFO 2025-06-10 20:35:40,422 storage_backends File saved successfully: media/Channel_Intro.mp4
+INFO 2025-06-10 20:35:40,425 views Successfully created video with ID: 46
+INFO 2025-06-10 20:35:40,425 views Starting main video processing for video ID: 46
+INFO 2025-06-10 20:36:26,813 views Main video processing completed for video ID: 46
+INFO 2025-06-10 20:36:26,814 views Starting promo video processing for video ID: 46
+INFO 2025-06-10 20:36:56,645 views Promo video processing completed for video ID: 46
+INFO 2025-06-10 20:39:58,144 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['3oOcO2ZSZWE3qcYpfLXqPpeu9PjdgwgQfhRtwQQc8LoAgqdRfCvogLfcv105KZ5w'], 'title': ['dsd'], 'description': ['sdsd'], 'cast': ['sdsddsd,dsdsd'], 'category': ['7'], 'video_type': ['paid'], 'release_date': ['2025-06-10'], 'duration': ['122'], 'rental_duration[]': [''], 'rental_price[]': ['']}>
+INFO 2025-06-10 20:39:58,145 views Received FILES: <MultiValueDict: {'thumbnail': [<InMemoryUploadedFile: No.jpg (image/jpeg)>], 'portrait_thumbnail': [<InMemoryUploadedFile: referral_qr_AHSII146.png (image/png)>], 'promo_video': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM.mp4 (video/mp4)>], 'video_file': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM (1).mp4 (video/mp4)>]}>
+INFO 2025-06-10 20:39:58,147 storage_backends Getting available name for: videos/thumbnails/No.jpg
+INFO 2025-06-10 20:39:58,361 storage_backends Saving file: videos/thumbnails/No.jpg
+INFO 2025-06-10 20:39:58,362 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-10 20:39:58,733 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-10 20:39:58,733 storage_backends Getting available name for: videos/portrait_thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 20:39:58,773 storage_backends Saving file: videos/portrait_thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 20:39:58,773 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-10 20:39:58,856 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+INFO 2025-06-10 20:39:58,856 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:39:58,896 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:39:58,896 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:40:01,278 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:40:01,279 storage_backends Getting available name for: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:40:01,322 storage_backends Saving file: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:40:01,322 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:40:02,530 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:40:02,536 views Successfully created video with ID: 47
+INFO 2025-06-10 20:40:02,536 views Starting main video processing for video ID: 47
+ERROR 2025-06-10 20:40:02,554 views Main video processing failed for video ID: 47: select_for_update cannot be used outside of a transaction.
+Traceback (most recent call last):
+  File "/Users/saisudhakarmanchala/Documents/ott_python/new_ott/ott_admin/main_accounts/views.py", line 3989, in add_video
+    process_video_upload(video.id)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/Users/saisudhakarmanchala/Documents/ott_python/new_ott/ott_admin/main_accounts/utils.py", line 302, in process_video_upload
+    video = Video.objects.select_for_update().get(id=video_id)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/db/models/query.py", line 633, in get
+    num = len(clone)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/db/models/query.py", line 380, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/db/models/query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1549, in execute_sql
+    sql, params = self.as_sql()
+                  ~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 816, in as_sql
+    raise TransactionManagementError(
+        "select_for_update cannot be used outside of a transaction."
+    )
+django.db.transaction.TransactionManagementError: select_for_update cannot be used outside of a transaction.
+INFO 2025-06-10 20:40:02,556 views Starting promo video processing for video ID: 47
+INFO 2025-06-10 20:40:19,230 views Promo video processing completed for video ID: 47
+INFO 2025-06-10 20:43:04,661 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['2hmtHMiEgy5Y4heltsVd25KWSxATEuSTeapKpA9YpnPvUvtNtjtbtrLEeJhL8XHz'], 'title': ['sas'], 'description': ['asas'], 'cast': ['asas,sasas'], 'category': ['7'], 'video_type': ['free'], 'release_date': ['2025-06-10'], 'duration': ['1123'], 'rental_duration[]': [''], 'rental_price[]': ['']}>
+INFO 2025-06-10 20:43:04,662 views Received FILES: <MultiValueDict: {'thumbnail': [<InMemoryUploadedFile: referral_qr_AHSII146.png (image/png)>], 'portrait_thumbnail': [<InMemoryUploadedFile: No.jpg (image/jpeg)>], 'promo_video': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM (1).mp4 (video/mp4)>], 'video_file': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM.mp4 (video/mp4)>]}>
+INFO 2025-06-10 20:43:04,663 storage_backends Getting available name for: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 20:43:04,920 storage_backends Saving file: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 20:43:04,920 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-10 20:43:05,021 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+INFO 2025-06-10 20:43:05,021 storage_backends Getting available name for: videos/portrait_thumbnails/No.jpg
+INFO 2025-06-10 20:43:05,067 storage_backends Saving file: videos/portrait_thumbnails/No.jpg
+INFO 2025-06-10 20:43:05,067 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-10 20:43:05,395 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-10 20:43:05,395 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:43:05,436 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:43:05,436 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:43:07,975 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:43:07,976 storage_backends Getting available name for: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:43:08,019 storage_backends Saving file: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:43:08,019 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:43:09,248 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:43:09,261 views Successfully created video with ID: 48
+INFO 2025-06-10 20:43:09,261 views Starting main video processing for video ID: 48
+INFO 2025-06-10 20:43:24,534 views Main video processing completed for video ID: 48
+INFO 2025-06-10 20:43:24,534 views Starting promo video processing for video ID: 48
+INFO 2025-06-10 20:43:40,847 views Promo video processing completed for video ID: 48
+ERROR 2025-06-10 20:47:25,954 views Error in add_video view: videos/add.html
+Traceback (most recent call last):
+  File "/Users/saisudhakarmanchala/Documents/ott_python/new_ott/ott_admin/main_accounts/views.py", line 4007, in add_video
+    return render(request, 'videos/add.html', {
+        'categories': categories,
+        'video_prices': video_prices
+    })
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: videos/add.html
+ERROR 2025-06-10 20:47:27,677 views Error in add_video view: videos/add.html
+Traceback (most recent call last):
+  File "/Users/saisudhakarmanchala/Documents/ott_python/new_ott/ott_admin/main_accounts/views.py", line 4007, in add_video
+    return render(request, 'videos/add.html', {
+        'categories': categories,
+        'video_prices': video_prices
+    })
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: videos/add.html
+ERROR 2025-06-10 20:47:29,281 views Error in add_video view: videos/add.html
+Traceback (most recent call last):
+  File "/Users/saisudhakarmanchala/Documents/ott_python/new_ott/ott_admin/main_accounts/views.py", line 4007, in add_video
+    return render(request, 'videos/add.html', {
+        'categories': categories,
+        'video_prices': video_prices
+    })
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: videos/add.html
+ERROR 2025-06-10 20:47:30,096 views Error in add_video view: videos/add.html
+Traceback (most recent call last):
+  File "/Users/saisudhakarmanchala/Documents/ott_python/new_ott/ott_admin/main_accounts/views.py", line 4007, in add_video
+    return render(request, 'videos/add.html', {
+        'categories': categories,
+        'video_prices': video_prices
+    })
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: videos/add.html
+ERROR 2025-06-10 20:47:34,639 views Error in add_video view: videos/add.html
+Traceback (most recent call last):
+  File "/Users/saisudhakarmanchala/Documents/ott_python/new_ott/ott_admin/main_accounts/views.py", line 4007, in add_video
+    return render(request, 'videos/add.html', {
+        'categories': categories,
+        'video_prices': video_prices
+    })
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: videos/add.html
+INFO 2025-06-10 20:49:57,934 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['lzk7jrQHYNgG20MGz4uIh3GwLwxZN7cHxsno1fH17C0dSe18zV2GIpHe7IeRhA1n'], 'title': ['dsd'], 'description': ['sdsd'], 'cast': ['dsdsd,dsdsd'], 'category': ['7'], 'video_type': ['free'], 'release_date': ['2025-06-10'], 'duration': ['111'], 'rental_duration[]': [''], 'rental_price[]': ['']}>
+INFO 2025-06-10 20:49:57,935 views Received FILES: <MultiValueDict: {'thumbnail': [<InMemoryUploadedFile: referral_qr_AHSII146.png (image/png)>], 'portrait_thumbnail': [<InMemoryUploadedFile: No.jpg (image/jpeg)>], 'promo_video': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM (1).mp4 (video/mp4)>], 'video_file': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM.mp4 (video/mp4)>]}>
+INFO 2025-06-10 20:49:57,936 storage_backends Getting available name for: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 20:49:58,197 storage_backends Saving file: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 20:49:58,198 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-10 20:49:58,302 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+INFO 2025-06-10 20:49:58,303 storage_backends Getting available name for: videos/portrait_thumbnails/No.jpg
+INFO 2025-06-10 20:49:58,353 storage_backends Saving file: videos/portrait_thumbnails/No.jpg
+INFO 2025-06-10 20:49:58,353 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-10 20:49:58,691 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-10 20:49:58,691 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:49:58,735 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:49:58,735 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:50:01,305 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:50:01,305 storage_backends Getting available name for: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:50:01,365 storage_backends Saving file: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:50:01,366 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:50:02,662 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:50:02,671 views Successfully created video with ID: 49
+INFO 2025-06-10 20:50:02,671 views Starting main video processing for video ID: 49
+INFO 2025-06-10 20:50:19,544 views Main video processing completed for video ID: 49
+INFO 2025-06-10 20:50:19,544 views Starting promo video processing for video ID: 49
+INFO 2025-06-10 20:50:36,154 views Promo video processing completed for video ID: 49
+INFO 2025-06-10 20:53:59,286 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['3z0YspjEzrN3O8hXA587EQOp7pvCphKvfs3fadaYIgxAEmwpAWG55cP7tBcuTKzb'], 'title': ['fdfc'], 'description': ['xcxcxc'], 'cast': ['xcxcc'], 'category': ['7'], 'video_type': ['free'], 'release_date': ['2025-06-10'], 'duration': ['333'], 'rental_duration[]': [''], 'rental_price[]': ['']}>
+INFO 2025-06-10 20:53:59,287 views Received FILES: <MultiValueDict: {'thumbnail': [<InMemoryUploadedFile: referral_qr_AHSII146.png (image/png)>], 'portrait_thumbnail': [<InMemoryUploadedFile: No.jpg (image/jpeg)>], 'promo_video': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM.mp4 (video/mp4)>], 'video_file': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM (1).mp4 (video/mp4)>]}>
+INFO 2025-06-10 20:53:59,288 storage_backends Getting available name for: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 20:53:59,515 storage_backends Saving file: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 20:53:59,515 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-10 20:53:59,608 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+INFO 2025-06-10 20:53:59,608 storage_backends Getting available name for: videos/portrait_thumbnails/No.jpg
+INFO 2025-06-10 20:53:59,644 storage_backends Saving file: videos/portrait_thumbnails/No.jpg
+INFO 2025-06-10 20:53:59,644 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-10 20:53:59,928 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-10 20:53:59,929 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:53:59,967 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:53:59,967 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:54:02,168 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:54:02,169 storage_backends Getting available name for: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:54:02,208 storage_backends Saving file: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:54:02,208 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:54:03,319 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:54:03,327 views Successfully created video with ID: 50
+INFO 2025-06-10 20:54:03,327 views Starting main video processing for video ID: 50
+ERROR 2025-06-10 20:54:20,082 views Main video processing failed for video ID: 50: Failed to update video in database: This is forbidden when an 'atomic' block is active.
+Traceback (most recent call last):
+  File "/Users/saisudhakarmanchala/Documents/ott_python/new_ott/ott_admin/main_accounts/utils.py", line 363, in process_video_upload
+    transaction.commit()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/db/transaction.py", line 40, in commit
+    get_connection(using).commit()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/db/backends/base/base.py", line 336, in commit
+    self.validate_no_atomic_block()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/django/db/backends/base/base.py", line 525, in validate_no_atomic_block
+    raise TransactionManagementError(
+        "This is forbidden when an 'atomic' block is active."
+    )
+django.db.transaction.TransactionManagementError: This is forbidden when an 'atomic' block is active.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/saisudhakarmanchala/Documents/ott_python/new_ott/ott_admin/main_accounts/views.py", line 3995, in add_video
+    process_video_upload(video.id)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/Users/saisudhakarmanchala/Documents/ott_python/new_ott/ott_admin/main_accounts/utils.py", line 377, in process_video_upload
+    raise Exception(f"Failed to update video in database: {str(e)}")
+Exception: Failed to update video in database: This is forbidden when an 'atomic' block is active.
+INFO 2025-06-10 20:54:20,084 views Starting promo video processing for video ID: 50
+INFO 2025-06-10 20:54:36,684 views Promo video processing completed for video ID: 50
+INFO 2025-06-10 20:57:16,865 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['xKpKWyv2PIatsFVi663wZAzOn8xo8mBcJDs1EmmmYxU0iTaK6XBuqWAwJkegCPqS'], 'title': ['dsd'], 'description': ['dsd'], 'cast': ['dsdsd'], 'category': ['6'], 'video_type': ['free'], 'release_date': ['2025-06-10'], 'duration': ['444'], 'rental_duration[]': [''], 'rental_price[]': ['']}>
+INFO 2025-06-10 20:57:16,866 views Received FILES: <MultiValueDict: {'thumbnail': [<InMemoryUploadedFile: No.jpg (image/jpeg)>], 'portrait_thumbnail': [<InMemoryUploadedFile: referral_qr_AHSII146.png (image/png)>], 'promo_video': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM (1).mp4 (video/mp4)>], 'video_file': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM.mp4 (video/mp4)>]}>
+INFO 2025-06-10 20:57:16,867 storage_backends Getting available name for: videos/thumbnails/No.jpg
+INFO 2025-06-10 20:57:17,097 storage_backends Saving file: videos/thumbnails/No.jpg
+INFO 2025-06-10 20:57:17,097 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-10 20:57:17,423 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-10 20:57:17,424 storage_backends Getting available name for: videos/portrait_thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 20:57:17,459 storage_backends Saving file: videos/portrait_thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 20:57:17,459 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-10 20:57:17,546 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+INFO 2025-06-10 20:57:17,547 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:57:17,587 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:57:17,587 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:57:19,847 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 20:57:19,847 storage_backends Getting available name for: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:57:19,884 storage_backends Saving file: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:57:19,884 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:57:21,047 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 20:57:21,053 views Successfully created video with ID: 51
+INFO 2025-06-10 20:57:21,053 views Starting main video processing for video ID: 51
+INFO 2025-06-10 20:57:37,476 views Main video processing completed for video ID: 51
+INFO 2025-06-10 20:57:37,476 views Starting promo video processing for video ID: 51
+INFO 2025-06-10 20:57:53,077 views Promo video processing completed for video ID: 51
+INFO 2025-06-10 21:02:50,828 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['AeBmQCoo73JdzUcqSWINAOeXGo8RSDJdM7EDyqfIgStKp8rSSNgL1afF2APJm6yT'], 'title': ['dsd'], 'description': ['dsdsd'], 'cast': ['dsdsdd'], 'category': ['7'], 'video_type': ['free'], 'release_date': ['2025-06-10'], 'duration': ['2222'], 'rental_duration[]': [''], 'rental_price[]': ['']}>
+INFO 2025-06-10 21:02:50,829 views Received FILES: <MultiValueDict: {'thumbnail': [<InMemoryUploadedFile: No.jpg (image/jpeg)>], 'portrait_thumbnail': [<InMemoryUploadedFile: referral_qr_AZRJZ138.png (image/png)>], 'promo_video': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM.mp4 (video/mp4)>], 'video_file': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM (1).mp4 (video/mp4)>]}>
+INFO 2025-06-10 21:02:50,830 storage_backends Getting available name for: videos/thumbnails/No.jpg
+INFO 2025-06-10 21:02:51,076 storage_backends Saving file: videos/thumbnails/No.jpg
+INFO 2025-06-10 21:02:51,076 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-10 21:02:51,415 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-10 21:02:51,416 storage_backends Getting available name for: videos/portrait_thumbnails/referral_qr_AZRJZ138.png
+INFO 2025-06-10 21:02:51,460 storage_backends Saving file: videos/portrait_thumbnails/referral_qr_AZRJZ138.png
+INFO 2025-06-10 21:02:51,460 storage_backends Cleaned file name: media/referral_qr_AZRJZ138.png
+INFO 2025-06-10 21:02:51,553 storage_backends File saved successfully: media/referral_qr_AZRJZ138.png
+INFO 2025-06-10 21:02:51,554 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 21:02:51,595 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 21:02:51,596 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 21:02:53,903 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 21:02:53,904 storage_backends Getting available name for: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 21:02:53,950 storage_backends Saving file: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 21:02:53,950 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 21:02:55,459 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 21:02:55,465 views Successfully created video with ID: 52
+INFO 2025-06-10 21:02:55,465 views Starting main video processing for video ID: 52
+INFO 2025-06-10 21:03:13,586 views Main video processing completed for video ID: 52
+INFO 2025-06-10 21:03:13,586 views Starting promo video processing for video ID: 52
+INFO 2025-06-10 21:03:29,793 views Promo video processing completed for video ID: 52
+INFO 2025-06-10 21:05:34,840 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['5nlgtwcno7veXiGCML6pHnlTmX1w0Omuhgoxbk3HxWfLNwV4MCEn8JmBI9Iouhba'], 'title': ['scx'], 'description': ['cxcc'], 'cast': ['xcxcc'], 'category': ['7'], 'video_type': ['free'], 'release_date': ['2025-06-10'], 'duration': ['333'], 'rental_duration[]': [''], 'rental_price[]': ['']}>
+INFO 2025-06-10 21:05:34,841 views Received FILES: <MultiValueDict: {'thumbnail': [<InMemoryUploadedFile: referral_qr_AZRJZ138.png (image/png)>], 'portrait_thumbnail': [<InMemoryUploadedFile: No.jpg (image/jpeg)>], 'promo_video': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM.mp4 (video/mp4)>], 'video_file': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM (1).mp4 (video/mp4)>]}>
+INFO 2025-06-10 21:05:34,841 storage_backends Getting available name for: videos/thumbnails/referral_qr_AZRJZ138.png
+INFO 2025-06-10 21:05:35,087 storage_backends Saving file: videos/thumbnails/referral_qr_AZRJZ138.png
+INFO 2025-06-10 21:05:35,088 storage_backends Cleaned file name: media/referral_qr_AZRJZ138.png
+INFO 2025-06-10 21:05:35,195 storage_backends File saved successfully: media/referral_qr_AZRJZ138.png
+INFO 2025-06-10 21:05:35,196 storage_backends Getting available name for: videos/portrait_thumbnails/No.jpg
+INFO 2025-06-10 21:05:35,239 storage_backends Saving file: videos/portrait_thumbnails/No.jpg
+INFO 2025-06-10 21:05:35,239 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-10 21:05:35,595 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-10 21:05:35,596 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 21:05:35,640 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 21:05:35,640 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 21:05:38,137 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 21:05:38,138 storage_backends Getting available name for: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 21:05:38,182 storage_backends Saving file: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 21:05:38,182 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 21:05:39,495 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 21:05:39,503 views Successfully created video with ID: 53
+INFO 2025-06-10 21:05:39,503 views Starting main video processing for video ID: 53
+INFO 2025-06-10 21:05:55,871 views Main video processing completed for video ID: 53. HLS URL: https://noonenews.s3.ap-south-1.amazonaws.com/videos/hls/53/hls/master.m3u8
+INFO 2025-06-10 21:05:55,872 views Starting promo video processing for video ID: 53
+INFO 2025-06-10 21:13:16,734 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['gJW6b4UmHCoiWlEeNIaBRXtnygW7601MsCZnTSLGQr8PMzTGNzIziju5UsDZAtQs'], 'title': ['dsd'], 'description': ['dsdd'], 'cast': ['sdd'], 'category': ['7'], 'video_type': ['free'], 'release_date': ['2025-06-10'], 'duration': ['222'], 'rental_duration[]': [''], 'rental_price[]': ['']}>
+INFO 2025-06-10 21:13:16,734 views Received FILES: <MultiValueDict: {'thumbnail': [<InMemoryUploadedFile: No.jpg (image/jpeg)>], 'portrait_thumbnail': [<InMemoryUploadedFile: referral_qr_AZRJZ138.png (image/png)>], 'promo_video': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM.mp4 (video/mp4)>], 'video_file': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM (1).mp4 (video/mp4)>]}>
+INFO 2025-06-10 21:13:16,735 storage_backends Getting available name for: videos/thumbnails/No.jpg
+INFO 2025-06-10 21:13:17,005 storage_backends Saving file: videos/thumbnails/No.jpg
+INFO 2025-06-10 21:13:17,005 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-10 21:13:17,390 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-10 21:13:17,390 storage_backends Getting available name for: videos/portrait_thumbnails/referral_qr_AZRJZ138.png
+INFO 2025-06-10 21:13:17,446 storage_backends Saving file: videos/portrait_thumbnails/referral_qr_AZRJZ138.png
+INFO 2025-06-10 21:13:17,446 storage_backends Cleaned file name: media/referral_qr_AZRJZ138.png
+INFO 2025-06-10 21:13:17,551 storage_backends File saved successfully: media/referral_qr_AZRJZ138.png
+INFO 2025-06-10 21:13:17,551 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 21:13:17,589 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 21:13:17,590 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 21:13:20,062 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 21:13:20,062 storage_backends Getting available name for: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 21:13:20,099 storage_backends Saving file: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 21:13:20,099 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 21:13:21,356 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 21:13:21,367 views Successfully created video with ID: 54
+INFO 2025-06-10 21:13:21,367 views Starting main video processing for video ID: 54
+INFO 2025-06-10 21:13:38,290 views Main video processing completed for video ID: 54. HLS URL: https://noonenews.s3.ap-south-1.amazonaws.com/videos/hls/54/hls/master.m3u8
+INFO 2025-06-10 21:13:38,290 views Starting promo video processing for video ID: 54
+INFO 2025-06-10 21:13:55,467 views Promo video processing completed for video ID: 54. HLS URL: https://noonenews.s3.ap-south-1.amazonaws.com/videos/hls/promo_54/hls/master.m3u8
+INFO 2025-06-10 21:13:55,469 views Final video state - Main HLS: https://noonenews.s3.ap-south-1.amazonaws.com/videos/hls/54/hls/master.m3u8, Promo HLS: https://noonenews.s3.ap-south-1.amazonaws.com/videos/hls/promo_54/hls/master.m3u8
+INFO 2025-06-10 21:16:07,678 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['kIdDzPBaemdDXsy4tI4knI3O5XLhZ5VewBgUhDsunbXaNGNwtzCiO44wr9s9tyKU'], 'title': ['cxc'], 'description': ['cxc'], 'cast': ['cxcxcc'], 'category': ['7'], 'video_type': ['free'], 'release_date': ['2025-06-10'], 'duration': ['222'], 'rental_duration[]': [''], 'rental_price[]': ['']}>
+INFO 2025-06-10 21:16:07,679 views Received FILES: <MultiValueDict: {'thumbnail': [<InMemoryUploadedFile: referral_qr_AHSII146.png (image/png)>], 'portrait_thumbnail': [<InMemoryUploadedFile: No.jpg (image/jpeg)>], 'promo_video': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM (1).mp4 (video/mp4)>], 'video_file': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM.mp4 (video/mp4)>]}>
+INFO 2025-06-10 21:16:07,679 storage_backends Getting available name for: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 21:16:07,892 storage_backends Saving file: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-10 21:16:07,892 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-10 21:16:07,996 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+INFO 2025-06-10 21:16:07,996 storage_backends Getting available name for: videos/portrait_thumbnails/No.jpg
+INFO 2025-06-10 21:16:08,038 storage_backends Saving file: videos/portrait_thumbnails/No.jpg
+INFO 2025-06-10 21:16:08,038 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-10 21:16:08,394 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-10 21:16:08,394 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 21:16:08,433 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 21:16:08,433 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 21:16:11,011 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-10 21:16:11,011 storage_backends Getting available name for: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 21:16:11,053 storage_backends Saving file: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 21:16:11,053 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 21:16:12,303 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-10 21:16:12,307 views Successfully created video with ID: 55
+INFO 2025-06-10 21:16:12,307 views Starting main video processing for video ID: 55
+INFO 2025-06-10 21:16:28,086 views Main video processing completed for video ID: 55. HLS URL: https://noonenews.s3.ap-south-1.amazonaws.com/videos/hls/55/hls/master.m3u8
+INFO 2025-06-10 21:16:28,086 views Starting promo video processing for video ID: 55
+INFO 2025-06-10 21:16:44,545 views Promo video processing completed for video ID: 55. HLS URL: https://noonenews.s3.ap-south-1.amazonaws.com/videos/hls/promo_55/hls/master.m3u8
+INFO 2025-06-10 21:16:44,546 views Final video state - Main HLS: https://noonenews.s3.ap-south-1.amazonaws.com/videos/hls/55/hls/master.m3u8, Promo HLS: https://noonenews.s3.ap-south-1.amazonaws.com/videos/hls/promo_55/hls/master.m3u8
+INFO 2025-06-11 13:22:51,792 storage_backends Getting available name for: videos/portrait_thumbnails/premium_photo-1663040525221-c607b4333b76.jpeg
+INFO 2025-06-11 13:22:52,061 storage_backends Saving file: videos/portrait_thumbnails/premium_photo-1663040525221-c607b4333b76.jpeg
+INFO 2025-06-11 13:22:52,062 storage_backends Cleaned file name: media/premium_photo-1663040525221-c607b4333b76.jpeg
+INFO 2025-06-11 13:22:53,414 storage_backends File saved successfully: media/premium_photo-1663040525221-c607b4333b76.jpeg
+INFO 2025-06-11 14:06:51,537 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['d3btnI0e8kA3mxqtQczbECiep5iK28A0oB5x0SYVgwuJRmMniYs5zETI2tQRt5KG'], 'title': ['sssasas'], 'description': ['sasas'], 'cast': ['sasasas'], 'category': ['7'], 'video_type': ['free'], 'release_date': ['2025-06-11'], 'duration': ['12'], 'rental_duration[]': [''], 'rental_price[]': ['']}>
+INFO 2025-06-11 14:06:51,538 views Received FILES: <MultiValueDict: {'thumbnail': [<InMemoryUploadedFile: logo_web.webp (image/webp)>], 'portrait_thumbnail': [<InMemoryUploadedFile: 0-16x9.jpg (image/jpeg)>], 'promo_video': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM (1).mp4 (video/mp4)>], 'video_file': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM.mp4 (video/mp4)>]}>
+INFO 2025-06-11 14:06:51,539 storage_backends Getting available name for: videos/thumbnails/logo_web.webp
+INFO 2025-06-11 14:06:51,842 storage_backends Saving file: videos/thumbnails/logo_web.webp
+INFO 2025-06-11 14:06:51,842 storage_backends Cleaned file name: media/logo_web.webp
+INFO 2025-06-11 14:06:51,942 storage_backends File saved successfully: media/logo_web.webp
+INFO 2025-06-11 14:06:51,942 storage_backends Getting available name for: videos/portrait_thumbnails/0-16x9.jpg
+INFO 2025-06-11 14:06:51,984 storage_backends Saving file: videos/portrait_thumbnails/0-16x9.jpg
+INFO 2025-06-11 14:06:51,984 storage_backends Cleaned file name: media/0-16x9.jpg
+INFO 2025-06-11 14:06:52,104 storage_backends File saved successfully: media/0-16x9.jpg
+INFO 2025-06-11 14:06:52,104 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-11 14:06:52,146 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-11 14:06:52,146 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-11 14:06:54,806 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-11 14:06:54,807 storage_backends Getting available name for: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-11 14:06:54,849 storage_backends Saving file: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-11 14:06:54,849 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-11 14:06:56,074 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-11 14:06:56,089 views Successfully created video with ID: 56
+INFO 2025-06-11 14:06:56,090 views Starting main video processing for video ID: 56
+INFO 2025-06-11 14:07:14,894 views Main video processing completed for video ID: 56. HLS URL: https://noonenews.s3.ap-south-1.amazonaws.com/videos/hls/56/hls/master.m3u8
+INFO 2025-06-11 14:07:14,895 views Starting promo video processing for video ID: 56
+INFO 2025-06-11 14:07:32,835 views Promo video processing completed for video ID: 56. HLS URL: https://noonenews.s3.ap-south-1.amazonaws.com/videos/hls/promo_56/hls/master.m3u8
+INFO 2025-06-11 14:07:32,837 views Final video state - Main HLS: https://noonenews.s3.ap-south-1.amazonaws.com/videos/hls/56/hls/master.m3u8, Promo HLS: https://noonenews.s3.ap-south-1.amazonaws.com/videos/hls/promo_56/hls/master.m3u8
+INFO 2025-06-11 14:16:13,228 storage_backends Getting available name for: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-11 14:16:13,464 storage_backends Saving file: videos/thumbnails/referral_qr_AHSII146.png
+INFO 2025-06-11 14:16:13,465 storage_backends Cleaned file name: media/referral_qr_AHSII146.png
+INFO 2025-06-11 14:16:13,553 storage_backends File saved successfully: media/referral_qr_AHSII146.png
+INFO 2025-06-11 14:16:13,554 storage_backends Getting available name for: videos/portrait_thumbnails/No.jpg
+INFO 2025-06-11 14:16:13,595 storage_backends Saving file: videos/portrait_thumbnails/No.jpg
+INFO 2025-06-11 14:16:13,595 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-11 14:16:13,923 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-11 14:16:13,924 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-11 14:16:13,962 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-11 14:16:13,963 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-11 14:16:16,272 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-11 14:17:37,142 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['h3WLw2h7sKun7vVd8Ma5AYIVJRobXwU4sBQP9cfOAWo3Ckh7Ay3Zv0jpmfWiot4K'], 'title': ['dsds'], 'description': ['dsdsd'], 'cast': ['sdsdd,dsdsd'], 'category': ['7'], 'video_type': ['free'], 'release_date': ['2025-06-11'], 'duration': ['22'], 'rental_duration[]': [''], 'rental_price[]': ['']}>
+INFO 2025-06-11 14:17:37,143 views Received FILES: <MultiValueDict: {'thumbnail': [<InMemoryUploadedFile: referral_qr_AZRJZ138.png (image/png)>], 'portrait_thumbnail': [<InMemoryUploadedFile: No.jpg (image/jpeg)>], 'promo_video': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM.mp4 (video/mp4)>], 'video_file': [<InMemoryUploadedFile: WhatsApp Video 2025-06-09 at 5.12.16 PM (1).mp4 (video/mp4)>]}>
+INFO 2025-06-11 14:17:37,144 storage_backends Getting available name for: videos/thumbnails/referral_qr_AZRJZ138.png
+INFO 2025-06-11 14:17:37,378 storage_backends Saving file: videos/thumbnails/referral_qr_AZRJZ138.png
+INFO 2025-06-11 14:17:37,378 storage_backends Cleaned file name: media/referral_qr_AZRJZ138.png
+INFO 2025-06-11 14:17:37,474 storage_backends File saved successfully: media/referral_qr_AZRJZ138.png
+INFO 2025-06-11 14:17:37,475 storage_backends Getting available name for: videos/portrait_thumbnails/No.jpg
+INFO 2025-06-11 14:17:37,517 storage_backends Saving file: videos/portrait_thumbnails/No.jpg
+INFO 2025-06-11 14:17:37,518 storage_backends Cleaned file name: media/No.jpg
+INFO 2025-06-11 14:17:37,845 storage_backends File saved successfully: media/No.jpg
+INFO 2025-06-11 14:17:37,846 storage_backends Getting available name for: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-11 14:17:37,889 storage_backends Saving file: videos/files/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-11 14:17:37,889 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-11 14:17:40,393 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM_1.mp4
+INFO 2025-06-11 14:17:40,394 storage_backends Getting available name for: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-11 14:17:40,440 storage_backends Saving file: videos/promos/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-11 14:17:40,441 storage_backends Cleaned file name: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-11 14:17:41,728 storage_backends File saved successfully: media/WhatsApp_Video_2025-06-09_at_5.12.16_PM.mp4
+INFO 2025-06-11 14:17:41,732 views Successfully created video with ID: 58
+INFO 2025-06-11 14:17:41,733 views Starting main video processing for video ID: 58
+INFO 2025-06-11 14:17:58,187 views Main video processing completed for video ID: 58. HLS URL: https://noonenews.s3.ap-south-1.amazonaws.com/videos/hls/58/hls/master.m3u8
+INFO 2025-06-11 14:17:58,188 views Starting promo video processing for video ID: 58
+INFO 2025-06-11 14:18:14,235 views Promo video processing completed for video ID: 58. HLS URL: https://noonenews.s3.ap-south-1.amazonaws.com/videos/hls/promo_58/hls/master.m3u8
+INFO 2025-06-11 14:18:14,237 views Final video state - Main HLS: https://noonenews.s3.ap-south-1.amazonaws.com/videos/hls/58/hls/master.m3u8, Promo HLS: https://noonenews.s3.ap-south-1.amazonaws.com/videos/hls/promo_58/hls/master.m3u8
+INFO 2025-06-11 14:34:26,031 views Received POST data: <QueryDict: {'csrfmiddlewaretoken': ['eCxKQAvbm3yjlAjdXeZpVcxVCHZ7sMrxErnWkAsg0ScovGms96JZYiIXG8ErVvlD'], 'title': ['SKANDHA BOUTIQUE'], 'description': ['WOMENS SPECIAL PLACE IN VIJAYAWADA. ALL TYPES OF LADIES DRESS COLLECTIONS AND DRESS MATERIALS. RUNNING AT PAST 4 TO 6 YEARS WITHOUT A BREAK - SKANDHA BOUTIQUE VIJAYAWADA.'], 'cast': ['NANDINI, RAMYA '], 'category': ['7'], 'video_type': ['free'], 'release_date': ['2025-06-11'], 'duration': ['12'], 'rental_duration[]': [''], 'rental_price[]': ['']}>
+INFO 2025-06-11 14:34:26,031 views Received FILES: <MultiValueDict: {'thumbnail': [<TemporaryUploadedFile: BANNER 3 copy.jpg (image/jpeg)>], 'portrait_thumbnail': [<TemporaryUploadedFile: BANNER 1 copy.jpg (image/jpeg)>], 'promo_video': [<TemporaryUploadedFile: O ONITHA O MAGUVA Episode 01 Promo.mp4 (video/mp4)>], 'video_file': [<TemporaryUploadedFile: ep- 1.mp4 (video/mp4)>]}>
+INFO 2025-06-11 14:34:26,033 storage_backends Getting available name for: videos/thumbnails/BANNER_3_copy.jpg
+INFO 2025-06-11 14:34:26,326 storage_backends Saving file: videos/thumbnails/BANNER_3_copy.jpg
+INFO 2025-06-11 14:34:26,326 storage_backends Cleaned file name: media/BANNER_3_copy.jpg
+INFO 2025-06-11 14:34:26,909 storage_backends File saved successfully: media/BANNER_3_copy.jpg
+INFO 2025-06-11 14:34:26,910 storage_backends Getting available name for: videos/portrait_thumbnails/BANNER_1_copy.jpg
+INFO 2025-06-11 14:34:26,963 storage_backends Saving file: videos/portrait_thumbnails/BANNER_1_copy.jpg
+INFO 2025-06-11 14:34:26,964 storage_backends Cleaned file name: media/BANNER_1_copy.jpg
+INFO 2025-06-11 14:34:27,404 storage_backends File saved successfully: media/BANNER_1_copy.jpg
+INFO 2025-06-11 14:34:27,405 storage_backends Getting available name for: videos/files/ep-_1.mp4
+INFO 2025-06-11 14:34:27,457 storage_backends Saving file: videos/files/ep-_1.mp4
+INFO 2025-06-11 14:34:27,458 storage_backends Cleaned file name: media/ep-_1.mp4
+INFO 2025-06-11 14:35:02,162 storage_backends File saved successfully: media/ep-_1.mp4
+INFO 2025-06-11 14:35:02,164 storage_backends Getting available name for: videos/promos/O_ONITHA_O_MAGUVA_Episode_01_Promo.mp4
+INFO 2025-06-11 14:35:02,346 storage_backends Saving file: videos/promos/O_ONITHA_O_MAGUVA_Episode_01_Promo.mp4
+INFO 2025-06-11 14:35:02,346 storage_backends Cleaned file name: media/O_ONITHA_O_MAGUVA_Episode_01_Promo.mp4
+INFO 2025-06-11 14:35:03,368 storage_backends File saved successfully: media/O_ONITHA_O_MAGUVA_Episode_01_Promo.mp4
+INFO 2025-06-11 14:35:03,388 views Successfully created video with ID: 59
+INFO 2025-06-11 14:35:03,388 views Starting main video processing for video ID: 59
+INFO 2025-06-11 14:57:47,814 views Main video processing completed for video ID: 59. HLS URL: https://noonenews.s3.ap-south-1.amazonaws.com/videos/hls/59/hls/master.m3u8
+INFO 2025-06-11 14:57:47,816 views Starting promo video processing for video ID: 59
+INFO 2025-06-11 14:58:25,544 views Promo video processing completed for video ID: 59. HLS URL: https://noonenews.s3.ap-south-1.amazonaws.com/videos/hls/promo_59/hls/master.m3u8
+INFO 2025-06-11 14:58:25,546 views Final video state - Main HLS: https://noonenews.s3.ap-south-1.amazonaws.com/videos/hls/59/hls/master.m3u8, Promo HLS: https://noonenews.s3.ap-south-1.amazonaws.com/videos/hls/promo_59/hls/master.m3u8
+INFO 2025-06-11 16:49:33,384 storage_backends Getting available name for: videos/portrait_thumbnails/Demo_copy.jpg
+INFO 2025-06-11 16:49:33,650 storage_backends Saving file: videos/portrait_thumbnails/Demo_copy.jpg
+INFO 2025-06-11 16:49:33,650 storage_backends Cleaned file name: media/Demo_copy.jpg
+INFO 2025-06-11 16:49:34,004 storage_backends File saved successfully: media/Demo_copy.jpg
+INFO 2025-06-12 16:05:23,317 storage_backends Getting available name for: categories/nri-times-zone.jpg
+INFO 2025-06-12 16:05:23,360 storage_backends Saving file: categories/nri-times-zone.jpg
+INFO 2025-06-12 16:05:23,360 storage_backends Cleaned file name: media/nri-times-zone.jpg
+INFO 2025-06-12 16:05:24,065 storage_backends File saved successfully: media/nri-times-zone.jpg
+INFO 2025-06-12 16:05:53,257 storage_backends Getting available name for: categories/o-wanitha-o-maguva.jpg
+INFO 2025-06-12 16:05:53,301 storage_backends Saving file: categories/o-wanitha-o-maguva.jpg
+INFO 2025-06-12 16:05:53,301 storage_backends Cleaned file name: media/o-wanitha-o-maguva.jpg
+INFO 2025-06-12 16:05:54,002 storage_backends File saved successfully: media/o-wanitha-o-maguva.jpg
+INFO 2025-06-12 16:07:02,428 storage_backends Getting available name for: categories/health-zone-thumb.jpg
+INFO 2025-06-12 16:07:02,632 storage_backends Saving file: categories/health-zone-thumb.jpg
+INFO 2025-06-12 16:07:02,632 storage_backends Cleaned file name: media/health-zone-thumb.jpg
+INFO 2025-06-12 16:07:03,192 storage_backends File saved successfully: media/health-zone-thumb.jpg
+INFO 2025-06-12 16:07:34,748 storage_backends Getting available name for: categories/devotinal.jpg
+INFO 2025-06-12 16:07:34,792 storage_backends Saving file: categories/devotinal.jpg
+INFO 2025-06-12 16:07:34,792 storage_backends Cleaned file name: media/devotinal.jpg
+INFO 2025-06-12 16:07:35,703 storage_backends File saved successfully: media/devotinal.jpg
+INFO 2025-06-12 16:08:21,337 storage_backends Getting available name for: categories/mana-oori-vishayalu.jpg
+INFO 2025-06-12 16:08:21,386 storage_backends Saving file: categories/mana-oori-vishayalu.jpg
+INFO 2025-06-12 16:08:21,387 storage_backends Cleaned file name: media/mana-oori-vishayalu.jpg
+INFO 2025-06-12 16:08:22,096 storage_backends File saved successfully: media/mana-oori-vishayalu.jpg
+INFO 2025-06-12 16:09:35,082 storage_backends Getting available name for: categories/little-stars-zone.jpg
+INFO 2025-06-12 16:09:35,315 storage_backends Saving file: categories/little-stars-zone.jpg
+INFO 2025-06-12 16:09:35,316 storage_backends Cleaned file name: media/little-stars-zone.jpg
+INFO 2025-06-12 16:09:35,952 storage_backends File saved successfully: media/little-stars-zone.jpg
+INFO 2025-06-12 16:14:22,599 storage_backends Getting available name for: categories/DEVOTIONAL.jpg
+INFO 2025-06-12 16:14:22,793 storage_backends Saving file: categories/DEVOTIONAL.jpg
+INFO 2025-06-12 16:14:22,794 storage_backends Cleaned file name: media/DEVOTIONAL.jpg
+INFO 2025-06-12 16:14:23,415 storage_backends File saved successfully: media/DEVOTIONAL.jpg
+INFO 2025-06-12 16:16:29,353 storage_backends Getting available name for: categories/EDUCATION.jpg
+INFO 2025-06-12 16:16:29,651 storage_backends Saving file: categories/EDUCATION.jpg
+INFO 2025-06-12 16:16:29,652 storage_backends Cleaned file name: media/EDUCATION.jpg
+INFO 2025-06-12 16:16:30,412 storage_backends File saved successfully: media/EDUCATION.jpg
+INFO 2025-06-12 16:18:23,705 storage_backends Getting available name for: categories/ENTERTAINMENT.jpg
+INFO 2025-06-12 16:18:23,935 storage_backends Saving file: categories/ENTERTAINMENT.jpg
+INFO 2025-06-12 16:18:23,935 storage_backends Cleaned file name: media/ENTERTAINMENT.jpg
+INFO 2025-06-12 16:18:24,604 storage_backends File saved successfully: media/ENTERTAINMENT.jpg
+INFO 2025-06-12 16:24:13,760 storage_backends Getting available name for: categories/LEGAL-ZONE.jpg
+INFO 2025-06-12 16:24:14,005 storage_backends Saving file: categories/LEGAL-ZONE.jpg
+INFO 2025-06-12 16:24:14,005 storage_backends Cleaned file name: media/LEGAL-ZONE.jpg
+INFO 2025-06-12 16:24:14,675 storage_backends File saved successfully: media/LEGAL-ZONE.jpg
+INFO 2025-06-12 16:29:25,180 storage_backends Getting available name for: categories/NEW-ENTREPRENEURS.jpg
+INFO 2025-06-12 16:29:25,436 storage_backends Saving file: categories/NEW-ENTREPRENEURS.jpg
+INFO 2025-06-12 16:29:25,436 storage_backends Cleaned file name: media/NEW-ENTREPRENEURS.jpg
+INFO 2025-06-12 16:29:26,186 storage_backends File saved successfully: media/NEW-ENTREPRENEURS.jpg
+INFO 2025-06-12 17:05:14,595 storage_backends Getting available name for: categories/NGOS-1.jpg
+INFO 2025-06-12 17:05:14,881 storage_backends Saving file: categories/NGOS-1.jpg
+INFO 2025-06-12 17:05:14,881 storage_backends Cleaned file name: media/NGOS-1.jpg
+INFO 2025-06-12 17:05:15,748 storage_backends File saved successfully: media/NGOS-1.jpg
+INFO 2025-06-12 17:08:52,519 storage_backends Getting available name for: categories/NGOS.jpg
+INFO 2025-06-12 17:08:52,750 storage_backends Saving file: categories/NGOS.jpg
+INFO 2025-06-12 17:08:52,750 storage_backends Cleaned file name: media/NGOS.jpg
+INFO 2025-06-12 17:08:53,507 storage_backends File saved successfully: media/NGOS.jpg
+INFO 2025-06-12 17:11:40,435 storage_backends Getting available name for: categories/NGOS.jpg
+INFO 2025-06-12 17:11:40,675 storage_backends Saving file: categories/NGOS.jpg
+INFO 2025-06-12 17:11:40,675 storage_backends Cleaned file name: media/NGOS.jpg
+INFO 2025-06-12 17:11:41,356 storage_backends File saved successfully: media/NGOS.jpg
+INFO 2025-06-12 17:12:33,633 storage_backends Getting available name for: categories/NGOS.jpg
+INFO 2025-06-12 17:12:33,848 storage_backends Saving file: categories/NGOS.jpg
+INFO 2025-06-12 17:12:33,848 storage_backends Cleaned file name: media/NGOS.jpg
+INFO 2025-06-12 17:12:34,558 storage_backends File saved successfully: media/NGOS.jpg
+INFO 2025-06-12 17:13:50,711 storage_backends Getting available name for: categories/NGOS.jpg
+INFO 2025-06-12 17:13:50,941 storage_backends Saving file: categories/NGOS.jpg
+INFO 2025-06-12 17:13:50,942 storage_backends Cleaned file name: media/NGOS.jpg
+INFO 2025-06-12 17:13:51,573 storage_backends File saved successfully: media/NGOS.jpg
+INFO 2025-06-12 17:14:38,895 storage_backends Getting available name for: categories/NGOS.jpg
+INFO 2025-06-12 17:14:39,084 storage_backends Saving file: categories/NGOS.jpg
+INFO 2025-06-12 17:14:39,084 storage_backends Cleaned file name: media/NGOS.jpg
+INFO 2025-06-12 17:14:39,838 storage_backends File saved successfully: media/NGOS.jpg
+INFO 2025-06-12 17:19:06,804 storage_backends Getting available name for: categories/AGRI-ZONE.jpg
+INFO 2025-06-12 17:19:06,969 storage_backends Saving file: categories/AGRI-ZONE.jpg
+INFO 2025-06-12 17:19:06,969 storage_backends Cleaned file name: media/AGRI-ZONE.jpg
+INFO 2025-06-12 17:19:07,949 storage_backends File saved successfully: media/AGRI-ZONE.jpg
+INFO 2025-06-12 17:44:23,536 storage_backends Getting available name for: categories/DEVOTIONAL.jpg
+INFO 2025-06-12 17:44:23,794 storage_backends Saving file: categories/DEVOTIONAL.jpg
+INFO 2025-06-12 17:44:23,794 storage_backends Cleaned file name: media/DEVOTIONAL.jpg
+INFO 2025-06-12 17:44:24,458 storage_backends File saved successfully: media/DEVOTIONAL.jpg
+INFO 2025-06-12 17:44:45,327 storage_backends Getting available name for: categories/health-zone-thumb.jpg
+INFO 2025-06-12 17:44:45,552 storage_backends Saving file: categories/health-zone-thumb.jpg
+INFO 2025-06-12 17:44:45,552 storage_backends Cleaned file name: media/health-zone-thumb.jpg
+INFO 2025-06-12 17:44:46,070 storage_backends File saved successfully: media/health-zone-thumb.jpg
+INFO 2025-06-12 17:45:44,362 storage_backends Getting available name for: categories/EDUCATION.jpg
+INFO 2025-06-12 17:45:44,500 storage_backends Saving file: categories/EDUCATION.jpg
+INFO 2025-06-12 17:45:44,500 storage_backends Cleaned file name: media/EDUCATION.jpg
+INFO 2025-06-12 17:45:45,062 storage_backends File saved successfully: media/EDUCATION.jpg
+INFO 2025-06-12 17:46:30,227 storage_backends Getting available name for: categories/EDUCATION.jpg
+INFO 2025-06-12 17:46:30,473 storage_backends Saving file: categories/EDUCATION.jpg
+INFO 2025-06-12 17:46:30,473 storage_backends Cleaned file name: media/EDUCATION.jpg
+INFO 2025-06-12 17:46:31,035 storage_backends File saved successfully: media/EDUCATION.jpg
+INFO 2025-06-12 17:47:34,930 storage_backends Getting available name for: categories/LEGAL-ZONE.jpg
+INFO 2025-06-12 17:47:35,178 storage_backends Saving file: categories/LEGAL-ZONE.jpg
+INFO 2025-06-12 17:47:35,178 storage_backends Cleaned file name: media/LEGAL-ZONE.jpg
+INFO 2025-06-12 17:47:35,748 storage_backends File saved successfully: media/LEGAL-ZONE.jpg
