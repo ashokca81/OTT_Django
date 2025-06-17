@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout, update_session_auth
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import JsonResponse, HttpResponse
-from .models import UserProfile, LoginHistory, BugReport, BugReportReply, Category, LiveStream, State, District, Constituency, Mandal, Village, RegionalVideo, Video, VideoPrice, UserVideo, Cast, VideoCast, WatchList
+from .models import UserProfile, LoginHistory, BugReport, BugReportReply, Category, LiveStream, State, District, Constituency, Mandal, Village, RegionalVideo, Video, VideoPrice, UserVideo, Cast, VideoCast
 from django.contrib.auth.models import User
 from django.views.decorators.http import require_http_methods
 from django.db.models import Q, Max, Count, OuterRef, Subquery, Sum, F
@@ -20,11 +20,11 @@ from django.utils import timezone
 from django.core.paginator import Paginator
 from rest_framework import viewsets, permissions
 from .utils import convert_to_hls, upload_hls_to_s3, process_video_upload, process_promo_video
-from .serializers import LiveStreamSerializer, CategorySerializer, StateSerializer, DetailedStateSerializer, DistrictSerializer, DetailedDistrictSerializer, ConstituencySerializer, DetailedConstituencySerializer, MandalSerializer, DetailedMandalSerializer, VillageSerializer, DetailedVillageSerializer, RegionalVideoSerializer, VideoSerializer, VideoPriceSerializer, UserVideoSerializer, WatchListSerializer
+from .serializers import LiveStreamSerializer, CategorySerializer, StateSerializer, DetailedStateSerializer, DistrictSerializer, DetailedDistrictSerializer, ConstituencySerializer, DetailedConstituencySerializer, MandalSerializer, DetailedMandalSerializer, VillageSerializer, DetailedVillageSerializer, RegionalVideoSerializer, VideoSerializer, VideoPriceSerializer, UserVideoSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import action, api_view, permission_classes
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import AllowAny
 from django.db import transaction
 import logging
 from decimal import Decimal
@@ -4249,13 +4249,7 @@ def get_hero_videos(request):
             processing_status='completed'
         ).order_by('-hero_order')[:5]
         
-        # Create a custom serializer context to exclude hls_url
-        context = {
-            'request': request,
-            'exclude_hls_url': True
-        }
-        
-        serializer = VideoSerializer(hero_videos, many=True, context=context)
+        serializer = VideoSerializer(hero_videos, many=True, context={'request': request})
         
         response = Response({
             'status': 'success',
@@ -4353,63 +4347,3 @@ def update_hero_order(request):
             'status': 'error',
             'message': str(e)
         }, status=500)
-
-class WatchListViewSet(viewsets.ModelViewSet):
-    serializer_class = WatchListSerializer
-    permission_classes = [IsAuthenticated]
-    
-    def get_queryset(self):
-        return WatchList.objects.filter(user=self.request.user)
-    
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
-    
-    @action(detail=False, methods=['post'])
-    def toggle(self, request):
-        try:
-            content_id = request.data.get('content_id')
-            if not content_id:
-                return Response({'error': 'content_id is required'}, status=status.HTTP_400_BAD_REQUEST)
-                
-            content = Video.objects.get(id=content_id)
-            watchlist_item = WatchList.objects.filter(user=request.user, content=content).first()
-            
-            if watchlist_item:
-                watchlist_item.delete()
-                return Response({
-                    'status': 'success',
-                    'message': 'Removed from watchlist',
-                    'in_watchlist': False
-                })
-            else:
-                WatchList.objects.create(user=request.user, content=content)
-                return Response({
-                    'status': 'success',
-                    'message': 'Added to watchlist',
-                    'in_watchlist': True
-                })
-                
-        except Video.DoesNotExist:
-            return Response({'error': 'Video not found'}, status=status.HTTP_404_NOT_FOUND)
-        except Exception as e:
-            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-    
-    @action(detail=False, methods=['get'])
-    def status(self, request):
-        try:
-            content_id = request.query_params.get('content_id')
-            if not content_id:
-                return Response({'error': 'content_id is required'}, status=status.HTTP_400_BAD_REQUEST)
-                
-            content = Video.objects.get(id=content_id)
-            in_watchlist = WatchList.objects.filter(user=request.user, content=content).exists()
-            
-            return Response({
-                'status': 'success',
-                'in_watchlist': in_watchlist
-            })
-            
-        except Video.DoesNotExist:
-            return Response({'error': 'Video not found'}, status=status.HTTP_404_NOT_FOUND)
-        except Exception as e:
-            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

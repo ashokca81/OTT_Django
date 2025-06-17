@@ -2,7 +2,7 @@ from django.urls import path, include
 from django.shortcuts import redirect
 from . import views
 from rest_framework.routers import DefaultRouter
-from .views import VideoViewSet, VideoPriceViewSet, UserVideoViewSet, WatchListViewSet
+from .views import VideoViewSet, VideoPriceViewSet, UserVideoViewSet
 
 router = DefaultRouter()
 router.register(r'api/categories', views.CategoryViewSet)
@@ -10,7 +10,6 @@ router.register(r'api/live-streams', views.LiveStreamViewSet)
 router.register(r'videos', VideoViewSet)
 router.register(r'video-prices', VideoPriceViewSet)
 router.register(r'user-videos', UserVideoViewSet, basename='user-videos')
-router.register(r'watchlist', WatchListViewSet, basename='watchlist')
 
 urlpatterns = [
     path('', views.index_view, name='index'),

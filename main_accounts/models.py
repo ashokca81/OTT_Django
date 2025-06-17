@@ -490,15 +490,3 @@ class VideoCast(models.Model):
 
     def __str__(self):
         return f"{self.video.title} - {self.cast.name}"
-
-class WatchList(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='watchlist')
-    content = models.ForeignKey('Video', on_delete=models.CASCADE, related_name='in_watchlists')
-    added_date = models.DateTimeField(auto_now_add=True)
-    
-    class Meta:
-        unique_together = ('user', 'content')
-        ordering = ['-added_date']
-        
-    def __str__(self):
-        return f"{self.user.username}'s watchlist - {self.content.title}"

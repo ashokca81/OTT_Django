@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import LiveStream, Category, State, District, Constituency, Mandal, Village, RegionalVideo, Video, VideoPrice, UserVideo, Cast, VideoCast, WatchList
+from .models import LiveStream, Category, State, District, Constituency, Mandal, Village, RegionalVideo, Video, VideoPrice, UserVideo, Cast, VideoCast
 
 class CategorySerializer(serializers.ModelSerializer):
     image_url = serializers.SerializerMethodField()
@@ -196,13 +196,12 @@ class VideoSerializer(serializers.ModelSerializer):
     prices = VideoPriceSerializer(many=True, read_only=True)
     thumbnail_url = serializers.SerializerMethodField()
     promo_hls_url = serializers.SerializerMethodField()
-    hls_url = serializers.SerializerMethodField()
     cast = serializers.SerializerMethodField()
 
     class Meta:
         model = Video
         fields = ['id', 'title', 'description', 'thumbnail_url',
-                  'promo_hls_url', 'hls_url', 'category', 'category_name', 'video_type', 'duration',
+                  'promo_hls_url', 'category', 'category_name', 'video_type', 'duration',
                  'release_date', 'is_active', 'views_count', 'prices', 'cast']
         read_only_fields = ['views_count', 'created_by']
 
@@ -211,17 +210,26 @@ class VideoSerializer(serializers.ModelSerializer):
             return obj.thumbnail.url
         return None
 
-    def get_promo_hls_url(self, obj):
-        if obj.is_promo_processed and obj.promo_hls_url:
-            return obj.promo_hls_url
+    def get_portrait_thumbnail_url(self, obj):
+        if obj.portrait_thumbnail:
+            return obj.portrait_thumbnail.url
         return None
 
-    def get_hls_url(self, obj):
-        # Check if we should exclude hls_url
-        if self.context.get('exclude_hls_url'):
-            return None
+    def get_video_url(self, obj):
         if obj.is_processed and obj.hls_url:
             return obj.hls_url
+        elif obj.video_file:
+            return obj.video_file.url
+        return None
+
+    def get_promo_hls_url(self, obj):
+        if hasattr(obj, 'promo_hls_url') and obj.promo_hls_url:
+            return obj.promo_hls_url
+        elif hasattr(obj, 'promo_video') and obj.promo_video:
+            # Convert MP4 URL to HLS URL
+            mp4_url = obj.promo_video.url
+            if mp4_url.endswith('.mp4'):
+                return mp4_url.replace('.mp4', '.m3u8')
         return None
 
     def get_cast(self, obj):
@@ -230,16 +238,9 @@ class VideoSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         data = super().to_representation(instance)
-        
-        # Add HLS URL if video is processed and not excluded
-        if not self.context.get('exclude_hls_url'):
-            if instance.is_processed and instance.hls_url:
-                data['hls_url'] = instance.hls_url
-            
-        # Add promo HLS URL if promo is processed
-        if instance.is_promo_processed and instance.promo_hls_url:
-            data['promo_hls_url'] = instance.promo_hls_url
-            
+        # Convert promo video URL to HLS if needed
+        if data.get('promo_hls_url') and data['promo_hls_url'].endswith('.mp4'):
+            data['promo_hls_url'] = data['promo_hls_url'].replace('.mp4', '.m3u8')
         return data
 
     def create(self, validated_data):
@@ -261,11 +262,3 @@ class UserVideoSerializer(serializers.ModelSerializer):
         if obj.video.thumbnail and request:
             return request.build_absolute_uri(obj.video.thumbnail.url)
         return None 
-
-class WatchListSerializer(serializers.ModelSerializer):
-    content_details = VideoSerializer(source='content', read_only=True)
-    
-    class Meta:
-        model = WatchList
-        fields = ['id', 'user', 'content', 'content_details', 'added_date']
-        read_only_fields = ['user', 'added_date'] 
