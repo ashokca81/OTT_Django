@@ -95,10 +95,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'new_ott',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': '127.0.0.1',
-        'PORT': '3307',
+        'USER': 'admin',
+        'PASSWORD': 'ashokca810',
+        'HOST': 'database-1.chuc440webif.ap-south-1.rds.amazonaws.com',',
+        'PORT': '3306',
         'OPTIONS': {
             'charset': 'utf8mb4',
         },
@@ -181,16 +181,16 @@ SESSION_COOKIE_SAMESITE = 'Lax'
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8080",
-    "http://127.0.0.1:8080",
-    "http://localhost:5173",
-    "http://192.168.0.124:8080",
-    "http://192.168.0.124:5173",
-    # "https://www.no1ott.com",
-    # "http://www.no1ott.com",
-    # "https://no1ott.com",
-    # "http://no1ott.com",
-    # "http://admin.no1ott.com"
+    # "http://localhost:8080",
+    # "http://127.0.0.1:8080",
+    # "http://localhost:5173",
+    # "http://192.168.0.124:8080",
+    # "http://192.168.0.124:5173",
+    "https://www.no1ott.com",
+    "http://www.no1ott.com",
+    "https://no1ott.com",
+    "http://no1ott.com",
+    "http://admin.no1ott.com"
 ]
 
 CORS_ALLOW_METHODS = [
@@ -223,16 +223,16 @@ CORS_EXPOSE_HEADERS = [
     ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:8080",
-    "http://127.0.0.1:8080",
-    "http://localhost:5173",
-    "http://192.168.0.124:8080",
-    "http://192.168.0.124:5173"
-    # "https://www.no1ott.com",
-    # "http://www.no1ott.com",
-    # "https://no1ott.com",
-    # "http://no1ott.com",
-    # "http://admin.no1ott.com"
+    # "http://localhost:8080",
+    # "http://127.0.0.1:8080",
+    # "http://localhost:5173",
+    # "http://192.168.0.124:8080",
+    # "http://192.168.0.124:5173"
+    "https://www.no1ott.com",
+    "http://www.no1ott.com",
+    "https://no1ott.com",
+    "http://no1ott.com",
+    "http://admin.no1ott.com"
 ]
 
 # CSRF settings
@@ -340,3 +340,4 @@ LOGGING = {
         },
     },
 }
+
