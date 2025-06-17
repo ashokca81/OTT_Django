@@ -14,7 +14,6 @@ import os
 from pathlib import Path
 import pymysql
 from dotenv import load_dotenv
-from datetime import timedelta
 pymysql.install_as_MySQLdb()
 
 # Load environment variables
@@ -54,9 +53,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -158,25 +157,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # REST Framework settings
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-    ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
-}
-
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
-    'ROTATE_REFRESH_TOKENS': True,
-    'BLACKLIST_AFTER_ROTATION': True,
-    'UPDATE_LAST_LOGIN': True,
-    'ALGORITHM': 'HS256',
-    'SIGNING_KEY': SECRET_KEY,
-    'VERIFYING_KEY': None,
-    'AUTH_HEADER_TYPES': ('Bearer',),
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ],
 }
 
 # Session Settings
@@ -187,13 +178,20 @@ SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SAMESITE = 'Lax'
 
 # CORS settings
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8080",
     "http://127.0.0.1:8080",
-    "http://192.168.0.104:8080",
+    "http://localhost:5173",
+    "http://192.168.0.124:8080",
+    "http://192.168.0.124:5173",
+    # "https://www.no1ott.com",
+    # "http://www.no1ott.com",
+    # "https://no1ott.com",
+    # "http://no1ott.com",
+    # "http://admin.no1ott.com"
 ]
-
-CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOW_METHODS = [
     'DELETE',
@@ -216,14 +214,25 @@ CORS_ALLOW_HEADERS = [
     'x-requested-with',
 ]
 
-CORS_EXPOSE_HEADERS = ['Content-Type', 'X-CSRFToken']
+CORS_EXPOSE_HEADERS = [
+    'Content-Type', 
+    'X-CSRFToken',
+    'X-Requested-With',
+    'X-CSRFToken',
+    'X-Requested-With',
+    ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:8080",
     "http://127.0.0.1:8080",
     "http://localhost:5173",
-    "http://192.168.0.104:8080",
-    "http://192.168.0.104:5173"
+    "http://192.168.0.124:8080",
+    "http://192.168.0.124:5173"
+    # "https://www.no1ott.com",
+    # "http://www.no1ott.com",
+    # "https://no1ott.com",
+    # "http://no1ott.com",
+    # "http://admin.no1ott.com"
 ]
 
 # CSRF settings
@@ -241,6 +250,9 @@ MSG91_SUBSCRIPTION_SUCCESS_TEMPLATE_ID = os.getenv('MSG91_SUBSCRIPTION_SUCCESS_T
 # Razorpay settings
 RAZORPAY_KEY_ID = 'rzp_test_EDnxUsWaufciN6'  # Replace with your test key
 RAZORPAY_KEY_SECRET = 'Cg1IFgjlYCLwGoHk1UhpysKB'  # Replace with your test secret
+
+
+
 
 # AWS S3 Configuration
 AWS_ACCESS_KEY_ID = 'AKIASIVGK4VVOKWZDRVX'
